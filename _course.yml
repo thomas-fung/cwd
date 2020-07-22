@@ -38,10 +38,10 @@ schedule:
     lecturer: Emi/Stuart
     topic: Presentations
 team:
-  - name: Stuart Lee
+  - name: Emi Tanaka (Chief Examiner)
     role: lecturer
     consult: Mon 3-4pm
-  - name: Emi Tanaka (Chief Examiner)
+  - name: Stuart Lee
     role: lecturer
     consult: Mon 3-4pm
   - name: Mitchell O'Hara-Wild
