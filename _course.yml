@@ -1,0 +1,49 @@
+schedule:
+  - week: 1
+    lecturer: Emi
+    topic: "Advanced Reproducible Practices"
+    readings: ""
+    assessment: ""
+  - week: 2
+    lecturer: Emi
+    topic: "Data Technologies"
+  - week: 3
+    lecturer: Emi
+    topic: "Fashionable Model Output and Data Tables"
+  - week: 4
+    lecturer: Emi
+    topic: "Data Storytelling on the Web"
+  - week: 5
+    lecturer: Emi
+    topic: "Communicating Data with Interactive Web Apps"
+  - week: 6
+    lecturer: Emi
+    topic: "Effective Data Visualisation"
+  - week: 7
+    lecturer: Stuart
+    topic: Clearly Communicating with Code
+  - week: 8
+    lecturer: Stuart
+    topic: Stylishly Communicating with Code
+  - week: 9
+    lecturer: Stuart
+    topic: Captivating Statistical Presentations
+  - week: 10
+    lecturer: Emi/Stuart
+    topic: Guest Lecture on Practice & Data Storyboard
+  - week: 11
+    lecturer: Stuart
+    topic: Data Dashboard
+  - week: 12
+    lecturer: Emi/Stuart
+    topic: Presentations
+team:
+  - name: Stuart Lee
+    role: lecturer
+    consult: Mon 3-4pm
+  - name: Emi Tanaka (Chief Examiner)
+    role: lecturer
+    consult: Mon 3-4pm
+  - name: Mitchell O'Hara-Wild
+    role: tutor
+    consult: Mon 3-4pm
