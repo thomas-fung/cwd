@@ -64,7 +64,8 @@ All consultations will be in using zoom. Check Moodle for the links.
 
 ```{r consult, results="asis"}
 team_df %>% 
-  mutate(consult_print = glue::glue("{paste0(name, ': ', consult)}")) %>% 
+  mutate(name = gsub(" (Chief Examiner)", "", name, fixed = T)) %>% 
+  mutate(consult_print = glue::glue("**{name}**: {consult}")) %>% 
   pull(consult_print) %>% 
   ui_list()
 ```
@@ -72,10 +73,9 @@ team_df %>%
 ## Expectations
 
 * Unless your question is a personal issue or an administrative matter, please do not send us direct email. The moodle discussion forum is appropriate for questions related to the course.
-* For personal or private administrative issues, the email contact is: ETC5521.Clayton-x@monash.edu
+* For personal or private administrative issues, the email contact is: ETC5523.Clayton-x@monash.edu
 * Lectures are recorded, and you are expected to have either attended the lecture, or watched the recordings fully, prior to the tutorial for the week.
-* Tutorials are not recorded, and attendance is expected.
-* Bring your own laptop to the computer labs. If you do not have a laptop you can borrow one from MoVE
+* Tutorials may not be recorded, and attendance is expected.
 * If you register after the start of the semester or if you miss a lecture/tutorial, it is your responsibility to catch up with missed material, learn about due dates for material to be turned in, and getting assigned to a group for team work, as necessary.
 * The computer software R and RStudio will be used for the unit.
 
@@ -102,16 +102,17 @@ schedule_df <- schedule_df %>%
   ),
   topic = ifelse(is.na(topic), "", topic),
   readings = ifelse(is.na(readings), "", readings),
-  assessment = ifelse(is.na(assessment), "", assessment)) %>% 
-  select(week, lecturer, slides, tut, topic, readings, assessment)
+  assessment = ifelse(is.na(assessment), "", assessment),
+  tools = ifelse(is.na(tools), "", tools)) %>% 
+  select(week, lecturer, slides, tut, topic, tools, readings, assessment)
 
 
 midsem_break <- 7 # after which week
 
 schedule_df %>% 
-  kable(escape = FALSE, align = c("c", "c", "c", "c", "l", "l"),
+  kable(escape = FALSE, align = c("c", "c", "c", "c", "l", "l", "l", "l"),
         col.names = c("Week", "Lecturer", "Slides", "Tutorial", 
-                      "Topic", "Readings", "Assessments")) %>% 
+                      "Topic", "Tools", "Readings", "Assessments")) %>% 
   kable_styling(bootstrap_options = "striped",
                 fixed_thead = T) %>% 
   column_spec(1, width = "0.5cm") %>% 

@@ -2,48 +2,76 @@ schedule:
   - week: 1
     lecturer: Emi
     topic: "Advanced Reproducible Practices"
-    readings: ""
-    assessment: ""
+    tools: "`rmarkdown`, `bookdown`"
+    readings: "[Authoring Books with R Markdown Ch 3](https://bookdown.org/yihui/bookdown/output-formats.html)"
   - week: 2
     lecturer: Emi
-    topic: "Data Technologies"
+    tools: "`HTML/CSS/JS`, `htmlwidgets`, `crosstalk`"
+    topic: "Introduction to Web and Data Technologies"
+    readings: "[Introduction to Data Technologies Ch 2-4](https://www.stat.auckland.ac.nz/~paul/ItDT/itdt-2010-11-01.pdf)"
   - week: 3
     lecturer: Emi
+    tools: "`broom`, `kableExtra`, `knitr`, `DT`, `formattable`"
     topic: "Fashionable Model Output and Data Tables"
+    assessment: "24 hour take home assessment **due Fri 21 Aug 7PM**"
+    readings: "[stargazer: Well-Formatted Regression and Summary Statistics Tables](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf)"
   - week: 4
     lecturer: Emi
+    tools: "`blogdown`, git & github"
     topic: "Data Storytelling on the Web"
+    readings: "[blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/)"
   - week: 5
     lecturer: Emi
     topic: "Communicating Data with Interactive Web Apps"
+    tools: "`shiny`, `plotly`"
+    assessment: "Blog entry 1 **due Fri 4 Sep 11:55 PM**"
+    readings: "[Interactive web-based data visualization with R, plotly, and shiny](https://plotly-r.com/), [Mastering Shiny (WIP)](https://mastering-shiny.org/)"
   - week: 6
     lecturer: Emi
     topic: "Effective Data Visualisation"
+    tools: "`ggplot`, `colorspace`"
+    readings: "[colorspace: A Toolbox for Manipulating and Assessing Colors and Palettes](https://arxiv.org/pdf/1903.06490.pdf), [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)"
   - week: 7
     lecturer: Stuart
     topic: Clearly Communicating with Code
+    tools: "`devtools`, `usethis`, `testthat`, `roxygen2`, `pkgdown`"
+    assessment: "Blog entry 2 **due Fri 18 Sep 11:55 PM**"
+    readings: "[R Packages](https://r-pkgs.org/)"
   - week: 8
     lecturer: Stuart
     topic: Stylishly Communicating with Code
+    tools: "`devtools`, `usethis`, `testthat`, `roxygen2`, `pkgdown`"
+    assessment: "Assignment **due Fri 9 Oct 11:55 PM**"
+    readings: "[R Packages](https://r-pkgs.org/)"
   - week: 9
     lecturer: Stuart
     topic: Captivating Statistical Presentations
+    tools: "`xaringan`"
+    assessment: "Blog entry 3 **due Fri 16 Oct 11:55 PM**"
+    readings: ""
   - week: 10
     lecturer: Emi/Stuart
     topic: Guest Lecture on Practice & Data Storyboard
+    tools: "`posterdown`"
+    assessment: "Assignment **due Fri 23 Oct 11:55 PM**"
+    reading: ""
   - week: 11
     lecturer: Stuart
     topic: Data Dashboard
+    tools: "`flexdashboard`, `shinydashboard`"
+    assessment: "Blog entry 4 **due Fri 30 Oct 11:55 PM**"
+    readings: "[Avoid Dashboard Fatigue](https://rstudio.com/resources/webinars/avoid-dashboard-fatigue/)"
   - week: 12
     lecturer: Emi/Stuart
     topic: Presentations
+    assessment: "Group presentation **Tue 3 Nov 4-6:00PM**"
 team:
   - name: Emi Tanaka (Chief Examiner)
     role: lecturer
-    consult: Mon 3-4pm
+    consult: Fri 3.30-4.30pm (Wk 1-6)
   - name: Stuart Lee
     role: lecturer
-    consult: Mon 3-4pm
+    consult: TBD (Wk 7-12)
   - name: Mitchell O'Hara-Wild
     role: tutor
-    consult: Mon 3-4pm
+    consult: Mon 3.30-4.30pm (Wk 2-12), Tue 3.00-3.30pm (Wk 2-12)
