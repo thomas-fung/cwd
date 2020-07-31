@@ -1,0 +1,45 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 1 Supp B"
+author: "Emi Tanaka"
+date: "Week 1"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+```
+
+
+The following code calculates how many seconds it took for the car to stop. The chunk name is `seconds-to-stop`.
+
+```{r seconds-to-stop}
+ftps <- 1.467 * cars$speed # convert to ft per second
+seconds_to_stop <- cars$dist / ftps 
+summary(seconds_to_stop)
+```
+
+```{r, echo = -2 }
+knitr::opts_current$get("label")
+cat("This has chunk label 'unnamed-chunk-1'")
+```
+
+```{r, echo = -2 }
+knitr::opts_current$get("label")
+cat("This has chunk label [[TODO]]")
+```
+
+```{r red-plot, fig.path="images/tutorial01/"}
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = "red", size = 2)
+```
+
+```{r, fig.path="images/tutorial01/"}
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = "blue", size = 2)
+```
+
+```{r, fig.path="images/tutorial01/"}
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = "yellow", size = 2)
+```
