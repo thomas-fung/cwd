@@ -22,7 +22,7 @@ output:
 ## `r emo::ji("wrench")` Preparation  
 
    
-1. Download ``tutorial-01-suppA.Rmd`, `tutorial-01-suppB.Rmd` and `tutorial-01-suppC.Rmd` from the [course home page](https://cwd.numbat.space/).
+1. Download <a href="tutorial-01-suppA.Rmd" download>`tutorial-01-suppA.Rmd`</a>, <a href="tutorial-01-suppB.Rmd" download>`tutorial-01-suppB.Rmd`</a> and <a href="tutorial-01-suppC.Rmd" download>`tutorial-01-suppC.Rmd`</a> by clicking on the names.
 
 1. Install R-packages
 ```{r, eval = FALSE}
