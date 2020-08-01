@@ -17,7 +17,7 @@ schedule:
     readings: "[stargazer: Well-Formatted Regression and Summary Statistics Tables](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf)"
   - week: 4
     lecturer: Emi
-    tools: "`blogdown`, git & github"
+    tools: "`blogdown`, `distill`, git & github"
     topic: "Data Storytelling on the Web"
     readings: "[blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/)"
   - week: 5
