@@ -1,0 +1,60 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+
+.tip{
+    padding: 0.35em;
+    margin: 0.35em 0;
+    padding-left: 10px;
+    background-size: 70px;
+    background-repeat: no-repeat;
+    background-position: 15px center;
+    background-image: url("blub.png");
+    min-height: 50px;
+    color: #1f5386;
+    background-color: #bed3ec;
+    border: dashed 5px #1f5386;
+    width: 100%;
+    display: table;
+    margin: 0 auto;
+  }
+
+.tip > ul li::before {
+  color: #003F7F;
+}
+
+.motivator ul {
+  text-align: left;
+}
+
+/* change the font for data table */
+
+table {
+  font-size: 18pt;
+}
+
+thead {
+  background-color: #027EB6;
+  color: white;
+}
+
+.dataTables_wrapper, table.dataTable, .dataTables_scroll {
+  height: inherit;
+}
+
+
+.pad10 {
+  padding-right: 20px;
+}
+
+
+.scroll-fit50 {
+  width: 98%;
+  overflow: scroll;
+  height: 500px;
+  border: 1px solid gray;
+  margin: 3px;
+}
+
+.scroll-fit50 .remark-code-line {
+  font-size: 12pt;
+}

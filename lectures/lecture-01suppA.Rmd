@@ -1,0 +1,20 @@
+---
+title: "Parameterized Report"
+params:
+  year: 2019 
+output: html_document
+---
+
+
+```{r, message = FALSE, warning=FALSE}
+library(dplyr)
+library(eechidna) # get the tcp data
+df <- get(paste0("tcp", substr(params$year, 3, 4)))
+df %>% 
+  filter(Elected == "Y") %>% 
+  group_by(PartyNm) %>% 
+  tally() %>% 
+  arrange(desc(n)) %>% 
+  knitr::kable(caption = paste("Election", params$year))
+```
+
