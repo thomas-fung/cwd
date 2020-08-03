@@ -29,7 +29,7 @@ output:
 install.packages(c("rmarkdown", "bookdown", "linl"))
 ```
     
-## 🎛️ Exercise 8A
+## 🎛️ Exercise 1A
 
 **Case study `include = FALSE`: loading `tidyverse`** 
 
@@ -48,7 +48,7 @@ In writing your report, you probably do not want to
 
 `r emo::ji("wrench")` [Open `tutorial-01-suppA.Rmd` and modify the `pkg-load` chunk to hide the code and message outputs.]{.question}
 
-## 📛 Exercise 8B
+## 📛 Exercise 1B
 
 **Naming your chunks**
 
@@ -134,14 +134,14 @@ You can reference multiple chunks by supplying a character vector of chunk label
 It's a good idea to name your chunks although you may be lazy to do this like me. The [namer](https://github.com/lockedata/namer) package attempts to make this easier.
 
 
-## ✉️ Exercise 8C
+## ✉️ Exercise 1C
 
 **Personalised letters**
 
 
 1. [Open `tutorial-01-suppC.Rmd` and compile it.]{.question}
 2. [Collect and make note of (1) the names, (2) likes, and (3) what they want to learn in this course from your fellow peers.]{.question}
-3. [Replace the data below with information of people you met in this tutorial.]{.question} (You should get data of a minium of 3 people).
+3. [Replace the data below with information of people you met in this tutorial.]{.question} (You should get data of a minimum of 3 people).
 
 ```{r participants, message = FALSE}
 library(tidyverse)
