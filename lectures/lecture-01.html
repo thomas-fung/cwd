@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5523: Communicating with Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emi Tanaka" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/image_modal.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-01.pdf&gt;PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5523: Communicating with Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 1&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Advanced Reproducible Practices&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Emi Tanaka*
+
+Department of Econometrics and Business Statistics
+
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+4th August 2020
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+---
+
+# 👩🏻‍🏫 ETC5523 Teaching Team
+
+.grid[
+.item.border-right.center[
+
+### Emi Tanaka
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img class="border-box" src="images/emi.png" height = "200px"&gt;
+&lt;/center&gt;
+&lt;br&gt;
+
+*Lecturer Wk 1-6*
+
+*Chief Examiner*
+
+]
+.item.border-right.center[
+
+### Stuart Lee
+
+&lt;br&gt;
+&lt;img class="border-box" src="images/stuart-lee.jpg" width = "200px"&gt;
+&lt;br&gt;&lt;br&gt;
+
+*Lecturer Wk 7-12*
+
+]
+.item.center[
+
+### Mitchell O'Hara-Wild
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;img class="border-box" src="images/mitch.jpeg"&gt;
+&lt;/center&gt;
+&lt;br&gt;
+
+*Tutor*
+
+]
+]
+
+&lt;div class="info-box center" style="position:absolute;bottom:5%;left:28%;width:45%;"&gt;
+&lt;i class="fas fa-envelope"&gt;&lt;/i&gt; ETC5523.Clayton-x@monash.edu
+&lt;br&gt;&lt;br&gt;
+&lt;i&gt;for confidential matters&lt;/i&gt;
+&lt;/div&gt;
+
+---
+
+# 🎯 ETC5523 Learning Objectives
+
+&lt;br&gt;
+.info-box.wider-list.width70[
+1. Effectively communicate data analysis, using a blog, reports and presentation.
+2. Learn how to build a web app to provide an interactive data analysis.
+3. Learn to construct a data story.
+]
+
+
+---
+
+
+
+
+
+# 🗣 Communicating 
+
+&lt;br&gt;
+
+&lt;blockquote&gt;
+To effectively communicate, we must realize that we are all different in the way we perceive the world and use this understanding as a guide to our communication with others.
+&lt;br&gt;&lt;br&gt;
+
+&lt;footer&gt;—Anthony Robbins&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+--
+
+&lt;br&gt;
+
+Your engagement with your peers will be critical to form your understanding and become a better communicator.
+
+---
+
+# 📈 Communicating *with Data*
+
+&lt;br&gt;
+
+&lt;blockquote&gt;
+The two words 'information' and 'communication' are often used interchangeably, but they signify quite different things. Information is giving out; communication is getting through.  
+&lt;br&gt;&lt;br&gt;
+
+&lt;footer&gt;—Sydney J. Harris&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+--
+
+&lt;br&gt;
+
+In this course, you will construct narratives from your number-crunching to tell a compelling data story.
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/people.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+# *Who* do we communicate with as analysts, statisticians, or data scientists?
+
+]
+]
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/communication-network1.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+## Statisticians 
+## &amp;emsp;&amp;emsp; &lt;i class="fas fa-arrows-alt-v"&gt;&lt;/i&gt;
+## Stakeholders
+
+&lt;br&gt;
+
+* Stakeholders can have a span from zero to proficient statistical knowledge.
+* They may be technicians, domain-knowledge experts, managers, decision-makers and so on.
+
+]
+]
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/communication-network2.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+## Statisticians 
+## &amp;emsp;&amp;emsp; &lt;i class="fas fa-arrows-alt-v"&gt;&lt;/i&gt;
+## Stakeholders
+
+&lt;br&gt;
+
+* You may not directly interact with the stakeholders but rather through product (e.g. reports or tools) that you provide the stakeholders.
+
+]
+]
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/communication-network3.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+## Statisticians 
+## &amp;emsp;&amp;emsp; &lt;i class="fas fa-arrows-alt-v"&gt;&lt;/i&gt;
+## General Public
+
+&lt;br&gt;
+
+* Reports, blogs, social media posts, tools and so on may also be consumed by the general public.
+* The general public will have a variety of statistical background.
+
+]
+]
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/communication-network4.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+## Statisticians 
+## &amp;emsp;&amp;emsp; &lt;i class="fas fa-arrows-alt-v"&gt;&lt;/i&gt;
+## General Public
+
+&lt;br&gt;
+
+* You may directly communicate with public as well (presentations, workshops, outreach and so on)
+
+
+]
+]
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/communication-network5.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+## Statistician
+## &amp;emsp;&amp;emsp; &lt;i class="fas fa-arrows-alt-v"&gt;&lt;/i&gt;
+## Statistician
+
+&lt;br&gt;
+
+* You also talk to your peers (directly or indirectly)
+
+
+]
+]
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/communication-network6.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+## &amp;emsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;You 
+## &amp;emsp;&amp;emsp; &lt;i class="fas fa-arrow-down"&gt;&lt;/i&gt;
+## &amp;nbsp;&amp;nbsp;&amp;nbsp;Future You
+
+&lt;br&gt;
+
+* Future you also needs to understand what past you did!
+
+]
+]
+
+---
+
+.grid[.item[
+&lt;img src="images/lecture-images/communication-network.png" width = "700px"&gt;
+
+]
+.item.pad10[
+
+## &amp;emsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;You 
+## &amp;emsp;&amp;emsp; &lt;i class="fas fa-arrows-alt-v"&gt;&lt;/i&gt;
+## &amp;nbsp;&amp;nbsp;&amp;nbsp;Another Party
+
+&lt;br&gt;
+
+* All communications are represented as two-way here &lt;span class="font_small"&gt;(with one exception, as you can't travel back in time to talk to past self)&lt;/span&gt;
+* Ideally you want the communication to be two-way, but in practice, communication may only be possible one-way.
+
+]
+]
+
+---
+
+class:  nostripheader
+
+# .monash-blue[Communication isn't just between humans]
+
+Computer systems communicate with each other. 
+
+&lt;br&gt;
+
+&lt;center&gt;
+&lt;img src="images/server.png"/ width = "380px"&gt;
+&lt;/center&gt;
+
+You'll learn about web and data technologies next week.
+
+---
+
+# 🤝 Key Ingredient of a Successful Communication 
+
+--
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+
+&lt;div class="animated tada" style="text-align:center"&gt;
+&lt;span style="font-size:100pt!important; font-weight:900;"&gt;TRUST &lt;/span&gt;
+&lt;/div&gt;
+
+---
+
+count: false
+class: center
+
+# 🤝 Key Ingredient of a Successful Communication 
+
+&lt;span style="font-size:100pt!important; font-weight:900;"&gt;TRUST &lt;/span&gt;
+
+Trust in the **data collection process**
+
+--
+
+Trust in the **data entry**
+
+--
+
+Trust in the **data processing**
+
+--
+
+Trust in the **number crunching**
+
+--
+
+Trust in **your skills**
+
+--
+
+Trust **assumptions are reasonable**
+
+
+--
+
+Trust in the **software**
+
+--
+
+Trust in **interpretations**
+
+
+`\(\vdots\)`
+
+
+---
+
+# 👍 Building Trust 
+
+
+# Minimise errors 
+
+* We are all **prone to errors** no matter how skilled we are.
+* Adopting **reproducible practices** (e.g. git + R Markdown) helps to **minimise this error**. .font_small[(note: it does not completely eradicate it)]
+
+--
+
+# Be transparent
+
+* Share code and data (where you can). This not only builds trust in the results, this gives opportunities for others to correct any errors. .font_small[See also about [open science](https://en.wikipedia.org/wiki/Open_science), [open-source software](https://en.wikipedia.org/wiki/Open-source_software) and [open-data](https://en.wikipedia.org/wiki/Open_data).]
+* Give credit and acknowledgement where due.
+
+--
+
+# Interrogate your data, tools and sources
+
+* Use trusted software (preferably with proper testing). 
+* Sanity check your data, tools and sources. 
+
+
+---
+
+class: question middle
+
+What statistical software do you use and why?
+
+<div class="countdown clock" id="timer_5f27f585" style="right:30px;bottom:0;" data-audio="true" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+
+---
+
+
+
+# 📅 Unit Structure 
+
+&lt;br&gt;
+
+#  &lt;i class="fas fa-chalkboard-teacher"&gt;&lt;/i&gt; 2 hour lectures 
+## Tues 4.00-6.00PM
+
+&lt;br&gt;
+
+# &lt;i class="fas fa-wrench"&gt;&lt;/i&gt; 1.5 hour tutorials 
+you can only attend the one that you are allocated in 
+## Weds 4.00-5.30PM OR Thu 5.00-6.30PM
+
+&lt;br&gt;&lt;br&gt;
+
+*Attendances are recorded.*
+
+
+---
+
+# 📚 Resources
+
+&lt;br&gt;
+
+# &lt;i class="fa fa-home"&gt;&lt;/i&gt; Course homepage 
+this is where you find the course materials &lt;br&gt;(lecture slides, tutorials and tutorial solutions)
+# https://cwd.numbat.space/
+
+&lt;br&gt;
+
+# &lt;i class="fa fa-archive"&gt;&lt;/i&gt; Moodle 
+this is where you find discussion forum, zoom links, assignments and marks
+# https://lms.monash.edu/course/view.php?id=81235
+
+
+---
+
+
+# 💯 Assessment .font_small[Part 1/3]
+
+# Engagement (total 10%)
+
+* Lecture and tutorial participation will contribute to this.
+* If you have some clashes for lecture or tutorial, there are other opportunities to show your engagement, including:
+  * posting in the Moodle discussion forum, 
+  * github commits (more on this later in the course), 
+  * peer reviewing (more on this later in the course), and 
+  * online submissions (see Tutorial Q1C for example). 
+* There should be **at least 3 measurable and meaningful engagement activities each week** (contributing to 1% of your final mark capped to 10% over the whole semester; in other words, you can miss 2 weeks, .font_small[or 4 weeks counting mid-semester break although harder to gain engagement marks over that period], without impacting your mark). 
+
+---
+
+# 💯 Assessment .font_small[Part 2/3]
+
+# Take Home Assessment (15%)
+
+* Will be made available at Thu 20 Aug 7PM. 
+* You will have 24 hours (i.e. **due Fri 21 Aug 7PM**) to complete the assessment. 
+* You will be given an document that you have to reproduce using R Markdown.
+
+# Blog Entries (20%)
+
+* You will have 4 blog entries featuring a data story  **due Fri 4 Sep 2020**, **Fri 18 Sep 2020**, **Fri 16 Oct 2020** and  **Fri 30 Oct 2020**.
+* You will write these blogs using R Markdown.
+
+---
+
+# 💯 Assessment .font_small[Part 3/3]
+
+
+
+# Assignment 1: Making a Shiny web app (20%)
+
+* You will make an interactive web application to communicate a data story using `shiny`
+* The app will be **due Fri 9 Oct**
+
+# Assignment 2: Making an R-package (25%)
+
+* You will make an R-package that has clear documentation, vignettes, consistent coding style, and robust functions (as demonstrated by testing).
+* The R-package will be **due Fri 23 Oct**
+
+# Group Presentation (10%)
+
+* Group of 3-4 to present 5 minutes at **Tue 3 Nov 4PM**
+
+---
+
+# 🔶 Expectations .font_small[Part 1/3]
+
+* Lectures are recorded but you are expected to have either attended the lecture, or watched the recordings fully, prior to the tutorial for the week.
+* Tutorials may not be recorded, and attendance is expected.
+* Questions related to the course should be raised at moodle discussion forum.
+* For personal or private administrative issues, the email contact is: ETC5523.Clayton-x@monash.edu
+* If you register after the start of the semester or if you miss a lecture/tutorial, it is your responsibility to catch up with missed material, learn about due dates for material to be turned in, and getting assigned to a group for team work, as necessary.
+* All times are given in AEST (Melbourne time).
+
+---
+
+# 🔶 Expectations .font_small[Part 2/3]
+
+* The computer software [R](https://www.r-project.org/) and [RStudio IDE](https://rstudio.com/products/rstudio/download/) will be used for the unit. 
+* You will need to install latest versions of all necessary software (below is not an exhaustive list for this course). 
+
+
+```r
+install.packages(c("tidyverse", "rmarkdown", "shiny", "broom", 
+  "skimr", "blogdown", "distill", "knitr", "kableExtra", "feasts",
+  "devtools", "usethis", "testthat", "roxygen2", "knitr", "fable",
+  "shinydashboard", "flexdashboard", "DT", "xaringan", "tsibble",
+  "stargazer", "htmlwidgets", "bookdown", "pagedown", "magick",
+  "crosstalk", "plotly", "colorspace", "pkgdown", "posterdown", 
+  "glue", "lme4", "agridat", "catdata", "gganimate", "htmltools", 
+  "leaflet", "linl", "patchwork", "shinytest", "shinyjs", 
+  "tinytex", "xaringanthemer", "lmerTest", "DBI", "dbplyr", 
+  "RMySQL", "RPostgreSQL", "RSQLite", "bigrquery", "odbc", 
+  "rvest", "nycflights13", "palmerpenguins", "eechidna"))
+```
+
+---
+
+# 🔶 Expectations .font_small[Part 3/3]
+
+* **ETC5513 is prerequisite**. Some of you may have exemption (due to evidence of equivalent knowledge to ETC5513) or gone through the bridging course instead. 
+* It's expected that you know how to use **git**, **github** and basic **R Markdown** (as taught in ETC5513). 
+* The priority of the ETC5523 teaching team is to support you in ETC5523 material.
+* It's essential in this course that you have a [GitHub](https://github.com/), [RPubs](https://rpubs.com/), [shinyapps.io](https://www.shinyapps.io/) and [Netlify](https://www.netlify.com/) (connected to your GitHub account) accounts. All are free to register.
+
+
+
+---
+
+# GitHub Classroom
+
+We are going to use GitHub Classroom to keep track of your repos and distribute templates. 
+
+&lt;span class='animated pulse' style='background-color:#027EB6;padding:10px;font-size:14pt;border:1pt solid black;color:white;font-weight:bold;display:inline-block;'&gt;🥠 Engagement opportunity&lt;/span&gt;
+
+1. Start with the test assignment by clicking on the link given in [Moodle](https://lms.monash.edu/course/view.php?id=81235) **before Fri 7 Aug 11PM** and make sure you identify yourself by connecting your name to the roster.
+2. Once you have accepted it .font_small[(note: some browsers do not work well with GitHub Classroom so use Chrome or Firefox)], you can find your repo here:
+&lt;center&gt;
+&lt;a href="https://github.com/etc5523-2020"&gt;https://github.com/etc5523-2020&lt;/a&gt;
+&lt;/center&gt;
+3. If you don't recall how to connect this repo locally, check [this guide](https://github.com/jfiksel/github-classroom-for-students).
+4. Make some small changes to your repo and make sure these changed are pushed to GitHub.
+
+---
+
+class: nostripheader middle
+
+# Questions?
+
+
+
+
+---
+
+
+class: transition middle
+
+# R Markdown
+
+## Case Studies
+
+
+
+--
+
+There are more features in R Markdown than we can show you.
+
+--
+
+&lt;br&gt;
+
+The aim for you should be to independently search and find your solution.
+
+
+---
+
+# Case study .circle[1] `knitr::opts_chunk$set` 
+
+.grid[.item.border-right[
+* Repeating chunk options can be painful in your workflow. 
+* If you are say writing `echo = FALSE` for every single chunk, you might as well set the default chunk option to `echo = FALSE`. 
+* Remember **don't repeat yourself** (DRY) every time.
+* In order to change the default chunk options you can use 
+
+
+```r
+knitr::opts_chunk$set(echo = FALSE)
+```
+]
+.item[
+
+{{content}}
+]
+]
+
+--
+
+* You can get the current default by using the following command:
+
+
+```r
+str(knitr::opts_chunk$get())
+```
+
+```
+## List of 53
+##  $ eval         : logi TRUE
+##  $ echo         : logi TRUE
+##  $ results      : chr "markup"
+##  $ tidy         : logi FALSE
+##  $ tidy.opts    : NULL
+##  $ collapse     : logi FALSE
+##  $ prompt       : logi FALSE
+##  $ comment      : chr "##"
+##  $ highlight    : logi TRUE
+##  $ strip.white  : logi TRUE
+##  $ size         : chr "normalsize"
+##  $ background   : chr "#F7F7F7"
+##  $ cache        : logi FALSE
+##  $ cache.path   : chr "lecture-01_cache/html/"
+##  $ cache.vars   : NULL
+##  $ cache.lazy   : logi TRUE
+##  $ dependson    : NULL
+##  $ autodep      : logi FALSE
+##  $ cache.rebuild: logi FALSE
+##  $ fig.keep     : chr "high"
+##  $ fig.show     : chr "asis"
+##  $ fig.align    : chr "default"
+##  $ fig.path     : chr "images/lecture-01/"
+##  $ dev          : chr "png"
+##  $ dev.args     : NULL
+##  $ dpi          : num 72
+##  $ fig.ext      : NULL
+##  $ fig.width    : num 7
+##  $ fig.height   : num 7
+##  $ fig.env      : chr "figure"
+##  $ fig.cap      : NULL
+##  $ fig.scap     : NULL
+##  $ fig.lp       : chr "fig:"
+##  $ fig.subcap   : NULL
+##  $ fig.pos      : chr ""
+##  $ out.width    : NULL
+##  $ out.height   : NULL
+##  $ out.extra    : NULL
+##  $ fig.retina   : num 1
+##  $ external     : logi TRUE
+##  $ sanitize     : logi FALSE
+##  $ interval     : num 1
+##  $ aniopts      : chr "controls,loop"
+##  $ warning      : logi TRUE
+##  $ error        : logi FALSE
+##  $ message      : logi TRUE
+##  $ render       : NULL
+##  $ ref.label    : NULL
+##  $ child        : NULL
+##  $ engine       : chr "R"
+##  $ split        : logi FALSE
+##  $ include      : logi TRUE
+##  $ purl         : logi TRUE
+```
+
+---
+
+# ⚙️ Setting Chunk Options
+
+
+* You can always overwrite the default for each chunk.
+
+````md
+```{r, message = FALSE, warning = FALSE}
+library(tidyverse)
+```
+````
+
+* For chunk options, check out https://yihui.name/knitr/options/.
+
+# &lt;i class="fas fa-broom"&gt;&lt;/i&gt; Organising your Rmd file
+
+* &lt;i class="fas fa-cog monash-ruby2"&gt;&lt;/i&gt; It is good practice to .monash-ruby2[set default chunk options at the beginning of your Rmd file] just as it is good practice to .monash-ruby2[load all packages needed at the beginning]. 
+* &lt;i class="fas fa-eye monash-ruby2"&gt;&lt;/i&gt; This makes it easier to quickly see what the expected behaviour of the chunks for anyone (including yourself) looking at the file.
+
+---
+
+# Case Study .circle[2] Parameterized R Markdown Reports .font_small[Part 1/2]
+
+.grid[.item[
+````md
+---
+title: "Parameterized Report"
+params:
+*  year: 2019
+output: html_document
+---
+
+```{r, message = FALSE, warning = FALSE}
+library(dplyr)
+library(eechidna) # get the tcp data
+*df &lt;- get(paste0("tcp", substr(params$year, 3, 4)))
+df %&gt;% 
+  filter(Elected == "Y") %&gt;% 
+  group_by(PartyNm) %&gt;% 
+  tally() %&gt;% 
+  arrange(desc(n)) %&gt;% 
+* knitr::kable(caption = paste("Election", params$year))
+```
+````
+
+]
+.item[
+
+&lt;iframe src="lecture-01suppA.html" height="100%" width="100%"&gt;&lt;/iframe&gt;
+
+]]
+
+---
+
+# Case Study .circle[2] Parameterized R Markdown Reports .font_small[Part 2/2]
+
+.grid[.item[
+````md
+---
+title: "Parameterized Report"
+params:
+  year: 
+    label: "Year"
+    value: 2019
+    input: radio
+    choices: [2001, 2004, 2007, 2010, 2013, 2016, 2019]
+output: html_document
+---
+````
+
+]
+.item[
+
+&lt;img class="border-box" src="images/knit-with-params.png" width="300px"&gt;
+
+
+See more input type [here](https://bookdown.org/yihui/rmarkdown/params-knit.html#tab:params-types).
+
+]]
+
+---
+
+
+# Case Study .circle[3]  Render Rmd via Command Line
+
+.grid[.item.border-right[
+`lecture-01suppA.Rmd`
+````md
+---
+title: "Parameterized Report"
+params:
+   year: 2019
+output: html_document
+---
+```{r, message = FALSE, warning = FALSE}
+library(dplyr)
+library(eechidna) # get the tcp data
+df &lt;- get(paste0("tcp", substr(params$year, 3, 4)))
+df %&gt;% 
+  filter(Elected == "Y") %&gt;% 
+  group_by(PartyNm) %&gt;% 
+  tally() %&gt;% 
+  arrange(desc(n)) %&gt;% 
+  knitr::kable(caption = paste("Election", params$year))
+```
+````
+
+]
+.item[
+
+You can knit this file via R command by
+using the render function:
+
+```r
+library(rmarkdown)
+render("lecture-01suppA.Rmd")
+```
+&lt;br&gt;
+
+You can overwrite the YAML values
+by supplying arguments to render:
+
+```r
+library(rmarkdown)
+render("lecture-01suppA.Rmd",
+  output_format = "pdf_document",
+  params = list(year = 2016)))
+```
+
+]
+]
+
+---
+
+# Case Study .circle[4] `theme` for `html_document` 
+
+&lt;!-- The Modal --&gt;
+&lt;div id="myModal" class="modal"&gt;
+  &lt;div id="caption"&gt;&lt;/div&gt;
+  &lt;span class="close" onclick="document.getElementById('myModal').style.display='none'"&gt;&amp;times;&lt;/span&gt;
+  &lt;iframe class="modal-content" id="img01"&gt;&lt;/iframe&gt;&lt;br&gt;
+&lt;/div&gt;
+
+You can change the look of the html document by specifying themes:
+.grid[
+.item[
+
+]
+.item[
+
+* `default` &lt;img class="modalImg" alt="default"/&gt; 
+* `cerulean` &lt;img class="modalImg" alt="cerulean"/&gt; 
+* `journal`  &lt;img class="modalImg" alt="journal"/&gt; 
+* `flatly` &lt;img class="modalImg" alt="flatly"/&gt; 
+* `darkly` &lt;img class="modalImg" alt="darkly"/&gt; 
+* `readable` &lt;img class="modalImg" alt="readable"/&gt; 
+* `spacelab` &lt;img class="modalImg" alt="spacelab"/&gt; 
+* `united` &lt;img class="modalImg" alt="united"/&gt; 
+
+]
+
+.item[
+
+
+* `cosmo` &lt;img class="modalImg" alt="cosmo"/&gt; 
+* `lumen` &lt;img class="modalImg" alt="lumen"/&gt; 
+* `paper` &lt;img class="modalImg" alt="paper"/&gt; 
+* `sandstone` &lt;img class="modalImg" alt="sandstone"/&gt; 
+* `simplex` &lt;img class="modalImg" alt="simplex"/&gt; 
+* `yeti` &lt;img class="modalImg" alt="yeti"/&gt; 
+* `NULL`  &lt;img class="modalImg" alt="null"/&gt; 
+
+]
+
+.item[
+
+
+```markdown
+output: 
+  html_document:
+    theme: cerulean
+```
+
+These [bootswatch](https://bootswatch.com/) themes attach the whole bootstrap library which makes your html file size larger.
+
+]
+
+]
+
+
+
+---
+
+# 🖼️ Figures in R 
+
+In R, we can classify pictures into two types:
+  1. Figures constructed using R with result communicated to a specific [graphical device](https://stat.ethz.ch/R-manual/R-patched/library/grDevices/html/Devices.html).
+  2. Images already existing as a filie elsewhere with extensions such as `bmp`, `eps`, `gif`, `jpeg`, `pdf`, `png`, `psd`, `svg`, `tex`, `tiff`, or `wmf`.
+  
+&lt;center&gt;
+&lt;img src="images/lecture-images/R-graphics.png"&gt;
+&lt;/center&gt;
+
+---
+
+# Case Study .circle[5] Figures in R Markdown
+
+
+* Some figure chunk options are only for plots created by R, e.g. &lt;i class="fas fa-cog"&gt;&lt;/i&gt;  `fig.width`, `fig.height`, and  `fig.process`. 
+
+&lt;center&gt;
+&lt;img src="images/lecture-images/rmd-graphics.png" width ="400px"&gt;
+&lt;/center&gt;
+
+* Some are for all, e.g. &lt;i class="fas fa-cog"&gt;&lt;/i&gt; `out.width`, `out.height`, and `fig.link`.
+* Some are output specific, e.g. &lt;i class="fas fa-cog"&gt;&lt;/i&gt; **LaTeX**: `fig.env`, `fig.scap`, `fig.pos`, `fig.ncol`, `fig.sep`, **tikz**: `resize.width`, `resize.height`, `external`, `sanitize`, **HTML**: `fig.retina`.
+
+---
+
+# Case Study .circle[6] `fig.process`
+
+.grid[
+.item[
+
+`lecture-01suppC.Rmd`
+
+.scroll-fit50[
+````yaml
+---
+title: "Australian Federal Election"
+output: html_document
+---
+````
+````r
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(eechidna) # get the tcp data
+library(magick)
+process_tcp &lt;- function(df) {
+  df %&gt;% 
+  filter(Elected == "Y") %&gt;% 
+  group_by(PartyNm) %&gt;% 
+  tally() %&gt;% 
+  mutate(PartyNm = fct_reorder(PartyNm, -n))
+}
+stamp_draft &lt;- function(path, options) {
+  fig &lt;- image_read(path)
+  img &lt;- image_annotate(fig, " DRAFT ", 
+                        size = options$fig.width * 20, 
+                        color = "red", 
+                        boxcolor = "pink",
+                        degrees = 30, 
+                        location = "+20-20", 
+                        gravity = "center")
+  image_write(img, path = path)
+  path
+}
+knitr::opts_chunk$set(fig.process = stamp_draft)
+```
+
+```{r plot2019}
+g &lt;-  ggplot(process_tcp(tcp19), aes(PartyNm, n)) + 
+  geom_col() + 
+  scale_x_discrete(guide = guide_axis(n.dodge = 2)) + 
+  labs(x = "Party", 
+       y = "The number of electoral division won") + 
+  ggtitle("Year 2019")
+g
+```
+
+```{r plot2016}
+g %+% process_tcp(tcp16) + ggtitle("Year 2016")
+```
+````
+]]
+.item[
+`lecture-01suppC.html`
+
+&lt;iframe src="lecture-01suppC.html" height="100%" width="100%"&gt;&lt;/iframe&gt;
+
+
+]]
+
+
+---
+
+class: center
+
+# Case Study .circle[7] Code Snippets
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# .animated.flash[Live Demo]
+
+
+---
+
+class: center
+
+
+# Case Study .circle[8] Sharing HTML reports 
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+
+# .animated.flash[Live Demo]
+
+
+
+---
+
+class: nostripheader middle
+
+# Share your R Markdown findings or tips
+
+## in the [Moodle discussion forum](https://lms.monash.edu/mod/forum/discuss.php?d=2117202)
+
+
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;span class='animated pulse' style='background-color:#027EB6;padding:10px;font-size:14pt;border:1pt solid black;color:white;font-weight:bold;display:inline-block;'&gt;🥠 Engagement opportunity&lt;/span&gt;
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;&lt;br&gt;
+
+# That's it!
+
+&lt;br&gt; 
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+.bottom_abs.width100[
+
+Lecturer: Emi Tanaka
+
+Department of Econometrics and Business Statistics&lt;br&gt;
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var modalImg = $("#img01");
+var captionText = document.getElementById("caption");
+
+/* this adds the imag src from alt rather than having to add it manually*/
+$('.modalImg').attr("src", function() {
+  return "images/lecture01/html_template_" + this.alt + ".png";
+  });
+
+/* this adds iframe */
+$('.modalImg').click(function(){
+    modal.style.display = "block";
+    var newSrc = "images/output/html/html_template_" + this.alt + ".html";
+    modalImg.attr('src', newSrc);
+    captionText.innerHTML = this.alt;
+});
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

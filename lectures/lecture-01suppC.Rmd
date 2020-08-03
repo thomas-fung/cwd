@@ -1,0 +1,45 @@
+---
+title: "Australian Federal Election"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(eechidna) # get the tcp data
+library(magick)
+process_tcp <- function(df) {
+  df %>% 
+  filter(Elected == "Y") %>% 
+  group_by(PartyNm) %>% 
+  tally() %>% 
+  mutate(PartyNm = fct_reorder(PartyNm, -n))
+}
+stamp_draft <- function(path, options) {
+  fig <- image_read(path)
+  img <- image_annotate(fig, " DRAFT ", 
+                        size = options$fig.width * 20, 
+                        color = "red", 
+                        boxcolor = "pink",
+                        degrees = 30, 
+                        location = "+20-20", 
+                        gravity = "center")
+  image_write(img, path = path)
+  path
+}
+knitr::opts_chunk$set(fig.process = stamp_draft)
+```
+
+
+```{r plot2019}
+g <-  ggplot(process_tcp(tcp19), aes(PartyNm, n)) + 
+  geom_col() + 
+  scale_x_discrete(guide = guide_axis(n.dodge = 2)) + 
+  labs(x = "Party", 
+       y = "The number of electoral division won") + 
+  ggtitle("Year 2019")
+g
+```
+
+```{r plot2016}
+g %+% process_tcp(tcp16) + ggtitle("Year 2016")
+```
