@@ -15,8 +15,8 @@ output:
 ## `r emo::ji("target")` Objectives
 
 - review of some R markdown chunk options
-- making an Rmd document that can be compiled to a variety of output formats
-- making a book using `bookdown`
+- understand chunk names better
+- programmatically make parameterised letters
 
 
 ## `r emo::ji("wrench")` Preparation  
