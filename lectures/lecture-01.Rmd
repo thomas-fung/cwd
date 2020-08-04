@@ -216,7 +216,7 @@ In this course, you will construct narratives from your number-crunching to tell
 
 <br>
 
-* You may not directly interact with the stakeholders but rather through product (e.g. reports or tools) that you provide the stakeholders.
+* You may not directly interact with the stakeholders but rather through a product (e.g. reports or tools) that you provide the stakeholders.
 
 ]
 ]
@@ -490,7 +490,7 @@ this is where you find discussion forum, zoom links, assignments and marks
 
 * Will be made available at Thu 20 Aug 7PM. 
 * You will have 24 hours (i.e. **due Fri 21 Aug 7PM**) to complete the assessment. 
-* You will be given an document that you have to reproduce using R Markdown.
+* You will be given a document that you have to reproduce using R Markdown.
 
 # Blog Entries (20%)
 
