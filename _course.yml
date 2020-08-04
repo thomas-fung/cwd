@@ -14,7 +14,7 @@ schedule:
     tools: "`broom`, `kableExtra`, `knitr`, `DT`, `formattable`"
     topic: "Fashionable Model Output and Data Tables"
     assessment: "24 hour take home assessment **due Fri 21 Aug 7PM**"
-    readings: "[stargazer: Well-Formatted Regression and Summary Statistics Tables](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf)"
+    readings: "[stargazer: Well-Formatted Regression and Summary Statistics Tables](https://cran.r-project.org/web/packages/stargazer/vignettes/stargazer.pdf) and [Ten Guidelines for Better Tables](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12)"
   - week: 4
     lecturer: Emi
     tools: "`blogdown`, `distill`, git & github"
