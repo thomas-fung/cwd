@@ -3,7 +3,7 @@ schedule:
     lecturer: Emi
     topic: "Advanced Reproducible Practices"
     tools: "`rmarkdown`, `bookdown`"
-    readings: "[Authoring Books with R Markdown Ch 3](https://bookdown.org/yihui/bookdown/output-formats.html)"
+    readings: "[R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)"
   - week: 2
     lecturer: Emi
     tools: "`HTML/CSS/JS`, `htmlwidgets`, `crosstalk`"
