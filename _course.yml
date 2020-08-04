@@ -8,7 +8,7 @@ schedule:
     lecturer: Emi
     tools: "`HTML/CSS/JS`, `htmlwidgets`, `crosstalk`"
     topic: "Introduction to Web and Data Technologies"
-    readings: "[Introduction to Data Technologies Ch 2-4](https://www.stat.auckland.ac.nz/~paul/ItDT/itdt-2010-11-01.pdf)"
+    readings: "[Introduction to Data Technologies Ch 2-8](https://www.stat.auckland.ac.nz/~paul/ItDT/itdt-2010-11-01.pdf)"
   - week: 3
     lecturer: Emi
     tools: "`broom`, `kableExtra`, `knitr`, `DT`, `formattable`"
