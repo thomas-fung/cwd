@@ -1,0 +1,80 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 1 Solution"
+author: "Emi Tanaka"
+date: "Week 1"
+output: 
+  html_document:
+    toc: true
+---
+
+
+## 🎛 Exercise 1A
+
+**Case study `include = FALSE`: loading `tidyverse`** 
+
+
+This can be done more succinctly using:
+
+`include = FALSE`.
+
+In fact it's equivalent to hiding code and all outputs:
+
+`echo=FALSE, results='hide',` 
+`message=FALSE, warning=FALSE,` 
+`fig.show='hide'`.
+
+
+Reference: Yihui has excellent tips like this on [his blog](https://yihui.name/en/2017/11/knitr-include-false/).
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppAsol.Rmd"), results="asis"}
+glue::glue("<iframe src={fn} width = '100%'></iframe>")
+```
+
+
+## 📛 Exercise 8B
+
+**Naming your chunks**
+
+* You should find that upon insertion of a new unnamed chunk between the previously two unnamed chunks, then the `unnamed-chunk-2` got renamed to `unnamed-chunk-3`.
+* You should also find that the `red-plot-1.png`, `unnamed-chunk-3-1.png` and `unnamed-chunk-4-1.png` (or `unnamed-chunk-5-1.png` depending on when you compiled) correspond to plots generated from the chunk labelled `red-plot` and the two unnamed chunks following that. If there are multiple plot outputs within one chunk then the last number in the corresponding image file name is incremented (e.g. below produces `red-plot-1.png`, `red-plot-2.png`, `red-plot-3.png`).
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppBsol.Rmd"), results="asis"}
+glue::glue("<iframe src={fn} width = '100%'></iframe>")
+```
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppBsol.html"), results="asis"}
+glue::glue("<iframe src={fn} width = '100%' height = '400px'></iframe>")
+```
+
+## ✉️ Exercise 8C
+
+**Personalised letters**
+
+
+```{r personalised-letters, message = FALSE, warning = FALSE}
+library(tidyverse)
+dat <- tribble(~first_name, ~last_name, ~likes, ~wants_to_learn,
+               "Lisa", "Simpson", "reading books", "how to build interactive apps that help collect data on her family",
+               "Maggie", "Simpson", "sucking on a pacifier", "how much milk is optimal for growth"
+               ) %>% 
+   mutate(collected_by = "Bart Simpson")
+
+for(i in 1:nrow(dat)) {
+  first_name <- dat$first_name[i]
+  last_name <- dat$last_name[i]
+  output_file <- paste0("tutorial-01-letter_", first_name, last_name)
+  rmarkdown::render("tutorial-01-suppCsol.Rmd", 
+                    params = list(first_name = first_name,
+                                  last_name = last_name,
+                                  collected_by = dat$collected_by[i],
+                                  likes = dat$likes[i],
+                                  wants_to_learn = dat$wants_to_learn[i]),
+                    output_file = output_file, quiet = TRUE)
+}
+```
+
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppCsol.Rmd"), results="asis"}
+glue::glue("<iframe src={fn} width = '100%'></iframe>")
+```
