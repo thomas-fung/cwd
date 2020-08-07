@@ -8,6 +8,13 @@ output:
     toc: true
 ---
 
+```{css, echo = FALSE}
+.md {
+  height: 200px!important;
+  overflow: scroll!important;
+}
+```
+
 
 ## 🎛 Exercise 1A
 
@@ -27,30 +34,44 @@ In fact it's equivalent to hiding code and all outputs:
 
 Reference: Yihui has excellent tips like this on [his blog](https://yihui.name/en/2017/11/knitr-include-false/).
 
+
 ```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppAsol.Rmd"), results="asis"}
-glue::glue("<iframe src={fn} width = '100%'></iframe>")
+# this is used to display content of `fn`
+# ignore this if you don't understand
+cat("**Below is the content of `", fn, "`** (scroll to see all)")
+cat("\n````md\n")
+cat(readLines(fn), sep = "\n")
+cat("\n````")
 ```
 
 
-## 📛 Exercise 8B
+## 📛 Exercise 1B
 
 **Naming your chunks**
 
 * You should find that upon insertion of a new unnamed chunk between the previously two unnamed chunks, then the `unnamed-chunk-2` got renamed to `unnamed-chunk-3`.
 * You should also find that the `red-plot-1.png`, `unnamed-chunk-3-1.png` and `unnamed-chunk-4-1.png` (or `unnamed-chunk-5-1.png` depending on when you compiled) correspond to plots generated from the chunk labelled `red-plot` and the two unnamed chunks following that. If there are multiple plot outputs within one chunk then the last number in the corresponding image file name is incremented (e.g. below produces `red-plot-1.png`, `red-plot-2.png`, `red-plot-3.png`).
 
-```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppBsol.Rmd"), results="asis"}
-glue::glue("<iframe src={fn} width = '100%'></iframe>")
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppBsol.Rmd"), results="asis", class.output="scroll"}
+# this is used to display content of `fn`
+# ignore this if you don't understand
+cat("**Below is the content of `", fn, "`** (scroll to see all)")
+cat("\n````md\n")
+cat(readLines(fn), sep = "\n")
+cat("\n````")
 ```
 
 ```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppBsol.html"), results="asis"}
 glue::glue("<iframe src={fn} width = '100%' height = '400px'></iframe>")
 ```
 
-## ✉️ Exercise 8C
+## ✉️ Exercise 1C
 
 **Personalised letters**
 
+
+Note: there's a fair bit of you that are putting this code in `tutorial-01-suppC.Rmd`. You shouldn't. The `rmarkdown::render` should be called from console or another external file.  
 
 ```{r personalised-letters, message = FALSE, warning = FALSE}
 library(tidyverse)
@@ -76,5 +97,10 @@ for(i in 1:nrow(dat)) {
 
 
 ```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-01-suppCsol.Rmd"), results="asis"}
-glue::glue("<iframe src={fn} width = '100%'></iframe>")
+# this is used to display content of `fn`
+# ignore this if you don't understand
+cat("**Below is the content of `", fn, "`** (scroll to see all)")
+cat("\n````md\n")
+cat(readLines(fn), sep = "\n")
+cat("\n````")
 ```
