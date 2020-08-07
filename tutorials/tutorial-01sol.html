@@ -372,11 +372,17 @@ summary {
 <div id="TOC">
 <ul>
 <li><a href="#exercise-1a">🎛 Exercise 1A</a></li>
-<li><a href="#exercise-8b">📛 Exercise 8B</a></li>
-<li><a href="#exercise-8c">✉️ Exercise 8C</a></li>
+<li><a href="#exercise-1b">📛 Exercise 1B</a></li>
+<li><a href="#exercise-1c">✉️ Exercise 1C</a></li>
 </ul>
 </div>
 
+<style type="text/css">
+.md {
+  height: 200px!important;
+  overflow: scroll!important;
+}
+</style>
 <div id="exercise-1a" class="section level2">
 <h2>🎛 Exercise 1A</h2>
 <p><strong>Case study <code>include = FALSE</code>: loading <code>tidyverse</code></strong></p>
@@ -385,24 +391,92 @@ summary {
 <p>In fact it’s equivalent to hiding code and all outputs:</p>
 <p><code>echo=FALSE, results=&#39;hide&#39;,</code> <code>message=FALSE, warning=FALSE,</code> <code>fig.show=&#39;hide&#39;</code>.</p>
 <p>Reference: Yihui has excellent tips like this on <a href="https://yihui.name/en/2017/11/knitr-include-false/">his blog</a>.</p>
-<iframe src="tutorial-01-suppAsol.Rmd" width="100%">
-</iframe>
+<p><strong>Below is the content of <code>tutorial-01-suppAsol.Rmd</code></strong> (scroll to see all)</p>
+<pre class="md"><code>---
+title: &#39;ETC5523: Communicating with Data&#39;
+subtitle: &quot;Tutorial 1 Supp A Solution&quot;
+author: &quot;Emi Tanaka&quot;
+date: &quot;Week 1&quot;
+output: html_document
+---
+
+```{r pkg-load, include = FALSE}
+library(tidyverse)
+```
+</code></pre>
 </div>
-<div id="exercise-8b" class="section level2">
-<h2>📛 Exercise 8B</h2>
+<div id="exercise-1b" class="section level2">
+<h2>📛 Exercise 1B</h2>
 <p><strong>Naming your chunks</strong></p>
 <ul>
 <li>You should find that upon insertion of a new unnamed chunk between the previously two unnamed chunks, then the <code>unnamed-chunk-2</code> got renamed to <code>unnamed-chunk-3</code>.</li>
 <li>You should also find that the <code>red-plot-1.png</code>, <code>unnamed-chunk-3-1.png</code> and <code>unnamed-chunk-4-1.png</code> (or <code>unnamed-chunk-5-1.png</code> depending on when you compiled) correspond to plots generated from the chunk labelled <code>red-plot</code> and the two unnamed chunks following that. If there are multiple plot outputs within one chunk then the last number in the corresponding image file name is incremented (e.g. below produces <code>red-plot-1.png</code>, <code>red-plot-2.png</code>, <code>red-plot-3.png</code>).</li>
 </ul>
-<iframe src="tutorial-01-suppBsol.Rmd" width="100%">
-</iframe>
+<p><strong>Below is the content of <code>tutorial-01-suppBsol.Rmd</code></strong> (scroll to see all)</p>
+<pre class="md"><code>---
+title: &#39;ETC5523: Communicating with Data&#39;
+subtitle: &quot;Tutorial 1 Supp B Solution&quot;
+author: &quot;Emi Tanaka&quot;
+date: &quot;Week 1&quot;
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+```
+
+
+The following code calculates how many seconds it took for the car to stop. The chunk name is `seconds-to-stop`.
+
+```{r seconds-to-stop}
+ftps &lt;- 1.467 * cars$speed # convert to ft per second
+seconds_to_stop &lt;- cars$dist / ftps 
+summary(seconds_to_stop)
+```
+
+```{r, echo = -2 }
+knitr::opts_current$get(&quot;label&quot;)
+cat(&quot;This has chunk label &#39;unnamed-chunk-1&#39;&quot;)
+```
+
+```{r, echo = -2 }
+knitr::opts_current$get(&quot;label&quot;)
+cat(&quot;This is a new chunk that was inserted.&quot;)
+```
+
+```{r, echo = -2 }
+knitr::opts_current$get(&quot;label&quot;)
+cat(&quot;This has chunk label &#39;unnamed-chunk-2&#39;&quot;)
+```
+
+```{r red-plot, fig.path=&quot;images/tutorial01/&quot;}
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = &quot;red&quot;, size = 2)
+
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = &quot;red&quot;, shape = 3, size = 2)
+
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = &quot;red&quot;, shape = 4, size = 2)
+```
+
+```{r, fig.path=&quot;images/tutorial01/&quot;}
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = &quot;blue&quot;, size = 2)
+```
+
+```{r, fig.path=&quot;images/tutorial01/&quot;}
+ggplot(cars, aes(dist, speed)) + 
+  geom_point(color = &quot;yellow&quot;, size = 2)
+```
+</code></pre>
 <iframe src="tutorial-01-suppBsol.html" width="100%" height="400px">
 </iframe>
 </div>
-<div id="exercise-8c" class="section level2">
-<h2>✉️ Exercise 8C</h2>
+<div id="exercise-1c" class="section level2">
+<h2>✉️ Exercise 1C</h2>
 <p><strong>Personalised letters</strong></p>
+<p>Note: there’s a fair bit of you that are putting this code in <code>tutorial-01-suppC.Rmd</code>. You shouldn’t. The <code>rmarkdown::render</code> should be called from console or another external file.</p>
 <pre class="r"><code>library(tidyverse)
 dat &lt;- tribble(~first_name, ~last_name, ~likes, ~wants_to_learn,
                &quot;Lisa&quot;, &quot;Simpson&quot;, &quot;reading books&quot;, &quot;how to build interactive apps that help collect data on her family&quot;,
@@ -422,8 +496,44 @@ for(i in 1:nrow(dat)) {
                                   wants_to_learn = dat$wants_to_learn[i]),
                     output_file = output_file, quiet = TRUE)
 }</code></pre>
-<iframe src="tutorial-01-suppCsol.Rmd" width="100%">
-</iframe>
+<p><strong>Below is the content of <code>tutorial-01-suppCsol.Rmd</code></strong> (scroll to see all)</p>
+<pre class="md"><code>---
+author: Emi Tanaka
+date: &quot;`r Sys.Date()`&quot;
+params: 
+  first_name: &quot;Homer&quot;
+  last_name: &quot;Simpson&quot;
+  collected_by: &quot;Marge Simpson&quot;
+  likes: &quot;eating donuts&quot;
+  wants_to_learn: &quot;why pie chart is bad&quot;
+opening: &quot;Dear `r glue::glue(&#39;{params$first_name} {params$last_name}&#39;)`,&quot;
+closing: Sincerely,
+return-address: |
+ Menzies Building\
+ Monash University 
+output: linl::linl
+---
+
+Welcome to Communicating with Data. 
+
+```{r about-you, echo = FALSE, results = &quot;asis&quot;}
+glue::glue(&quot;I&#39;ve heard from {params$collected_by} that you like {params$likes} and hope to learn about {params$wants_to_learn}.&quot;)
+```
+
+This week we learn more on R Markdown, which integrates code and text together with ease. 
+
+&gt; To effectively communicate, we must realize that we are all different in the way we perceive the world and use this understanding as a guide to our communication with others.
+
+For effective communication, seek to know your audience and extract that story that the data are telling.  
+
+&gt; The two words &#39;information&#39; and &#39;communication&#39; are often used interchangeably, but they signify quite different things. Information is giving out; communication is getting through.     
+
+Learning R Markdown is a step towards getting accurate information out but communication requires much more. This is why there is a benefit in coming to a tutorial where you can interact with your peers. 
+
+&gt; Communication leads to community, that is, to understanding, intimacy and mutual valuing.     
+
+I hope you can take this opportunity to get to know each other.
+</code></pre>
 </div>
 
 
