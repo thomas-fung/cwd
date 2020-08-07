@@ -1,0 +1,36 @@
+---
+author: Emi Tanaka
+date: "`r Sys.Date()`"
+params: 
+  first_name: "Homer"
+  last_name: "Simpson"
+  collected_by: "Marge Simpson"
+  likes: "eating donuts"
+  wants_to_learn: "why pie chart is bad"
+opening: "Dear `r glue::glue('{params$first_name} {params$last_name}')`,"
+closing: Sincerely,
+return-address: |
+ Menzies Building\
+ Monash University 
+output: linl::linl
+---
+
+Welcome to Communicating with Data. 
+
+```{r about-you, echo = FALSE, results = "asis"}
+glue::glue("I've heard from {params$collected_by} that you like {params$likes} and hope to learn about {params$wants_to_learn}.")
+```
+
+This week we learn more on R Markdown, which integrates code and text together with ease. 
+
+> To effectively communicate, we must realize that we are all different in the way we perceive the world and use this understanding as a guide to our communication with others.
+
+For effective communication, seek to know your audience and extract that story that the data are telling.  
+
+> The two words 'information' and 'communication' are often used interchangeably, but they signify quite different things. Information is giving out; communication is getting through.     
+
+Learning R Markdown is a step towards getting accurate information out but communication requires much more. This is why there is a benefit in coming to a tutorial where you can interact with your peers. 
+
+> Communication leads to community, that is, to understanding, intimacy and mutual valuing.     
+
+I hope you can take this opportunity to get to know each other.

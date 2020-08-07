@@ -1,0 +1,12 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 1 Supp A Solution"
+author: "Emi Tanaka"
+date: "Week 1"
+output: html_document
+---
+
+```{r pkg-load, include = FALSE}
+library(tidyverse)
+```
+
