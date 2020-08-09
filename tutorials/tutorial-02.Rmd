@@ -1,0 +1,63 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 2"
+author: "Emi Tanaka"
+date: "Week 2"
+output: 
+  html_document:
+    toc: true
+    css: "tutorial-style.css"
+---
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+- embed HTML widgets in R Markdown documents using `htmlwidgets`, inspect the resulting HTML file and make some CSS changes
+- implement a simple cross-widget interactions using `crosstalk` and think of how the widgets are interacting
+- understand why certain questions are hard to answer 
+- create a minimum reproducible example
+
+
+## `r emo::ji("wrench")` Preparation  
+
+   
+1. Download <a href="tutorial-02-suppA.Rmd" download>`tutorial-02-suppA.Rmd`</a> amd <a href="tutorial-02-suppB.Rmd" download>`tutorial-02-suppB.Rmd`</a> by clicking on the names.
+
+1. Install R-packages
+```{r, eval = FALSE}
+install.packages(c("htmlwidgets", "crosstalk", "reprex", "plotly", "timevis", "palmerpenguins"))
+```
+    
+## 🌐️ Exercise 2A
+
+**JavaScript in R Markdown documents with `htmlwidgets`**
+
+There are many JavaScript libraries for interactive data visualisation. The problem is that for a typical statistician/analyst/data scientist is not trained to work with JavaScript code. The `htmlwidgets` R-package provides a framework that makes it easier for developers to create a widget that allow other R users to easily use JavaScript libraries. There are now over 100 registered widgets found at http://gallery.htmlwidgets.org/.
+
+1. Open `tutorial-02-suppA.Rmd` and Knit. You should find that there is [a similar timeline visualisation as you in your lecture](https://cwd.numbat.space/lectures/lecture-02.html#6) except the boxes have a blue background. 
+2. [Change the background color of these boxes to white]{.question} and publish this to your [RPubs account](https://rpubs.com/) (recall Case Study 8 from Lecture 1). **Submit your RPub URL to Moodle** under Engagement Opportunities > Tutorial 2A. Note that your HTML document should not have any external file dependencies (i.e. embed your CSS within the document) as RPubs does not upload external files.
+
+
+## 🐧 Exercise 2B
+
+**Cross-widget interaction with `crosstalk`** 
+
+This exercise is a warmup to Week 5 where we will look more examples of `crosstalk` and `plotly` as well as `shiny`. The aim here is to get you to play and inspect the resulting HTML file. We'll introduce you to `shiny` in Week 5 and this will help you think about how it might be different to `shiny`.
+
+Open `tutorial-02-suppB.Rmd` and Knit.
+
+## 🔧 Exercise 2C
+
+**Reproducible example**
+
+Study each of the examples from stackoveflow and write the good points of their communication and where applicable, how you would improve communicating the author's problem.
+
+1. [Problem rendering a list of multiple object types in Rmarkdown](https://stackoverflow.com/questions/62866953/problem-rendering-a-list-of-multiple-object-types-in-rmarkdown)
+2. [Using SVG image in HTMLWidget](https://stackoverflow.com/questions/60736116/using-svg-image-in-htmlwidget)
+3. [Unselected entries displayed on axis - Crosstalk+Plotly bar-chart](https://stackoverflow.com/questions/60393253/unselected-entries-displayed-on-axis-crosstalkplotly-bar-chart)
+4. [Clicking a leaflet marker takes you to URL](https://stackoverflow.com/questions/58210783/clicking-a-leaflet-marker-takes-you-to-url)
+
+
+[Generate a reproducible example for [this question](https://stackoverflow.com/questions/63260448/how-to-plot-line-graph-using-date-as-x-and-freq-as-y-in-r-using-ggplot) or other genuine questions of your own using the `reprex` R-package.]{.question} **Post this to GitHub issues of [this repo](https://github.com/etc5523-2020/exercise2C/issues).**
