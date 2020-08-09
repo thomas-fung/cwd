@@ -207,7 +207,7 @@ seehtml <- '<span class="bg-orange white" style="padding:5px;font-size:18pt;vert
 
 # <span class="fa-layers fa-fw"> <i class="fas fa-square white" data-fa-transform="shrink-5"></i><i class="fab fa-html5 orange"></i></span> HTML Syntax
 
-`r seetext` `<span style="color:blue;">Author content</span>`<br>
+`r seetext` <span style="font-size:18pt;">`<span style="color:blue;">Author content</span>`</span><br>
 `r seehtml` <span style="color:blue;">Author content</span>
 
 <span style="margin-top:30px;margin-bottom:30px;margin-left:-50px;">The breakdown of this syntax:</span>
@@ -240,7 +240,7 @@ seehtml <- '<span class="bg-orange white" style="padding:5px;font-size:18pt;vert
 
 <span style="margin-top:30px;margin-bottom:30px;margin-left:-50px;">Not all HTML tags have an end tag:</span>
 
-`r seetext` <span style="font-size:20pt;">`<img height="40px" src="https://tinyurl.com/rlogo-svg">`</span><br>
+`r seetext` <span style="font-size:18pt;">`<img height="40px" src="https://tinyurl.com/rlogo-svg">`</span><br>
 `r seehtml` <img height="40px" src="https://tinyurl.com/rlogo-svg">
 
 
