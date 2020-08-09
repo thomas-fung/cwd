@@ -1,0 +1,55 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 2 Supp B"
+author: "Emi Tanaka"
+date: "Week 2"
+output: html_document
+---
+
+
+```{r setup, warning = FALSE, message = FALSE}
+library(crosstalk)
+library(plotly)
+library(tidyverse)
+library(palmerpenguins)
+df <- SharedData$new(penguins)
+```
+
+## Connected scatter plots
+
+```{r}
+g1 <- ggplot(df, aes(bill_length_mm, bill_depth_mm)) + 
+  geom_point() 
+g2 <- ggplot(df, aes(flipper_length_mm, body_mass_g)) + 
+  geom_point()
+
+bscols(ggplotly(g1) %>% 
+        # remove display bar and zoom feature
+        config(displayModeBar = F) %>% 
+        layout(xaxis=list(fixedrange=TRUE),
+               yaxis=list(fixedrange=TRUE)),
+       ggplotly(g2) %>% 
+         # remove display bar and zoom feature
+         config(displayModeBar = F) %>% 
+         layout(xaxis=list(fixedrange=TRUE),
+                yaxis=list(fixedrange=TRUE)) )
+```
+
+## A HTML widget with User Controls
+
+```{r, warning = FALSE}
+ui_controls <- bscols(
+  widths = c(12, 12, 12),
+  filter_select("species", "Species", df, ~species),
+  filter_slider("year", "Year", df, ~year),
+  filter_checkbox("sex", "Sex", df, ~sex, inline = TRUE)
+)
+g3 <- ggplot(df, aes(bill_length_mm, bill_depth_mm)) + 
+  geom_point()
+bscols(
+  widths = c(4, 8),
+  ui_controls, 
+  ggplotly(g3)
+)
+```
+

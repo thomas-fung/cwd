@@ -1,0 +1,27 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 2 Supp A"
+author: "Emi Tanaka"
+date: "Week 2"
+output: html_document
+---
+
+
+```{r}
+library(tibble)
+library(timevis)
+data <- tribble(~id, ~content, ~start, ~end,
+                1,  "CSS 1", "1996-12-17", NA, 
+                2,  "CSS 2", "1998-05-01", NA, 
+                3,  "CSS 3", "1999-06-01", NA, 
+                4,   "HTML", "1989-01-01", NA, 
+                5, "HTML 2", "1995-11-24", NA, 
+                6, "HTML 3", "1997-01-14", NA, 
+                7, "HTML 4", "1997-12-18", NA,
+                8, "HTML 5", "2014-10-28", NA, 
+                9,    "CSS", "1994-10-10", NA, 
+                10,    "JS", "1995-12-04", NA)
+
+timevis(data)
+```
+
