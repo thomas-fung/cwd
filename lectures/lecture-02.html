@@ -1,0 +1,2523 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5523: Communicating with Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emi Tanaka" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/pymjs-1.3.2/pym.v1.js"></script>
+    <script src="libs/widgetframe-binding-0.3.1/widgetframe.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-02.pdf&gt;PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5523: Communicating with Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 2&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Introduction to Web and Data Technologies&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Emi Tanaka*
+
+Department of Econometrics and Business Statistics
+
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+11th August 2020
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+
+---
+
+name: web-tech
+class: transition middle
+
+# Introduction to 
+# .yellow[Web Technologies]
+
+---
+
+# 🌐  World Wide Web (WWW) 
+
+* WWW (or the **Web**) is the information system where documents (web pages) are identified by Uniform Resource Locators (**URL**s)
+* A web page consists of:
+  * &lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt; **HTML** provides the basic structure of the web page
+  * &lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt; **CSS** controls the look of the web page (optional)
+  * &lt;span class='fa-layers'&gt; &lt;i class='fas fa-square black' data-fa-transform='shrink-2'&gt;&lt;/i&gt;&lt;i class='fab fa-js-square yellow'&gt;&lt;/i&gt;&lt;/span&gt; **JS** is a programming language that can modify the behaviour of elements of the web page (optional)
+  
+
+--
+
+
+* Keep in mind that you are not a web developer .font_small[(or maybe you are)] so you don't need to know these in-depth, but you require some knowledge in web technologies if you want to do some low-level customisation of HTML documents.
+
+---
+
+# 🔨 Web Documents are Handy
+
+* HTML documents are really handy for including interactive elements and supported in almost all computer devices.
+* Naturally, this ties in well with interactive data visualisation.
+* Below is an interactive timeline visualisation of historical developments of HTML/CSS/JS:
+
+<div id="htmlwidget-6e13394fbbfcbcec4b01" style="width:100%;height:300px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6e13394fbbfcbcec4b01">{"x":{"url":"images/lecture-02//widgets/widget_unnamed-chunk-2.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
+class: question middle
+
+
+# So what exactly is HTML, CSS, and JS?
+
+<div class="countdown clock" id="timer_5f2f8a44" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+name: html
+
+
+
+
+#  &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt;&lt;/span&gt; Hypertext Markup Language (HTML)
+
+* HTML files have the extension `.html`.
+* HTML files are often rendered using a web browser via an URL.
+* HTML files are just text files that follows a special syntax that alerts web browsers how to render it.
+
+
+.center[
+&lt;a href="lecture-02-simple-example.html" download&gt;&lt;i class="fas fa-download"&gt;&lt;/i&gt;&lt;/a&gt; `lecture-02-simple-example.html`
+]
+
+.grid[
+.item.border-right[
+##  As seen via a *web browser* &lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="far fa-window-maximize"&gt;&lt;/i&gt;&lt;/span&gt;
+
+&lt;center&gt;
+&lt;img src="images/webpage.png" class = "border-box" width = "90%"&gt;
+&lt;/center&gt;
+
+]
+.item[
+##  As seen via a *text editor* &lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="fas fa-font" &gt;&lt;/i&gt;&lt;/span&gt;
+&lt;center&gt;
+&lt;img src="images/html-content.png" class = "border-box" width = "55%"&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt;&lt;/span&gt; HTML Structure
+
+```html
+&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+&lt;!--This is a comment and ignored by web client.--&gt;
+&lt;head&gt;
+  &lt;!--This section contains web page metadata.--&gt;
+  &lt;title&gt;Communicating with Data&lt;/title&gt;
+  &lt;meta name="author" content="Emi Tanaka"&gt;
+  &lt;link rel="stylesheet" href="css/styles.css"&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;!--This section contains what you want to display on your web page.--&gt;
+&lt;h1&gt;I'm a first level header&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+```
+
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt;&lt;/span&gt; HTML Syntax
+
+&lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="fas fa-font" &gt;&lt;/i&gt;&lt;/span&gt; `&lt;span style="color:blue;"&gt;Author content&lt;/span&gt;`&lt;br&gt;
+&lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="far fa-window-maximize"&gt;&lt;/i&gt;&lt;/span&gt; &lt;span style="color:blue;"&gt;Author content&lt;/span&gt;
+
+&lt;span style="margin-top:30px;margin-bottom:30px;margin-left:-50px;"&gt;The breakdown of this syntax:&lt;/span&gt;
+
+&lt;table style="width:100%"&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;start tag:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="red"&gt;&amp;lt;span style="color:blue;"&amp;gt;&lt;/span&gt;&lt;span class="gray"&gt;Author content&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;end tag: &lt;/td&gt;&lt;td&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="gray"&gt;&amp;lt;span style="color:blue;"&amp;gt;Author content&lt;span class="red"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;content: &lt;/td&gt;&lt;td&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="gray"&gt;&amp;lt;span style="color:blue;"&amp;gt;&lt;/span&gt;&lt;span class="red"&gt;Author content&lt;/span&gt;&lt;span class="gray"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;element name: &lt;/td&gt;&lt;td&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="gray"&gt;&amp;lt;&lt;/span&gt;&lt;span class="red"&gt;span&lt;/span&gt;&lt;span class="gray"&gt; style="color:blue;"&amp;gt;Author content&amp;lt;/span&amp;gt;&lt;/span&gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;attribute: &lt;/td&gt;&lt;td&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="gray"&gt;&amp;lt;span &lt;span class="red"&gt;style="color:blue;"&lt;/span&gt;&lt;span class="gray"&gt;&amp;gt;Author content&amp;lt;/span&amp;gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;attribute name: &lt;/td&gt;&lt;td&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="gray"&gt;&amp;lt;span &lt;span class="red"&gt;style&lt;/span&gt;&lt;span class="gray"&gt;="color:blue;"&amp;gt;Author content&amp;lt;/span&amp;gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;attribute value: &lt;/td&gt;&lt;td&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="gray"&gt;&amp;lt;span style=&lt;/span&gt;&lt;span class="red"&gt;"color:blue;"&lt;/span&gt;&lt;span class="gray"&gt;&amp;gt;Author content&amp;lt;/span&amp;gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+--
+
+&lt;span style="margin-top:30px;margin-bottom:30px;margin-left:-50px;"&gt;Not all HTML tags have an end tag:&lt;/span&gt;
+
+&lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="fas fa-font" &gt;&lt;/i&gt;&lt;/span&gt; &lt;span style="font-size:20pt;"&gt;`&lt;img height="40px" src="https://tinyurl.com/rlogo-svg"&gt;`&lt;/span&gt;&lt;br&gt;
+&lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="far fa-window-maximize"&gt;&lt;/i&gt;&lt;/span&gt; &lt;img height="40px" src="https://tinyurl.com/rlogo-svg"&gt;
+
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt;&lt;/span&gt; Some HTML elements
+
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;block element:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;inline element:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;span&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/span&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;paragraph:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/p&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;header level 1:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;h1&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/h1&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;header level 2:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;h2&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/h2&gt;&lt;/span&gt; (note: only up to 6 levels)&lt;/td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;italic:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;i&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/i&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;emphasised text:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;em&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/em&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;bold:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;b&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/b&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;strong importance:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;strong&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/strong&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;link:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;a href="https://cwd.numbat.space/"&gt;&lt;span class="gray"&gt;content&lt;/span&gt;&amp;lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;insert new line:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;br&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;unordered list:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code red" style="font-size:16pt"&gt;&amp;lt;ul&gt;&lt;br&gt;&amp;lt;li&gt;&lt;span class="gray"&gt;item 1&lt;/span&gt;&amp;lt;/li&gt;&lt;Br&gt;&amp;lt;li&gt;&lt;span class="gray"&gt;item 2&lt;/span&gt;&amp;lt;/li&gt;&lt;Br&gt;&amp;lt;/ul&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+How these are rendered to the browser depends on the browser default style values, style attribute or CSS...
+
+
+---
+
+name: css
+
+
+
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; Cascading Style Sheet (CSS)
+
+* CSS files have the extension `.css` .font_small[and styles also XHTML, plain XML, SVG and XUL].
+* There are 3 ways to style elements in HTML:
+  * **inline** by using the `style` attribute inside HTML start tag:
+  &lt;center&gt;
+  &lt;span class="remark-code gray" style="font-size:14pt;"&gt;&amp;lt;h1 &lt;span class="monash-blue"&gt;style="color:blue;"&lt;/span&gt;&gt;Blue Header&amp;lt;/h1&gt;&lt;/span&gt;
+  &lt;/center&gt;
+  * **externally** by using the `&lt;link&gt;` element:
+  &lt;center&gt;
+  &lt;span class="remark-code monash-blue" style="font-size:14pt;"&gt;&amp;lt;link rel="stylesheet" href="styles.css"&gt;&lt;/span&gt;
+  &lt;/center&gt;
+  * **internally** by defining within `&lt;style&gt;` element:
+
+&lt;div style="margin-left:300px; width:350px;"&gt;
+```html
+&lt;style type="text/css"&gt;
+h1 { color: blue; }
+&lt;/style&gt;
+```
+&lt;/div&gt;
+* By convention, the `&lt;style&gt;` and `&lt;link&gt;` elements tend to go into the `&lt;head&gt;` section of the HTML document.
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Syntax
+
+&lt;div class="grid" style="height:200px;width:1200px;padding-left:30px;"&gt;
+&lt;div class="item border-right bg-gray"&gt;
+&lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="fas fa-font" &gt;&lt;/i&gt;&lt;/span&gt;
+&lt;span class = "remark-code" style="font-size:16pt;line-height:1;"&gt;
+&amp;nbsp;&amp;lt;style type="text/css"&gt;&lt;br&gt;
+&amp;nbsp;&amp;nbsp;&amp;emsp;&amp;emsp;&amp;emsp;h1 { color: blue; }&lt;br&gt;
+&amp;nbsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;lt;/style&gt;&lt;Br&gt;
+&amp;nbsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;lt;h1&gt;This is a header&amp;lt;/h1&gt;
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="item" style="padding-left:30px;"&gt;
+&lt;span class="bg-orange white" style="padding:5px;font-size:18pt;vertical-align: middle;border:1px dashed black;"&gt;&lt;i class="fas fa-eye"&gt;&lt;/i&gt;&lt;i class="far fa-window-maximize"&gt;&lt;/i&gt;&lt;/span&gt;
+&lt;h1 style="color:blue"&gt;This is a header&lt;/h1&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;span style="margin-top:30px;margin-bottom:30px;margin-left:-50px;"&gt;The breakdown of the CSS syntax:&lt;/span&gt;
+
+&lt;table style="width:100%"&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;selector:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code" style="font-size:16pt"&gt;&lt;span class="red"&gt;h1&lt;/span&gt;&lt;span class="gray"&gt; { color: blue; }&lt;/span&gt;&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;property:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt;"&gt;h1 { &lt;span class="red"&gt;color: blue;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;property name:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt;"&gt;h1 { &lt;span class="red"&gt;color&lt;/span&gt;: blue; } &lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;property value:&lt;/td&gt;&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt;"&gt;h1 { color: &lt;span class="red"&gt;blue&lt;/span&gt;; } &lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+--
+
+&lt;span style="margin-top:30px;margin-bottom:30px;margin-left:-50px;"&gt;You may have multiple properties for a single selector:&lt;/span&gt;
+
+
+```css
+h1 {
+  color: blue;
+  font-size: 16pt;
+}
+```
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; Some CSS properties 
+
+&lt;center&gt;
+&lt;div class="remark-code"&gt;&amp;lt;div&gt; Sample text &amp;lt;/div&gt;&lt;/div&gt;
+&lt;/center&gt;
+
+&lt;table style="width:100%"&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;background color:&lt;/td&gt;
+&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;background-color: yellow;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="background-color: yellow;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;text color:&lt;/td&gt;
+&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;color: purple;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="color: purple;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;border:&lt;/td&gt;
+&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;border: 1px dashed brown;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="border: 1px dashed brown;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;left border only:&lt;/td&gt;
+&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;border-left: 10px solid pink;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="border-left: 10px solid pink;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style="text-align:right;padding-right:30px;"&gt;text size:&lt;/td&gt;
+&lt;td&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;font-size: 10pt;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="font-size:10pt;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;padding:&lt;/td&gt;
+&lt;td  valign="top"&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { background-color: yellow; &lt;br&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;nbsp;&lt;span class="red"&gt;padding: 10px;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="background-color: yellow;padding:10px;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;margin:&lt;/td&gt;
+&lt;td  valign="top"&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { background-color: yellow; &lt;br&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;nbsp;&lt;span class="red"&gt;margin: 10px;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="background-color: yellow;margin:10px;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;horizontally center text:&lt;/td&gt;
+&lt;td  valign="top"&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { background-color: yellow; &lt;br&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;nbsp;padding-top: 20px;&lt;br&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;nbsp;&lt;span class="red"&gt;text-align: center;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="background-color: yellow;text-align: center;padding-top: 20px;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;font family:&lt;/td&gt;
+&lt;td  valign="top"&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;font-family: Marker Felt, times;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="font-family: Marker Felt, times;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;strike:&lt;/td&gt;
+&lt;td  valign="top"&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;text-decoration: line-through;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="text-decoration: line-through;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;underline:&lt;/td&gt;
+&lt;td  valign="top"&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;text-decoration: underline;&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="text-decoration: underline;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td valign="top" style="text-align:right;padding-right:30px;"&gt;opacity:&lt;/td&gt;
+&lt;td  valign="top"&gt;&lt;span class="remark-code gray" style="font-size:16pt"&gt;div { &lt;span class="red"&gt;opacity: 0.3&lt;/span&gt; }&lt;/span&gt; &lt;/td&gt;
+&lt;td&gt;
+&lt;div style="opacity: 0.3;"&gt;Sample text&lt;/div&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+
+---
+
+name: selector
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr valign="top"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;" class="monash-blue"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr valign="top"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;&lt;/span&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;&lt;/span&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;blockquote&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;blockquote&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr valign="top"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;&lt;/span&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr valign="top"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;&lt;/span&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Household 1&amp;lt;/p&gt;&lt;/span&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/div&gt;&lt;/span&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &lt;span class="monash-blue"&gt;&amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;End of households&amp;lt;/p&gt;&lt;/span&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr valign="top"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Hi!&amp;lt;/p&gt;&lt;/span&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &lt;span class="monash-blue"&gt;&amp;lt;p&gt;Hello!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&amp;lt;div class="parent"&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Hi!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &lt;span class="monash-blue"&gt;&amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;p div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr valign="top"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr valign="top"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Hi!&amp;lt;/p&gt;&lt;/span&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &lt;span class="monash-blue"&gt;&amp;lt;p&gt;Hello!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&amp;lt;div class="parent"&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Hi!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+&lt;div style="position:absolute;top:10px;left:10px;width:300px;background-color:white;border:1px solid black;font-size:16pt;padding:10px;"&gt;
+&lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; Ignores inline elements like &lt;code&gt;span&lt;/code&gt;, &lt;code&gt;i&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;,...
+&lt;/div&gt;
+
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr  valign="top" class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Household 1&amp;lt;/p&gt;&lt;/span&gt;
+
+&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &lt;span class="monash-blue"&gt;&amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+&lt;div style="position:absolute;top:10px;left:10px;width:300px;background-color:white;border:1px solid black;font-size:16pt;padding:10px;"&gt;
+&lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; Ignores inline elements like &lt;code&gt;span&lt;/code&gt;, &lt;code&gt;i&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;,...
+&lt;/div&gt;
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;Household 1&amp;lt;/p&gt;&lt;/span&gt;
+
+&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &lt;span class="monash-blue"&gt;&amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;&lt;/span&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;p&gt;End of households&amp;lt;/p&gt;&lt;/span&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code" valign="top"&gt;.parent&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="parent"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+
+&lt;div style="position:absolute;top:10px;left:10px;width:300px;background-color:white;border:1px solid black;font-size:16pt;padding:10px;"&gt;
+&lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; Note some offspring do not inherit class from their parents.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you? 
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;&lt;/span&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;&lt;/span&gt;
+
+&amp;lt;span class="child"&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;span class="parent child rebel"&gt;&lt;/span&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;/span&gt;&lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code" valign="top"&gt;.child.rebel&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;child&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;rebel&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you?
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+&amp;lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;&lt;/span&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;span class="parent child rebel"&gt;&lt;/span&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&lt;span class="monash-blue"&gt;&amp;lt;/span&gt;&lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code" valign="top"&gt;.parent .rebel&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;rebel&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;parent&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;#idname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="idname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you?
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&lt;span class="monash-blue"&gt;&amp;&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;&lt;/span&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+count: false
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; CSS Selector
+
+.grid[
+.item.border-right[
+&lt;table class="gray" style="width:98%;margin-left:10px;margin-right:10px;"&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;* &lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div, p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; elements&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr &gt;
+&lt;td class="remark-code"&gt;div p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; within &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div &gt; p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; one level deep in &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div + p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; immediately after a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code"&gt;div ~ p&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;p&gt;&lt;/span&gt; preceded by a &lt;span class="remark-code" style="font-size:16pt"&gt;&amp;lt;div&gt;&lt;/span&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.classname&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="classname"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1.c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with &lt;em&gt;both&lt;/em&gt; &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt; and &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; within its class attribute. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td class="remark-code" valign="top"&gt;.c1 .c2&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with  class &lt;span class="remark-code" style="font-size:16pt"&gt;c2&lt;/span&gt; that is a descendant of an element with class &lt;span class="remark-code" style="font-size:16pt"&gt;c1&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class="monash-blue"&gt;
+&lt;td class="remark-code" valign="top"&gt;#p1&lt;/td&gt;&lt;td&gt;&amp;nbsp;&amp;nbsp;&lt;/td&gt;&lt;td&gt;selects all elements with the attribute &lt;span class="remark-code" style="font-size:16pt"&gt;id="p1"&lt;/span&gt;. &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;div style="font-size:16pt;padding-left:10px;"&gt;
+Note attribute &lt;span class="remark-code" style="font-size:16pt"&gt;class="class1 class2"&lt;/span&gt; is the same as having attributes &lt;span class="remark-code"  style="font-size:16pt"&gt;class="class1"&lt;/span&gt; AND &lt;span class="remark-code" style="font-size:16pt"&gt;class="class2"&lt;/span&gt;.
+&lt;/div&gt;
+]
+.item[
+&lt;pre style="font-size: 16pt;overflow:scroll;height:530px;"&gt;
+&amp;lt;body&gt;
+&amp;lt;h1&gt;This is a sample html&amp;lt;/h1&gt;
+
+&amp;lt;blockquote&gt;
+&amp;lt;p&gt;Maybe stories are just data with a soul.&amp;lt;/p&gt;
+&amp;lt;footer&gt;—Brene Brown&amp;lt;/footer&gt;
+&amp;lt;/blockquote&gt;
+
+&lt;span class="monash-blue"&gt;&amp;lt;div id="p1" class="parent"&gt;
+Hmm
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+How are you?
+&amp;lt;div class="child nice"&gt;
+  &amp;lt;p&gt;Hello!&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+&amp;lt;/div&gt;&lt;/span&gt;
+
+&amp;lt;p&gt;Household 1&amp;lt;/p&gt;
+
+lt;div class="parent"&gt;
+&amp;lt;p&gt;Hi!&amp;lt;/p&gt;
+&amp;&amp;lt;blockquote class="child rebel"&gt;
+  &amp;lt;p&gt;Don't talk to me!&amp;lt;/p&gt;
+&amp;lt;/blockquote&gt;
+&amp;lt;/div&gt;
+
+&amp;lt;span class="child"&gt;
+&amp;lt;span class="parent child rebel"&gt;
+  &amp;lt;p&gt;Clean your room!&amp;lt;/p&gt;
+&amp;lt;/span&gt;
+&amp;lt;/span&gt;
+
+&amp;lt;p&gt;End of households&amp;lt;/p&gt;
+
+&amp;lt;/body&gt;
+&lt;/pre&gt;
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+&lt;div style="position:absolute;top:10px;left:10px;width:300px;background-color:white;border:1px solid black;font-size:16pt;padding:10px;"&gt;
+&lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; Unlike &lt;code style="font-size:16pt"&gt;class&lt;/code&gt;, you can only have one &lt;code style="font-size:16pt"&gt;id&lt;/code&gt; value and must be unique in the whole HTML document.
+&lt;/div&gt;
+
+--
+
+&lt;div style="position:absolute;bottom:100px;right:10px;width:500px;background-color:white;border:1px solid black;padding:10px;"&gt;
+You cannot use CSS to select a parent or ancestor. You will need to use JS...
+&lt;/div&gt;
+
+---
+
+name: js
+
+
+
+
+#  &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square black" data-fa-transform="shrink-2"&gt;&lt;/i&gt;&lt;i class="fab fa-js-square yellow"&gt;&lt;/i&gt;&lt;/span&gt; JavaScript (JS) .font_small.animated.flash[LIVE DEMO]
+
+
+* JS is a programming language .font_small[(not to be confused with Java)] and enable interactive components in HTML documents.
+* You can insert JS into a HTML document in two ways:
+  * **internally** by defining within `&lt;script&gt;` element:
+  ```html
+  &lt;script&gt;
+  document.getElementById("p1").innerHTML = "content";
+  &lt;/script&gt;
+  ```
+  * **externally** by using the `src` attribute to refer to the external file:
+  ```html
+  &lt;script src="myjava.js"&gt;&lt;/script&gt;
+  ```
+* You are *not* expected to be able to do any JS in this course.
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square white" data-fa-transform="shrink-5"&gt;&lt;/i&gt;&lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;&lt;/span&gt; Inserting CSS in Rmd documents
+
+.grid[.item.border-right[
+* There is a `css` engine:
+````md
+```{css, echo = FALSE}
+h1 { color: red; }
+```
+````
+* This inserts the following output into the document:
+````md
+&lt;style type="text/css"&gt;
+h1 { color: red; }
+&lt;/style&gt;
+````
+* If the output is a HTML document then the defined styles will apply to the output document.
+
+]
+.item[
+* If you have an external file, say `styles.css`, that you define the styles, then most HTML outputs will support this with YAML argument `css`
+
+&lt;pre&gt;&lt;code&gt;
+output: 
+  html_document: 
+    css: ["styles.css"]
+&lt;/code&gt;&lt;/pre&gt;
+
+or say 
+
+&lt;pre&gt;&lt;code&gt;
+output: 
+  bookdown::html_document2: 
+    css: ["styles.css", "custom.css"]
+&lt;/code&gt;&lt;/pre&gt;
+
+]
+]
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt; &lt;i class="fas fa-square black" data-fa-transform="shrink-2"&gt;&lt;/i&gt;&lt;i class="fab fa-js-square yellow"&gt;&lt;/i&gt;&lt;/span&gt; Inserting JS into Rmd documents
+
+.grid[.item.border-right[
+* There is a `js` engine:
+````md
+```{js, echo = FALSE}
+document.getElementById("p1").innerHTML = "content";
+```
+````
+* This inserts the following output into the document:
+````md
+&lt;script type="text/javascript"&gt;
+document.getElementById("p1").innerHTML = "content";
+&lt;/script&gt;
+````
+
+
+]
+.item[
+* If you have an external file, say `myjava.js`, then you can directly insert this in the body of the Rmd file as:
+```
+&lt;script src="myjava.js"&gt;&lt;/script&gt;
+```
+* If you need to insert at a specific location within the document then you can use `includes`:
+
+```
+output:
+  html_document:
+    includes: 
+      in_header: ["header.html"]
+      before_body: ["before_body.html"]
+      after_body: ["after_body.html"]
+```
+
+]
+]
+
+---
+
+# &lt;i class="fas fa-user-friends animated bounce"&gt;&lt;/i&gt; Community Web Enhancements
+
+*  [Bootstrap](https://getbootstrap.com/) is a free open-source CSS and JS that is widely adopted.  .font_small[Included in the default `rmarkdown::html_document`.]
+* [jQuery](https://jquery.com/) is a widely used JS library for object selection and manipulation. .font_small[Included in the default `rmarkdown::html_document`.]
+* [MathJax](https://www.mathjax.org/) is a JS library for displaying mathematics.&lt;br&gt;  .font_small[Included in the default `rmarkdown::html_document`.]
+* [Font Awesome](https://fontawesome.com/) inserts icons to web using their CSS. &lt;br&gt;.font_small[Sometimes included in certain Rmd HTML documents.]
+* [animate.css](https://animate.style/) is a large collection of CSS animations (powering the bouncing animation for the top icon)
+* [D3.js](https://d3js.org/) is one of the most popular JS library for interactive data visualisation.   
+
+---
+
+# ☁️  Communication in the Web
+
+* Hypertext Transfer Protocol (**HTTP**)
+functions as the communicator in the Web 
+* HTTPS is the secure version of HTTP where communications are encrypted
+
+&lt;center&gt;
+&lt;img src="images/lecture-images/client-server.png" class="bg-white" width ="650px"&gt;
+&lt;/center&gt;
+
+--
+
+
+
+* &lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; Different clients may work differently! E.g. Internet Explorer and Chrome may render the same web page differently.
+
+
+---
+
+
+# 📋 Web Standard
+
+* There are 3 major groups that govern the standard for the Web:
+  * World Wide Web Consortium (**W3C**) formed in 1994 maintains the [CSS specifications](https://www.w3.org/Style/CSS/) &lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt;
+  * Web Hypertext Application Technology Working Group (**WHATWG**) formed in 2004 and is the publisher of the [HTML and DOM standards](https://html.spec.whatwg.org/) &lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt;
+  * **TC39 technical committee** of [Ecma International](http://www.ecma-international.org/publications/standards/Standard.htm), renamed from European Computer Manufacturers Association (ECMA) in 1994, maintains the standards for JS &lt;span class='fa-layers'&gt; &lt;i class='fas fa-square black' data-fa-transform='shrink-2'&gt;&lt;/i&gt;&lt;i class='fab fa-js-square yellow'&gt;&lt;/i&gt;&lt;/span&gt;
+* These groups consist of Mozilla, &lt;i class="fab fa-apple"&gt;&lt;/i&gt; Apple, &lt;i class="fab fa-google"&gt;&lt;/i&gt; Google, &lt;i class="fab fa-microsoft"&gt;&lt;/i&gt; Microsoft and other invited members.
+
+---
+
+# 📜 MDN Web Docs .font_small.animated.flash[LIVE DEMO]
+
+#  https://developer.mozilla.org/
+
+* Documentation of web standards maintained by the community.
+* Includes status of use:
+&lt;center&gt;
+&lt;img src="images/obsolete.png"/&gt;
+&lt;/center&gt;
+* As well as its compatibility with web clients:
+&lt;center&gt;
+&lt;img src="images/browser-compatibility.png" width ="500px"/&gt;
+&lt;/center&gt;
+
+
+
+---
+
+
+# Writing HTML .animated.flash.font_small[LIVE DEMO]
+
+# You can play at https://htmltidy.net/
+
+&lt;center&gt;
+&lt;img class="border-box" src="images/htmltidy.gif" width = "1000px"&gt;
+&lt;/center&gt;
+
+
+
+
+---
+
+name: cheatsheets
+
+# 📝 Interactive Cheatsheets .font_small.animated.flash[LIVE DEMO]
+
+&lt;br&gt;
+
+# &lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt; HTML Cheatsheet 
+# https://htmlcheatsheet.com/
+
+&lt;br&gt;
+
+# &lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt; CSS Cheatsheet 
+# https://htmlcheatsheet.com/css/
+
+&lt;br&gt;
+
+# &lt;span class="fa-layers"&gt; &lt;i class="fas fa-square black" data-fa-transform="shrink-2"&gt;&lt;/i&gt;&lt;i class="fab fa-js-square yellow"&gt;&lt;/i&gt;&lt;/span&gt;  JS Cheatsheet 
+# https://htmlcheatsheet.com/js/
+
+---
+
+# 🔎 Inspect Element .font_small.animated.flash[LIVE DEMO]
+
+Below GIF shows interactive use of Inspect Element .font_small[(or called Inspect)] available from the menu in most web browsers when you right click on the web page: .font_small[(note: this is for inspection and doesn't actual make changes to the files)]
+
+&lt;center&gt;
+&lt;img class="border-box" src="images/inspect-element.gif" width = "790px"/&gt;
+&lt;/center&gt;
+
+
+---
+
+name: problem
+class: transition middle
+
+# Communicating 
+# your problem
+
+---
+
+# 🆘 Asking for help .font_small[Part 1/2]
+
+* Asking for help, requires you to communicate what your problem is to another party.
+* How you communicate your problem, can assist you greatly in getting the answer to your problem.
+
+--
+
+
+* What do you think about the question below?
+&lt;center&gt;
+&lt;a href="https://stackoverflow.com/questions/63298212/colored-boxes-with-text-in-r-markdown"&gt;&lt;img class="border-box" width = "600px" src="images/stackoverflow-1.png"&gt;&lt;/a&gt;
+&lt;/center&gt;
+
+--
+
+
+* What is the author's problem?
+
+--
+
+
+
+* This is a real question from [&lt;i class="fab fa-stack-overflow"&gt;&lt;/i&gt; stackoverflow](https://stackoverflow.com/questions/63298212/colored-boxes-with-text-in-r-markdown) so feel free to answer it there if you know the answer.
+
+---
+
+# 🆘 Asking for help .font_small[Part 2/2]
+
+.grid[
+.item[
+* How about the question on the right?
+* This is also a question from [&lt;i class="fab fa-stack-overflow"&gt;&lt;/i&gt; stackoveflow](https://stackoverflow.com/questions/63260448/how-to-plot-line-graph-using-date-as-x-and-freq-as-y-in-r-using-ggplot).
+* What makes it *hard* for people to answer the question?
+* What would make it *easier* for people to answer the question?
+
+{{content}}
+
+]
+.item[
+&lt;center&gt;
+&lt;a href="https://stackoverflow.com/questions/63260448/how-to-plot-line-graph-using-date-as-x-and-freq-as-y-in-r-using-ggplot"&gt;&lt;img class="border-box" width = "600px" src="images/stackoverflow-2.png"&gt;&lt;/a&gt;
+&lt;/center&gt;
+]
+
+]
+
+--
+
+* In this example, the author provides the data but it requires work for others to read this data in.
+
+
+
+---
+
+# ☝️ Tips for communicating your problem and getting help
+
+
+* If you want to receive help, you generally want to **make it easier for others to see your problem and what you expect**.
+
+--
+
+
+* If you have data, is it in a form **easy for others to read the data** in? If your data is big, could you **cull your data** to the minimum amount needed to communicate your problem? If you cannot supply data .font_small[due to privacy issues, etc], you can still supply a dummy data. 
+
+--
+
+
+* If your problem is code related, could you **cull your code** to the minimum amount required to reproduce your problem? Did you include code to load relevant libraries or packages?
+
+
+--
+
+
+* If your question is software related, did you supply the **code to reproduce your example**, your **software version(s)** and your **operating system**?
+
+
+
+---
+
+# Session Information 
+
+You can easily get the session information in R using `sessioninfo::session_info()`. .font_small[Scroll to see the packages used to make these slides.]
+
+.scroll-fit50[
+
+
+
+```r
+sessioninfo::session_info()
+```
+
+```
+## ─ Session info ───────────────────────────────────────────────────────────────
+##  setting  value                       
+##  version  R version 4.0.1 (2020-06-06)
+##  os       macOS Catalina 10.15.6      
+##  system   x86_64, darwin17.0          
+##  ui       X11                         
+##  language (EN)                        
+##  collate  en_AU.UTF-8                 
+##  ctype    en_AU.UTF-8                 
+##  tz       Australia/Melbourne         
+##  date     2020-08-09                  
+## 
+## ─ Packages ───────────────────────────────────────────────────────────────────
+##  package     * version    date       lib source                              
+##  anicon        0.1.0      2020-06-21 [1] Github (emitanaka/anicon@0b756df)   
+##  assertthat    0.2.1      2019-03-21 [2] CRAN (R 4.0.0)                      
+##  backports     1.1.8      2020-06-17 [1] CRAN (R 4.0.0)                      
+##  blob          1.2.1      2020-01-20 [2] CRAN (R 4.0.0)                      
+##  broom         0.7.0      2020-07-09 [1] CRAN (R 4.0.2)                      
+##  callr         3.4.3      2020-03-28 [2] CRAN (R 4.0.0)                      
+##  cellranger    1.1.0      2016-07-27 [2] CRAN (R 4.0.0)                      
+##  cli           2.0.2      2020-02-28 [2] CRAN (R 4.0.0)                      
+##  colorspace    1.4-1      2019-03-18 [1] CRAN (R 4.0.2)                      
+##  countdown     0.3.5      2020-07-20 [1] Github (gadenbuie/countdown@a544fa4)
+##  crayon        1.3.4      2017-09-16 [2] CRAN (R 4.0.0)                      
+##  DBI           1.1.0      2019-12-15 [1] CRAN (R 4.0.2)                      
+##  dbplyr        1.4.4      2020-05-27 [1] CRAN (R 4.0.2)                      
+##  digest        0.6.25     2020-02-23 [2] CRAN (R 4.0.0)                      
+##  dplyr       * 1.0.1      2020-07-26 [1] Github (tidyverse/dplyr@16647fc)    
+##  ellipsis      0.3.1      2020-05-15 [2] CRAN (R 4.0.0)                      
+##  evaluate      0.14       2019-05-28 [2] CRAN (R 4.0.0)                      
+##  fansi         0.4.1      2020-01-08 [2] CRAN (R 4.0.0)                      
+##  fastmap       1.0.1      2019-10-08 [2] CRAN (R 4.0.0)                      
+##  forcats     * 0.5.0      2020-03-01 [2] CRAN (R 4.0.0)                      
+##  fs            1.5.0      2020-07-31 [1] CRAN (R 4.0.2)                      
+##  generics      0.0.2      2018-11-29 [2] CRAN (R 4.0.0)                      
+##  ggplot2     * 3.3.2      2020-06-19 [1] CRAN (R 4.0.0)                      
+##  glue          1.4.1      2020-05-13 [1] CRAN (R 4.0.2)                      
+##  gtable        0.3.0      2019-03-25 [2] CRAN (R 4.0.0)                      
+##  haven         2.3.1      2020-06-01 [2] CRAN (R 4.0.0)                      
+##  hms           0.5.3      2020-01-08 [2] CRAN (R 4.0.0)                      
+##  htmltools   * 0.5.0      2020-06-16 [1] CRAN (R 4.0.2)                      
+##  htmlwidgets * 1.5.1      2019-10-08 [1] CRAN (R 4.0.2)                      
+##  httpuv        1.5.4      2020-06-06 [2] CRAN (R 4.0.1)                      
+##  httr          1.4.2      2020-07-20 [1] CRAN (R 4.0.2)                      
+##  icon          0.1.0      2020-06-21 [1] Github (emitanaka/icon@8458546)     
+##  jsonlite      1.7.0      2020-06-25 [1] CRAN (R 4.0.1)                      
+##  knitr         1.29       2020-06-23 [1] CRAN (R 4.0.2)                      
+##  later         1.1.0.1    2020-06-05 [2] CRAN (R 4.0.1)                      
+##  lifecycle     0.2.0      2020-03-06 [1] CRAN (R 4.0.0)                      
+##  lubridate     1.7.9      2020-06-08 [2] CRAN (R 4.0.1)                      
+##  magrittr      1.5        2014-11-22 [2] CRAN (R 4.0.0)                      
+##  mime          0.9        2020-02-04 [2] CRAN (R 4.0.0)                      
+##  modelr        0.1.8      2020-05-19 [2] CRAN (R 4.0.0)                      
+##  munsell       0.5.0      2018-06-12 [2] CRAN (R 4.0.0)                      
+##  pillar        1.4.6      2020-07-10 [1] CRAN (R 4.0.1)                      
+##  pkgconfig     2.0.3      2019-09-22 [2] CRAN (R 4.0.0)                      
+##  processx      3.4.3      2020-07-05 [1] CRAN (R 4.0.0)                      
+##  promises      1.1.1      2020-06-09 [1] CRAN (R 4.0.0)                      
+##  ps            1.3.3      2020-05-08 [2] CRAN (R 4.0.0)                      
+##  purrr       * 0.3.4      2020-04-17 [2] CRAN (R 4.0.0)                      
+##  R6            2.4.1      2019-11-12 [2] CRAN (R 4.0.0)                      
+##  Rcpp          1.0.5      2020-07-06 [1] CRAN (R 4.0.0)                      
+##  readr       * 1.3.1      2018-12-21 [2] CRAN (R 4.0.0)                      
+##  readxl        1.3.1      2019-03-13 [2] CRAN (R 4.0.0)                      
+##  reprex        0.3.0.9001 2020-08-08 [1] Github (tidyverse/reprex@9594ee9)   
+##  rlang         0.4.7      2020-07-09 [1] CRAN (R 4.0.1)                      
+##  rmarkdown     2.3        2020-06-18 [1] CRAN (R 4.0.2)                      
+##  rstudioapi    0.11       2020-02-07 [2] CRAN (R 4.0.0)                      
+##  rvest         0.3.6      2020-07-25 [1] CRAN (R 4.0.2)                      
+##  scales        1.1.1      2020-05-11 [2] CRAN (R 4.0.0)                      
+##  sessioninfo   1.1.1      2018-11-05 [2] CRAN (R 4.0.0)                      
+##  shiny         1.5.0      2020-06-23 [1] CRAN (R 4.0.2)                      
+##  stringi       1.4.6      2020-02-17 [2] CRAN (R 4.0.0)                      
+##  stringr     * 1.4.0      2019-02-10 [2] CRAN (R 4.0.0)                      
+##  tibble      * 3.0.3      2020-07-10 [1] CRAN (R 4.0.1)                      
+##  tidyr       * 1.1.0      2020-05-20 [2] CRAN (R 4.0.0)                      
+##  tidyselect    1.1.0      2020-05-11 [2] CRAN (R 4.0.0)                      
+##  tidyverse   * 1.3.0      2019-11-21 [1] CRAN (R 4.0.2)                      
+##  timevis     * 0.5        2019-01-16 [1] CRAN (R 4.0.2)                      
+##  vctrs         0.3.2.9000 2020-07-26 [1] Github (r-lib/vctrs@df8a659)        
+##  whisker       0.4        2019-08-28 [2] CRAN (R 4.0.0)                      
+##  widgetframe * 0.3.1      2017-12-20 [1] CRAN (R 4.0.2)                      
+##  withr         2.2.0      2020-04-20 [2] CRAN (R 4.0.0)                      
+##  xaringan      0.16       2020-03-31 [1] CRAN (R 4.0.2)                      
+##  xfun          0.16       2020-07-24 [1] CRAN (R 4.0.2)                      
+##  xml2          1.3.2      2020-04-23 [2] CRAN (R 4.0.0)                      
+##  xtable        1.8-4      2019-04-21 [2] CRAN (R 4.0.0)                      
+##  yaml          2.2.1      2020-02-01 [1] CRAN (R 4.0.2)                      
+## 
+## [1] /Users/etan0038/Library/R/4.0/library
+## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
+```
+]
+
+
+---
+
+# 🎁 Reproducible Example with `reprex` .font_small.animated.flash[LIVE DEMO]
+
+* Copy your **minimum reproducible example** then run
+
+```r
+reprex::reprex(si = TRUE)
+```
+
+* Note that `si` argument is deprecated in favour of `session_info` so in future you need to use `session_info = TRUE` instead of `si = TRUE`. 
+* Once you run the above command, your clipboard contains the formatted code and output for you to paste into places like [GitHub issues](https://docs.github.com/en/enterprise/2.15/user/articles/creating-an-issue), [Stackoverflow](https://stackoverflow.com/) and forums powered by [Discourse](https://www.discourse.org/), e.g. [RStudio Community](https://community.rstudio.com/).
+* For general code questions, I suggest that you post to the community forums rather than Moodle.
+
+
+---
+
+name: data-tech
+class: transition middle
+
+# Introduction to 
+# .yellow[Data Technologies]
+
+---
+
+class: nostripheader
+
+# What are these?
+&lt;center&gt;
+&lt;img class="border-box" src="images/1920px-Floppy_disk_2009_G1.jpg" width = "80%"&gt;
+&lt;/center&gt;
+
+{{content}}
+
+.footnote[
+[Image by George Chernilevsky taken from Wikipedia.](https://en.wikipedia.org/wiki/Floppy_disk#/media/File:Floppy_disk_2009_G1.jpg)
+]
+
+--
+
+Do you have a device to read the information from these?
+
+---
+
+
+# 💾️ Data Storage: Computer memory
+
+* The **bit** (or binary digit) is the smallest unit of data in computer memory.
+* **A single bit contains a boolean value**, commonly represented as 0/1, true/false, yes/no, and on/off.
+* A collection of 8 bits is called a **byte**.
+* A **file** points to a block of computer memory.
+* A **file format** signals a way to interpret the information stored in computer memory.
+
+--
+
+
+
+* &lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; **Backup**: if the hardware that you store your data is damaged, then you may lose your data.
+* &lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt;  **Prosperity**: the hardware you use to store your data may make it hard to extract information from in the future.
+
+
+
+---
+
+# 📁 File formats: Plain text formats .font_small[Part 1/2]
+
+* The simplest way to store data is in a plain text format.
+* Some **metadata** may be at the beginning of the file.
+* Plain text format typically arrange data in rows where each row stores values of variables corresponding to that observational unit. 
+* **Delimited formats** have values separated by a special character, called **delimiter**. The most common types are **csv** and **tsv**.
+
+.grid[.item[
+comma-separated values
+```
+car, speed, dist
+1, 4, 2
+2, 4, 10
+3, 7, 4
+```
+
+]
+.item[
+tab-separated values
+```
+car   speed   dist
+1   4   2
+2   4   10
+3   7   4
+```
+
+]
+.item[
+delimiter is ;
+```
+car;speed;dist
+1;4;2
+2;4;10
+3;7;4
+```
+]
+]
+
+
+
+
+---
+
+
+
+
+# 📁 File formats: Plain text formats .font_small[Part 2/2]
+
+* **Fixed-width formats** have values at fixed positions within every row.
+* E.g., below we are told that *variable 1* at positions 1 to 10, *variable 2* at positions 11 to 18, *variable 3* at positions 19 to 22, *variable 4* at position 23. What is the values of variable 3 and 4 for the 4th observational unit?
+&lt;pre style="font-size:16pt"&gt;
+2020/01/01 Sunny   2  5
+2020/01/02 Cloudy  10 3
+2020/01/03 Raining 10 2
+2020/01/04 Raining 1002
+&lt;/pre&gt;
+* White spaces are often trimmed for delimited formats and fixed-width formats.
+
+---
+
+# 📁 File formats: Binary formats
+
+* A computer can interpret a byte as a **binary number**, e.g.
+  * `00000001` represents `\(2^0 = 1\)` and
+  * `00000011` represents `\(2^1 + 2^0 = 3\)`.
+* With this a single byte can store integers from 0 to 255.
+
+--
+
+
+
+
+* In a plain text format, each digit is stored by a byte so a value like `23` requires 2 bytes; one to store `2` and the other to store `3`. 
+* A binary representation requires only one byte as `00010111` `\((2^4 + 2^2 + 2^1 + 2^0 = 23)\)`.
+--
+
+
+
+* In practice, 4 bytes are often used to store integers with one bit for the sign that allows to store a value from -2,147,483,647 to 2,147,483,647  `\((\pm 2^{31} - 1)\)`.
+
+---
+
+# 📁 File formats: Binary formats in R
+
+* In R, every element in a vector of integers .font_small[(written by appending an integer with a `L`, e.g. `1L`)] occupies 4 bytes  and an every element in a numerical vector occupies 8 bytes. .font_small[See also [Paul Murrell's notes](https://www.stat.auckland.ac.nz/~paul/ItDT/HTML/node76.html).]
+--
+
+
+
+* Files with extension `.RData` or its shorthand form `.rda` is a binary format designed for storing selected objects in the workspace that can be loaded back into R. 
+
+```r
+a &lt;- 1L:3L; b &lt;- c(4, 5.2, 3)
+save(list = c("a", "b"), file = "data.rda") # to save to binary format
+load("data.rda") # to load into R
+```
+--
+
+
+
+* The `.rds` files are also binary format designed for usage with R but stores only a single object.
+
+
+```r
+saveRDS(a, file = "a.rds"); a &lt;- readRDS("a.rds")
+```
+
+
+---
+
+# 📁 File formats: Proprietary formats
+
+* Some data are stored in **proprietary formats** which means that the data are stored in a particular encoding scheme, designed so that decoding and reading the data is accomplished by particular software or hardware.
+* `.rda` and `.rds` are some examples, but common ones include `.xlsx` for Microsoft Excel, `.sav` for SPSS, `.sas7bdat` for SAS, and `.dta` for Stata.
+* You can use R packages, like `foreign`, `readxl`, and `haven`, to read these data formats into R.
+
+---
+
+# 💭 What's wrong with this figure?
+
+.grid[
+.item[
+&lt;img src="images/lecture-02/plot-1.png" width="500px" height="500px" style="display: block; margin: auto;" /&gt;
+]
+.item.center[
+{{content}}
+]
+
+]
+
+--
+
+&lt;img src="images/lecture-02/plot-1.svg" width="500px" height="500px" style="display: block; margin: auto;" /&gt;
+
+How about now?
+
+--
+
+&lt;div class="bg-white border-box" style="position:absolute;bottom:8%;left:20%;padding:10px;width:900px;"&gt;
+Both figures used the same code below to produce the figure:&lt;br&gt;
+
+&lt;code&gt;
+ggplot(cars, aes(speed, dist)) + 
+  geom_point()
+&lt;/code&gt;
+&lt;br&gt;
+but I saved one to a &lt;b&gt;png&lt;/b&gt; file and the other as a &lt;b&gt;svg&lt;/b&gt; file.
+&lt;/div&gt;
+
+
+
+
+---
+
+# 🖼️ Communicating Figures 
+
+* There are two main formats for graphics: 
+  * **Raster formats** contain description of each pixel. Common formats are:
+     * `jpg` (or `jpeg`) uses a lossy data compression that results in some loss of information but usually a small file size.
+     * `png` uses a lossless data compression and works well if the image has uniform colors.
+  * **Vector formats** contain a geometric description and hence render smoothly at any display size. Common formats include `svg`, `pdf` and `eps`. E.g.   [svg](https://raw.githubusercontent.com/numbats/cwd/master/lectures/images/rlogo.svg) and its [source](view-source:https://raw.githubusercontent.com/numbats/cwd/master/lectures/images/rlogo.svg).
+
+--
+
+
+* A vector format scales well to any display size, however, the file size may become prohibitively big.
+
+
+---
+
+# &lt;i class="fas fa-chalkboard-teacher bg-white animated bounceIn" style="padding:3px;border:1px dashed #0092EB; color: #0092EB;"&gt;&lt;/i&gt; Today's main lessons 
+
+# Web Technologies 
+* The main components of the Web 
+* The syntax and structure for HTML/CSS
+* How to insert CSS/JS into Rmd documents
+
+# Communicating your problem
+* How to make reproducible examples and ask for technical help
+
+# Data Technologies
+* Data and figure storages
+* For more, check out [Paul Murrell (2010) Introduction to Data Technologies](https://www.stat.auckland.ac.nz/~paul/ItDT/itdt-2010-11-01.pdf)
+
+---
+
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;&lt;br&gt;
+
+# That's it!
+
+&lt;br&gt; 
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+.bottom_abs.width100[
+
+Lecturer: Emi Tanaka
+
+Department of Econometrics and Business Statistics&lt;br&gt;
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
