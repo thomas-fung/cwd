@@ -64,6 +64,18 @@ pagedown::chrome_print(input = input, format = "pdf", wait = 20)
 
 ---
 
+class: middle nostripheader
+
+# Housekeeping
+
+* Take-home assessment will be released **Thu 20 Aug 7PM** on Moodle.   
+  
+   
+* More details on Moodle.
+
+
+---
+
 name: web-tech
 class: transition middle
 
@@ -75,6 +87,8 @@ class: transition middle
 # 🌐  World Wide Web (WWW) 
 
 * WWW (or the **Web**) is the information system where documents (web pages) are identified by Uniform Resource Locators (**URL**s)
+
+
 * A web page consists of:
   * <i class="fab fa-html5 orange"></i> **HTML** provides the basic structure of the web page
   * <i class="fab fa-css3-alt blue"></i> **CSS** controls the look of the web page (optional)
@@ -82,6 +96,7 @@ class: transition middle
   
 
 --
+
 
 
 * Keep in mind that you are not a web developer .font_small[(or maybe you are)] so you don't need to know these in-depth, but you require some knowledge in web technologies if you want to do some low-level customisation of HTML documents.
@@ -2243,7 +2258,7 @@ but I saved one to a <b>png</b> file and the other as a <b>svg</b> file.
 --
 
 
-* A vector format scales well to any display size, however, the file size may become prohibitively big.
+* A vector format scales well to any display size, however, the file size may become prohibitively big when there are many geometric objects (i.e. displaying many data).
 
 
 ---

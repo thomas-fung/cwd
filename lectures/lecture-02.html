@@ -97,6 +97,18 @@ Department of Econometrics and Business Statistics
 
 ---
 
+class: middle nostripheader
+
+# Housekeeping
+
+* Take-home assessment will be released **Thu 20 Aug 7PM** on Moodle.   
+  
+   
+* More details on Moodle.
+
+
+---
+
 name: web-tech
 class: transition middle
 
@@ -108,6 +120,8 @@ class: transition middle
 # 🌐  World Wide Web (WWW) 
 
 * WWW (or the **Web**) is the information system where documents (web pages) are identified by Uniform Resource Locators (**URL**s)
+
+
 * A web page consists of:
   * &lt;i class="fab fa-html5 orange"&gt;&lt;/i&gt; **HTML** provides the basic structure of the web page
   * &lt;i class="fab fa-css3-alt blue"&gt;&lt;/i&gt; **CSS** controls the look of the web page (optional)
@@ -115,6 +129,7 @@ class: transition middle
   
 
 --
+
 
 
 * Keep in mind that you are not a web developer .font_small[(or maybe you are)] so you don't need to know these in-depth, but you require some knowledge in web technologies if you want to do some low-level customisation of HTML documents.
@@ -127,8 +142,8 @@ class: transition middle
 * Naturally, this ties in well with interactive data visualisation.
 * Below is an interactive timeline visualisation of historical developments of HTML/CSS/JS:
 
-<div id="htmlwidget-0de28440711cdb0deda7" style="width:100%;height:300px;" class="widgetframe html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0de28440711cdb0deda7">{"x":{"url":"images/lecture-02//widgets/widget_unnamed-chunk-2.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-1587a54e0581e271ff76" style="width:100%;height:300px;" class="widgetframe html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1587a54e0581e271ff76">{"x":{"url":"images/lecture-02//widgets/widget_unnamed-chunk-2.html","options":{"xdomain":"*","allowfullscreen":false,"lazyload":false}},"evals":[],"jsHooks":[]}</script>
 
 
 ---
@@ -138,7 +153,7 @@ class: question middle
 
 # So what exactly is HTML, CSS, and JS?
 
-<div class="countdown clock" id="timer_5f2f8c82" style="right:0;bottom:0;" data-warnwhen="0">
+<div class="countdown clock" id="timer_5f322fdf" style="right:0;bottom:0;" data-warnwhen="0">
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
@@ -2007,12 +2022,12 @@ sessioninfo::session_info()
 ##  version  R version 4.0.1 (2020-06-06)
 ##  os       macOS Catalina 10.15.6      
 ##  system   x86_64, darwin17.0          
-##  ui       RStudio                     
+##  ui       X11                         
 ##  language (EN)                        
 ##  collate  en_AU.UTF-8                 
 ##  ctype    en_AU.UTF-8                 
 ##  tz       Australia/Melbourne         
-##  date     2020-08-09                  
+##  date     2020-08-11                  
 ## 
 ## ─ Packages ───────────────────────────────────────────────────────────────────
 ##  package     * version    date       lib source                              
@@ -2034,7 +2049,6 @@ sessioninfo::session_info()
 ##  ellipsis      0.3.1      2020-05-15 [2] CRAN (R 4.0.0)                      
 ##  evaluate      0.14       2019-05-28 [2] CRAN (R 4.0.0)                      
 ##  fansi         0.4.1      2020-01-08 [2] CRAN (R 4.0.0)                      
-##  farver        2.0.3.9000 2020-07-24 [1] Github (thomasp85/farver@f1bcb56)   
 ##  fastmap       1.0.1      2019-10-08 [2] CRAN (R 4.0.0)                      
 ##  forcats     * 0.5.0      2020-03-01 [2] CRAN (R 4.0.0)                      
 ##  fs            1.5.0      2020-07-31 [1] CRAN (R 4.0.2)                      
@@ -2051,7 +2065,6 @@ sessioninfo::session_info()
 ##  icon          0.1.0      2020-06-21 [1] Github (emitanaka/icon@8458546)     
 ##  jsonlite      1.7.0      2020-06-25 [1] CRAN (R 4.0.1)                      
 ##  knitr         1.29       2020-06-23 [1] CRAN (R 4.0.2)                      
-##  labeling      0.3        2014-08-23 [2] CRAN (R 4.0.0)                      
 ##  later         1.1.0.1    2020-06-05 [2] CRAN (R 4.0.1)                      
 ##  lifecycle     0.2.0      2020-03-06 [1] CRAN (R 4.0.0)                      
 ##  lubridate     1.7.9      2020-06-08 [2] CRAN (R 4.0.1)                      
@@ -2059,8 +2072,6 @@ sessioninfo::session_info()
 ##  mime          0.9        2020-02-04 [2] CRAN (R 4.0.0)                      
 ##  modelr        0.1.8      2020-05-19 [2] CRAN (R 4.0.0)                      
 ##  munsell       0.5.0      2018-06-12 [2] CRAN (R 4.0.0)                      
-##  packrat       0.5.0      2018-11-14 [1] CRAN (R 4.0.1)                      
-##  pagedown      0.10       2020-05-04 [1] CRAN (R 4.0.2)                      
 ##  pillar        1.4.6      2020-07-10 [1] CRAN (R 4.0.1)                      
 ##  pkgconfig     2.0.3      2019-09-22 [2] CRAN (R 4.0.0)                      
 ##  processx      3.4.3      2020-07-05 [1] CRAN (R 4.0.0)                      
@@ -2074,11 +2085,9 @@ sessioninfo::session_info()
 ##  reprex        0.3.0.9001 2020-08-08 [1] Github (tidyverse/reprex@9594ee9)   
 ##  rlang         0.4.7      2020-07-09 [1] CRAN (R 4.0.1)                      
 ##  rmarkdown     2.3        2020-06-18 [1] CRAN (R 4.0.2)                      
-##  rsconnect     0.8.16     2019-12-13 [1] CRAN (R 4.0.2)                      
 ##  rstudioapi    0.11       2020-02-07 [2] CRAN (R 4.0.0)                      
 ##  rvest         0.3.6      2020-07-25 [1] CRAN (R 4.0.2)                      
 ##  scales        1.1.1      2020-05-11 [2] CRAN (R 4.0.0)                      
-##  servr         0.17       2020-05-26 [2] CRAN (R 4.0.0)                      
 ##  sessioninfo   1.1.1      2018-11-05 [2] CRAN (R 4.0.0)                      
 ##  shiny         1.5.0      2020-06-23 [1] CRAN (R 4.0.2)                      
 ##  stringi       1.4.6      2020-02-17 [2] CRAN (R 4.0.0)                      
@@ -2333,7 +2342,7 @@ but I saved one to a &lt;b&gt;png&lt;/b&gt; file and the other as a &lt;b&gt;svg
 --
 
 
-* A vector format scales well to any display size, however, the file size may become prohibitively big.
+* A vector format scales well to any display size, however, the file size may become prohibitively big when there are many geometric objects (i.e. displaying many data).
 
 
 ---
