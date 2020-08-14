@@ -1,0 +1,84 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 2 Solution"
+author: "Emi Tanaka"
+date: "Week 2"
+output: 
+  html_document:
+    toc: true
+    css: "tutorial-style.css"
+---
+
+```{css, echo = FALSE}
+.md {
+  height: 200px!important;
+  overflow: scroll!important;
+}
+```
+
+## 🎛️ Exercise 2A
+
+**JavaScript in R Markdown documents with `htmlwidgets`**
+
+This required you to inspect element to find out what the class name associated with the boxes in the HTML widget was. By inspecting the element, you will find that it is called `vis-item-content`. To make the background color white, then you have to define the CSS so that 
+
+```
+.vis-item-content { background-color: white; }
+```
+
+The complete Rmd that implements this is in `tutorial-02-suppAsol.Rmd`.
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-02-suppAsol.Rmd"), results="asis"}
+# this is used to display content of `fn`
+# ignore this if you don't understand
+cat("**Below is the content of `", fn, "`** (scroll to see all) or download the file", glue::glue("<a href='{fn}' download>here</a>."))
+cat("\n````md\n")
+cat(readLines(fn), sep = "\n")
+cat("\n````")
+```
+
+
+## 📛 Exercise 2B
+
+**Cross-widget interaction with `crosstalk`** 
+
+This exercise required you to inspect the element of `tutorial-02-suppB.html`. You will notice that the output graphics are `svg` and this allows the two graphs to communicate with each other. Did you notice that the user control for the last graph also affects the first two figures? All graphs are using the same shared data so inevitably the user controls affect across all graphs. Care needs to be taken of what you allow to be "shared" otherwise you may have unintended consequences like this. 
+
+## ✉️ Exercise 2C
+
+**Reproducible example**
+
+Note that the stackoverflow questions may be edited any time so the links to the stackoverflow question below is the archived version (thanks to [The Wayback Machine](https://archive.org/)) of the question (link to the original ones in `tutorial-02.html`). The sample answer is provided for the first one and is reflective of the content in the archived link.  
+
+1. [Problem rendering a list of multiple object types in Rmarkdown](https://web.archive.org/web/20200810230513/https://stackoverflow.com/questions/62866953/problem-rendering-a-list-of-multiple-object-types-in-rmarkdown)  
+    * Notice that there is even a comment talking about producing reproducible examples. If you followed the comment, you'd have found a whole discussion about [how to make a great R reproducible example](https://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example).
+    * This question was edited later by the author and now inludes a reproducible example. The author makes it quite clear what they want for the output as well by posting the image of what they want. 
+    * This edited question does fairly well in communicating their problem. The only other thing that may be helpful is if the author also included the session information.
+    * The question showed that the author may not know how to access elements of a list. To access the first element of the list, the author should have used `lists[[1]]` instead of `lists[1]`.
+    * The code below does what the author wants (feel free to answer the question on stackoverflow if it's not answered already).
+    
+<details style="padding-left: 100px;">
+<summary>Code for author</summary>
+```{r, message = FALSE, warning=FALSE}
+library(highcharter)
+library(kableExtra)
+gen_list <- function(x){
+
+  df_x <- data.frame(x_ = x,y = 5, z=6)
+
+  obj_1 <- df_x %>%
+    knitr::kable( caption = 'test') %>%
+    kableExtra::kable_styling(bootstrap_options = "striped", full_width = F)
+ 
+  obj_2 <- highcharter::hchart(df_x, 'line',highcharter::hcaes(x = x_, y = y))
+
+  list(obj_1,obj_2)[[1]]
+  }
+
+lists <- lapply(c(1,2,3), gen_list) 
+
+lists[[1]]
+```
+
+</details>
+
