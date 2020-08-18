@@ -1,7 +1,6 @@
 background-image: url(`r rmarkdown::metadata$bgimg`)
 background-size: cover
 class: hide-slide-number split-70
-count: false
 
 .column.shade_black[.content[
 

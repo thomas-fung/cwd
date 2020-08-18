@@ -309,3 +309,28 @@ blockquote {
     font-weight: bold;
 
 }
+
+.bg-blue {
+  background-color: var(--color-blue)!important;
+}
+.white {
+  color: white!important;
+}
+
+.scroll-100 {
+  height: 500px;
+  overflow: scroll;
+}
+
+.scroll-20 {
+  height: 200px;
+  overflow: scroll;
+}
+
+table {
+  margin:auto;
+}
+
+td, th {
+  padding: 10px;
+}

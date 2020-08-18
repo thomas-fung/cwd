@@ -1,0 +1,41 @@
+---
+title: Sparkline + DT Demo
+output: html_document
+---
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(sparkline)
+library(DT)
+```
+
+```{r play, message = FALSE}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(dist = spk_chr(wt, type = "box")) %>% 
+  datatable()
+```
+
+
+
+
+
+
+
+```{r final, include = FALSE}
+mtcars %>% 
+  group_by(cyl) %>% 
+  summarise(dist = spk_chr(wt, type = "box")) %>% 
+  datatable(escape = FALSE,
+            options = list(paging = FALSE,
+                           dom = "t",
+                           fnDrawCallback = htmlwidgets::JS(
+  '
+function(){
+  HTMLWidgets.staticRender();
+}
+'
+))) %>% 
+  spk_add_deps() 
+```
+

@@ -50,7 +50,7 @@ thead {
 
 
 .scroll-fit50 {
-  width: 98%;
+  width: 605px;
   overflow: scroll;
   height: 500px;
   border: 1px solid gray;
@@ -76,4 +76,39 @@ thead {
 
 td.remark-code {
   font-size: 16pt!important;
+}
+
+.item50 {
+  width: 605px;
+}
+
+table.cor-table {
+  margin: auto;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+table.cor-table thead th {
+  border-bottom: 1px solid black;
+}
+
+table.cor-table th, table.cor-table td {
+  padding: 5px;
+}
+
+table.xtab {
+  border-collapse:collapse;
+  border-spacing: 0px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+table.xtab th {
+  background-color: white;
+  color: black;
+  border-bottom: 1px solid black;
+}
+
+table.xtab th, table.xtab td {
+  padding: 5px;
 }
