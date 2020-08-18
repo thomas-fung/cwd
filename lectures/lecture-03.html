@@ -1,0 +1,1767 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5523: Communicating with Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emi Tanaka" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/table1-1.0/table1_defaults.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.14/datatables.js"></script>
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom3.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-03.pdf&gt;PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5523: Communicating with Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 3&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Fashionable Model Output and Data Tables&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Emi Tanaka*
+
+Department of Econometrics and Business Statistics
+
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+18th August 2020
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+---
+
+class: middle nostripheader
+
+# Housekeeping
+
+* Take-home assessment will be released **Thu 20 Aug 7PM** on Moodle.   
+* Instructor's (i.e. me) consultation hour will be shifted to **12.30-1.30PM Thu** for _this week alone_ so any troubleshooting can be sorted out prior to the start of the assessment.
+
+
+---
+
+# 🎯 What today is _not_ about
+
+* In this lecture, we are _not_ overly concerned with whether the model is the best, good or bad; nor about the correctness of the interpretations of the statistical outputs.
+* You learn about: 
+  * Bayesian models in ETC5242,
+  * forecasting models in ETC5550, 
+  * machine learning models in ETC5250 and 
+  * advanced statistical models in ETC5580.
+  
+--
+  
+# &lt;span class="fa-layers fa-fw"&gt;&lt;i class="fas fa-calendar monash-blue"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9 down-3" style="font-weight:900"&gt;Wk3&lt;/span&gt;&lt;/span&gt; So what is today about?
+
+--
+
+&lt;div style="line-height:1.5em;padding-top:10px;padding-left:30px;"&gt;
+&lt;span class="fa-layers fa-fw blue"&gt;&lt;i class="fas fa-circle" data-fa-transform="grow-5"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="up-1" style="font-weight:900"&gt;1&lt;/span&gt;&lt;/span&gt; Working with model objects&lt;br&gt;
+&lt;span class="fa-layers fa-fw blue"&gt;&lt;i class="fas fa-circle" data-fa-transform="grow-5"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="up-1" style="font-weight:900"&gt;2&lt;/span&gt;&lt;/span&gt; Presenting information as a table
+&lt;/div&gt;
+
+---
+
+# 📈 Statistical models
+
+* All models are approximations of the unknown data generating process - whether how good of an approximation depends on the collected data and the model choice.
+
+--
+
+.grid[
+.item[
+
+# &amp;emsp; .blue[Example 1]
+
+&lt;img src="images/lecture-03/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+&lt;span style="font-size:18pt;padding-left:100px;"&gt;
+**Aim**: characterise `mpg` in terms of `wt`.
+&lt;/span&gt;
+
+]
+.item[
+
+{{content}}
+
+]
+]
+
+--
+
+&lt;Br&gt;
+
+* We fit the model: 
+
+`$$\texttt{mpg}_i = \beta_0 + \beta_1\texttt{wt}_i + e_i$$`
+&lt;details  style="padding-left:40px;font-size:18pt"&gt;
+&lt;summary&gt;Parameter details&lt;/summary&gt;
+&lt;ul&gt;
+&lt;li&gt; \(\texttt{mpg}_i\) is the miles per gallon of the \(i\)-th car, &lt;/li&gt;
+&lt;li&gt;\(\texttt{wt}_i\) is the weight of the \(i\)-th car,&lt;/li&gt;
+&lt;li&gt;\(\beta_0\) is the intercept,&lt;/li&gt;
+&lt;li&gt;\(\beta_1\) is the slope, and&lt;/li&gt;
+&lt;li&gt;\(e_i\) is random error, usually assumed \(e_i \sim NID(0, \sigma^2)\)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/details&gt;
+
+* In R we fit this as 
+
+```r
+fit &lt;- lm(mpg ~ wt, data = mtcars)
+```
+which is the same as 
+
+```r
+fit &lt;- lm(mpg ~ 1 + wt, data = mtcars)
+```
+
+---
+
+# ℹ️ Extracting information from the fitted model .font_small[Part 1/4]
+
+* When you fit a model, there would be a number of information you will be interested in extracting from the fit including:
+   * the model parameter estimates,
+   * model-related summary statistics, e.g. `\(R^2\)`, AIC and BIC,
+   * model-related values, e.g. residuals, fitted values and predictions.
+--
+
+* So how do you extract these values from the `fit`?
+* What does `fit` even contain?
+--
+
+* Any programming language will usually have:
+   * a function to see the structure of the object, in R this is `str()`, and
+   * methods that can be applied to classes of that object.
+
+---
+
+# ℹ️ Extracting information from the fitted model .font_small[Part 2/4] 
+
+
+.grid[
+.item.border-right[
+
+```r
+fit &lt;- lm(mpg ~ 1 + wt, data = mtcars)
+fit
+```
+
+```
+## 
+## Call:
+## lm(formula = mpg ~ 1 + wt, data = mtcars)
+## 
+## Coefficients:
+## (Intercept)           wt  
+##      37.285       -5.344
+```
+.center[
+.animated.flash[LIVE DEMO]
+]]
+.item50[
+.scroll-fit50[
+
+```r
+str(fit)
+```
+
+```
+## List of 12
+##  $ coefficients : Named num [1:2] 37.29 -5.34
+##   ..- attr(*, "names")= chr [1:2] "(Intercept)" "wt"
+##  $ residuals    : Named num [1:32] -2.28 -0.92 -2.09 1.3 -0.2 ...
+##   ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+##  $ effects      : Named num [1:32] -113.65 -29.116 -1.661 1.631 0.111 ...
+##   ..- attr(*, "names")= chr [1:32] "(Intercept)" "wt" "" "" ...
+##  $ rank         : int 2
+##  $ fitted.values: Named num [1:32] 23.3 21.9 24.9 20.1 18.9 ...
+##   ..- attr(*, "names")= chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+##  $ assign       : int [1:2] 0 1
+##  $ qr           :List of 5
+##   ..$ qr   : num [1:32, 1:2] -5.657 0.177 0.177 0.177 0.177 ...
+##   .. ..- attr(*, "dimnames")=List of 2
+##   .. .. ..$ : chr [1:32] "Mazda RX4" "Mazda RX4 Wag" "Datsun 710" "Hornet 4 Drive" ...
+##   .. .. ..$ : chr [1:2] "(Intercept)" "wt"
+##   .. ..- attr(*, "assign")= int [1:2] 0 1
+##   ..$ qraux: num [1:2] 1.18 1.05
+##   ..$ pivot: int [1:2] 1 2
+##   ..$ tol  : num 1e-07
+##   ..$ rank : int 2
+##   ..- attr(*, "class")= chr "qr"
+##  $ df.residual  : int 30
+##  $ xlevels      : Named list()
+##  $ call         : language lm(formula = mpg ~ 1 + wt, data = mtcars)
+##  $ terms        :Classes 'terms', 'formula'  language mpg ~ 1 + wt
+##   .. ..- attr(*, "variables")= language list(mpg, wt)
+##   .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+##   .. .. ..- attr(*, "dimnames")=List of 2
+##   .. .. .. ..$ : chr [1:2] "mpg" "wt"
+##   .. .. .. ..$ : chr "wt"
+##   .. ..- attr(*, "term.labels")= chr "wt"
+##   .. ..- attr(*, "order")= int 1
+##   .. ..- attr(*, "intercept")= int 1
+##   .. ..- attr(*, "response")= int 1
+##   .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+##   .. ..- attr(*, "predvars")= language list(mpg, wt)
+##   .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+##   .. .. ..- attr(*, "names")= chr [1:2] "mpg" "wt"
+##  $ model        :'data.frame':	32 obs. of  2 variables:
+##   ..$ mpg: num [1:32] 21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##   ..$ wt : num [1:32] 2.62 2.88 2.32 3.21 3.44 ...
+##   ..- attr(*, "terms")=Classes 'terms', 'formula'  language mpg ~ 1 + wt
+##   .. .. ..- attr(*, "variables")= language list(mpg, wt)
+##   .. .. ..- attr(*, "factors")= int [1:2, 1] 0 1
+##   .. .. .. ..- attr(*, "dimnames")=List of 2
+##   .. .. .. .. ..$ : chr [1:2] "mpg" "wt"
+##   .. .. .. .. ..$ : chr "wt"
+##   .. .. ..- attr(*, "term.labels")= chr "wt"
+##   .. .. ..- attr(*, "order")= int 1
+##   .. .. ..- attr(*, "intercept")= int 1
+##   .. .. ..- attr(*, "response")= int 1
+##   .. .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+##   .. .. ..- attr(*, "predvars")= language list(mpg, wt)
+##   .. .. ..- attr(*, "dataClasses")= Named chr [1:2] "numeric" "numeric"
+##   .. .. .. ..- attr(*, "names")= chr [1:2] "mpg" "wt"
+##  - attr(*, "class")= chr "lm"
+```
+]
+
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+]
+]
+
+
+---
+
+
+# ℹ️ Extracting information from the fitted model .font_small[Part 3/4] 
+
+
+Accessing model parameter estimates:
+
+```r
+fit$coefficients
+```
+
+```
+## (Intercept)          wt 
+##   37.285126   -5.344472
+```
+
+```r
+# OR using
+coef(fit)
+```
+
+```
+## (Intercept)          wt 
+##   37.285126   -5.344472
+```
+This gives us the estimates of `\(\beta_0\)` and `\(\beta_1\)`. 
+--
+But what about `\(\sigma^2\)`? 
+--
+
+```r
+sigma(fit)^2
+```
+
+```
+## [1] 9.277398
+```
+
+
+---
+
+# ℹ️ Extracting information from the fitted model .font_small[Part 4/4] 
+
+.scroll-100[
+
+```r
+summary(fit)
+```
+
+```
+## 
+## Call:
+## lm(formula = mpg ~ 1 + wt, data = mtcars)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.5432 -2.3647 -0.1252  1.4096  6.8727 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  37.2851     1.8776  19.858  &lt; 2e-16 ***
+## wt           -5.3445     0.5591  -9.559 1.29e-10 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.046 on 30 degrees of freedom
+## Multiple R-squared:  0.7528,	Adjusted R-squared:  0.7446 
+## F-statistic: 91.38 on 1 and 30 DF,  p-value: 1.294e-10
+```
+]
+
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+
+--
+
+&lt;div class="bg-white border-box" style="position:absolute;right:50px;bottom:50px;width:250px;padding:10px;"&gt;
+So how do I get these summary values out?
+&lt;/div&gt;
+
+
+---
+
+# &lt;i class="fas fa-broom"&gt;&lt;/i&gt; Model objects to tidy data
+
+.grid[
+.item50.border-right[
+
+```r
+broom::tidy(fit)
+```
+
+```
+## # A tibble: 2 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    37.3      1.88      19.9  8.24e-19
+## 2 wt             -5.34     0.559     -9.56 1.29e-10
+```
+
+```r
+broom::glance(fit)
+```
+
+```
+## # A tibble: 1 x 12
+##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
+##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     0.753         0.745  3.05      91.4 1.29e-10     1  -80.0  166.  170.
+## # … with 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;
+```
+
+]
+.item50[
+
+```r
+broom::augment(fit)
+```
+
+```
+## # A tibble: 32 x 9
+##    .rownames          mpg    wt .fitted .resid .std.resid   .hat .sigma  .cooksd
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;    &lt;dbl&gt;
+##  1 Mazda RX4         21    2.62    23.3 -2.28     -0.766  0.0433   3.07  1.33e-2
+##  2 Mazda RX4 Wag     21    2.88    21.9 -0.920    -0.307  0.0352   3.09  1.72e-3
+##  3 Datsun 710        22.8  2.32    24.9 -2.09     -0.706  0.0584   3.07  1.54e-2
+##  4 Hornet 4 Drive    21.4  3.22    20.1  1.30      0.433  0.0313   3.09  3.02e-3
+##  5 Hornet Sportabo…  18.7  3.44    18.9 -0.200    -0.0668 0.0329   3.10  7.60e-5
+##  6 Valiant           18.1  3.46    18.8 -0.693    -0.231  0.0332   3.10  9.21e-4
+##  7 Duster 360        14.3  3.57    18.2 -3.91     -1.31   0.0354   3.01  3.13e-2
+##  8 Merc 240D         24.4  3.19    20.2  4.16      1.39   0.0313   3.00  3.11e-2
+##  9 Merc 230          22.8  3.15    20.5  2.35      0.784  0.0314   3.07  9.96e-3
+## 10 Merc 280          19.2  3.44    18.9  0.300     0.100  0.0329   3.10  1.71e-4
+## # … with 22 more rows
+```
+
+]
+]
+
+
+---
+
+# 🐱 Modelling &lt;span style="color:#FFFFBF"&gt;cat&lt;/span&gt;egorical variables .font_small[Part 1/3]
+
+**Experiment data**: tooth growth in guinea pigs with **two supplement types** (orange juice of ascorbic acid) with **three different doses** (0.5, 1 and 2 mg/day).
+
+
+```r
+df &lt;- ToothGrowth %&gt;% mutate(dose = as.factor(dose))
+glimpse(df)
+```
+
+```
+## Rows: 60
+## Columns: 3
+## $ len  &lt;dbl&gt; 4.2, 11.5, 7.3, 5.8, 6.4, 10.0, 11.2, 11.2, 5.2, 7.0, 16.5, 16.5…
+## $ supp &lt;fct&gt; VC, VC, VC, VC, VC, VC, VC, VC, VC, VC, VC, VC, VC, VC, VC, VC, …
+## $ dose &lt;fct&gt; 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1,…
+```
+**Suggested model and its fit**: 
+.scroll-20[
+
+```r
+fitc &lt;- lm(sqrt(len) ~ 1 + supp + dose + supp:dose, data = df)
+```
+]
+
+---
+
+# 🐱 Modelling &lt;span style="color:#FFFFBF"&gt;cat&lt;/span&gt;egorical variables .font_small[Part 2/3]
+
+
+```r
+broom::tidy(fitc)
+```
+
+```
+## # A tibble: 6 x 5
+##   term         estimate std.error statistic  p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)     3.59      0.139    25.8   4.94e-32
+## 2 suppVC         -0.806     0.197    -4.09  1.44e- 4
+## 3 dose1           1.15      0.197     5.86  2.83e- 7
+## 4 dose2           1.51      0.197     7.65  3.64e-10
+## 5 suppVC:dose1    0.144     0.279     0.518 6.07e- 1
+## 6 suppVC:dose2    0.800     0.279     2.87  5.82e- 3
+```
+
+--
+
+* Where is dose 0.5? And supplementary OJ?
+--
+
+* The first levels of `dose` (0.5) and `supp` (OJ) have been constrained to zero; in another words, these are the **reference level** (also called **base-line category**).
+
+---
+
+# 🐱 Modelling &lt;span style="color:#FFFFBF"&gt;cat&lt;/span&gt;egorical variables .font_small[Part 3/3]
+
+
+```r
+broom::tidy(fitc) %&gt;% 
+* tidycat::tidy_categorical(fitc)
+```
+
+```
+## # A tibble: 12 x 9
+##    term   estimate std.error statistic  p.value variable  level effect reference
+##    &lt;chr&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;     &lt;fct&gt; &lt;chr&gt;  &lt;chr&gt;    
+##  1 (Inte…    3.59      0.139    25.8   4.94e-32 (Interce… (Int… main   Non-Base…
+##  2 &lt;NA&gt;      0         0         0     0.       supp      OJ    main   Baseline…
+##  3 suppVC   -0.806     0.197    -4.09  1.44e- 4 supp      VC    main   Non-Base…
+##  4 &lt;NA&gt;      0         0         0     0.       dose      0.5   main   Baseline…
+##  5 dose1     1.15      0.197     5.86  2.83e- 7 dose      1     main   Non-Base…
+##  6 dose2     1.51      0.197     7.65  3.64e-10 dose      2     main   Non-Base…
+##  7 &lt;NA&gt;      0         0         0     0.       supp:dose OJ:0… inter… Baseline…
+##  8 &lt;NA&gt;      0         0         0     0.       supp:dose VC:0… inter… Non-Base…
+##  9 &lt;NA&gt;      0         0         0     0.       supp:dose OJ:1  inter… Non-Base…
+## 10 suppV…    0.144     0.279     0.518 6.07e- 1 supp:dose VC:1  inter… Non-Base…
+## 11 &lt;NA&gt;      0         0         0     0.       supp:dose OJ:2  inter… Non-Base…
+## 12 suppV…    0.800     0.279     2.87  5.82e- 3 supp:dose VC:2  inter… Non-Base…
+```
+
+--
+
+
+
+&lt;div  style="position:absolute;right:120px;bottom:337px;width:330px;height:30px;background-color:rgba(100,255,155,0.3)"&gt;
+&lt;/div&gt;
+
+&lt;div  style="position:absolute;right:120px;bottom:277px;width:330px;height:30px;background-color:rgba(100,255,155,0.3)"&gt;
+&lt;/div&gt;
+
+&lt;div  style="position:absolute;right:120px;bottom:126px;width:330px;height:90px;background-color:rgba(100,255,155,0.3)"&gt;
+&lt;/div&gt;
+
+&lt;div  style="position:absolute;right:120px;bottom:63px;width:330px;height:30px;background-color:rgba(100,255,155,0.3)"&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class="border-box" style="position:absolute;right:120px;bottom:5px;width:300px;padding:10px;height:430px;"&gt;
+&lt;/div&gt;
+
+---
+
+# &lt;i class="fas fa-equals"&gt;&lt;/i&gt; Why have constraints/reference/base-line categories?
+
+* Let's consider these simultaneous equations:
+
+`$$\begin{eqnarray}
+20 \beta_0 + 10 \beta_1 + 10 \beta_2  &amp;=&amp; 50\\
+10 \beta_0 + 10\beta_1 \qquad ~~~&amp;=&amp; 20\\
+10 \beta_0 \qquad~~~+ 10\beta_2&amp;=&amp; 30\\
+\end{eqnarray}~~~~\text{or}~~~~\begin{bmatrix}20 &amp; 10 &amp; 10 \\ 10 &amp; 10 &amp; 0\\ 10 &amp; 0 &amp; 10\end{bmatrix}\begin{bmatrix}\beta_0\\\beta_1\\\beta_2\end{bmatrix} = \begin{bmatrix}50\\20\\30\end{bmatrix}$$`
+
+--
+
+
+* A solution is `\(\beta_0 = \beta_1 = 1\)` and `\(\beta_2 = 2\)`. 
+--
+But so is `\(\beta_0 = -1\)`, `\(\beta_1 = 3\)` and `\(\beta_2 = 4\)`. 
+--
+And so is `\(\beta_0 = 2\)`, `\(\beta_1 = 0\)` and `\(\beta_2 = 1\)`.
+--
+
+* There are infinite number of solutions. 
+--
+
+* &lt;i class="fas fa-lightbulb"&gt;&lt;/i&gt; The idea is the same when you have a categorical variable and the effects for each level of the categorical variables are estimated using least squares estimate (or maximum likelihood estimate) then without constraints, there are infinite number of solutions.
+
+
+
+
+---
+
+# &lt;span class="fa-layers fa-fw" style="color:#D93F00"&gt;&lt;i class="fas fa-box"&gt;&lt;/i&gt;&lt;i class="far fa-chart-bar" data-fa-transform="shrink-9 down-3" style="font-weight:900;color:#e3e3e3;"&gt;&lt;/i&gt;&lt;/span&gt; Modelling in R
+
+* There are many R-packages that fit all kinds of models, e.g. 
+  * `mgcv` fits generalized additive models,
+  * `glmnet` fits a generalised linear models with elastic net, 
+  * `rstanarm` fits Bayesian regression models using Stan, 
+  * `BLR` also fits Bayesian linear regression models, and 
+  * `fable` .font_small[(written by your tutor Mitch O'Hara-Wild)] fits forecast models,
+  * many other contributions by the community. 
+--
+
+* There are a lot of new R-packages contributed; some implementing the latest research results. This means that if you want to use the state-of-the-art research, then you need to work with model objects beyond the standard `lm` and `glm`. 
+
+---
+
+# Example with Baysian regression
+
+
+```r
+library(rstanarm)
+fit_stan &lt;- stan_lm(mpg ~ 1 + wt, data = mtcars,
+                    prior = R2(0.7528, what = "mean"))
+```
+--
+
+```r
+broom::tidy(fit_stan)
+```
+
+```
+## Error: $ operator is invalid for atomic vectors
+```
+--
+Huh?
+--
+
+```r
+coef(fit_stan)
+```
+
+```
+## (Intercept)          wt 
+##   30.477078   -3.227948
+```
+--
+Okay this works, but why not for `broom::tidy`?
+
+
+
+---
+
+# &lt;span class="fa-layers fa-fw blue"&gt;&lt;i class="fas fa-microchip"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9" style="font-weight:900;color:#e3e3e3;"&gt;S3&lt;/span&gt;&lt;/span&gt; Object classes
+
+* So how do you find out the functions that work with model objects?
+--
+
+* First notice the class of the object `fit`:
+.item[
+
+```r
+class(fit)
+```
+
+```
+## [1] "lm"
+```
+]
+
+--
+
+
+* The methods associated with this can be found using:
+.scroll-20[
+
+```r
+methods(class = "lm")
+```
+
+```
+##  [1] add1           alias          anova          case.names     coerce        
+##  [6] confint        cooks.distance deviance       dfbeta         dfbetas       
+## [11] drop1          dummy.coef     effects        extractAIC     family        
+## [16] formula        fortify        hatvalues      influence      initialize    
+## [21] kappa          labels         logLik         model.frame    model.matrix  
+## [26] nobs           plot           predict        print          proj          
+## [31] qqnorm         qr             residuals      rstandard      rstudent      
+## [36] show           simulate       slotsFromS3    summary        variable.names
+## [41] vcov          
+## see '?methods' for accessing help and source code
+```
+]
+
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+
+--
+
+&lt;div class="bg-white border-box" style="position:absolute;right:10px;bottom:10px;width:300px;padding:10px;"&gt;
+Where is &lt;code&gt;coef()&lt;/code&gt;? 
+&lt;/div&gt;
+
+
+---
+
+# &lt;span class="fa-layers fa-fw blue"&gt;&lt;i class="fas fa-microchip"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9" style="font-weight:900;color:#e3e3e3;"&gt;S3&lt;/span&gt;&lt;/span&gt; Object oriented programming (OOP) .font_small[Part 1/3]
+
+* You need to know a little bit about OOP if you want to know more about how model objects work and how methods functions extract information from the model objects.
+* The **_S3 system_** is the most widely used OOP system in R but there are other OOP systems in R, e.g. the S4 system is used for model objects in `lme4` R-package, but it will be out of scope for this course. 
+--
+
+
+
+* Let's have a look inside of `coef` function:
+.item[
+
+```r
+coef
+```
+
+```
+## function (object, ...) 
+## UseMethod("coef")
+## &lt;bytecode: 0x7ffe573673f8&gt;
+## &lt;environment: namespace:stats&gt;
+```
+]
+
+--
+
+&lt;div class="bg-white border-box" style="position:absolute;right:300px;bottom:50px;padding:10px;width:230px;"&gt;
+Try also looking inside &lt;code&gt;lm&lt;/code&gt;
+&lt;/div&gt;
+
+---
+
+# &lt;span class="fa-layers fa-fw blue"&gt;&lt;i class="fas fa-microchip"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9" style="font-weight:900;color:#e3e3e3;"&gt;S3&lt;/span&gt;&lt;/span&gt; Object oriented programming (OOP) .font_small[Part 2/3]
+
+* Suppose I create a new class called `student`:
+.item[
+
+```r
+obj &lt;- structure(list(who = "🤪", quiz = 29, exam = 30), 
+                 class = "student")
+class(obj)
+```
+
+```
+## [1] "student"
+```
+]
+--
+
+
+
+* Here I create a simple generic method, called `quiz`, for the `student` class to extract the student object's quiz mark:
+.item[
+
+```r
+# the generic
+get_quiz &lt;- function(object, ...) { UseMethod("get_quiz") }
+# the method
+get_quiz.student &lt;- function(object, ...) { return(object$quiz) }
+# implementation of the method
+get_quiz(obj)
+```
+
+```
+## [1] 29
+```
+]
+
+---
+
+# &lt;span class="fa-layers fa-fw blue"&gt;&lt;i class="fas fa-microchip"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9" style="font-weight:900;color:#e3e3e3;"&gt;S3&lt;/span&gt;&lt;/span&gt; Object oriented programming (OOP) .font_small[Part 3/3] 
+
+* A method is created by using the form `generic.class`.
+* When using a method for `class`, you can omit the `.class` from the function.
+* E.g. `residuals(fit)` is the same as `residuals.lm(fit)` since the class of `fit` is `lm`. 
+--
+
+* So does that mean `coef.lm` exists?
+
+
+--
+
+
+* `coef.lm` doesn't exist, instead there is `coef.default`. 
+* `default` is a special class and when a generic doesn't have a method, it falls back to `generic.default`.
+* `coef.default` is hidden from view though and you need to look deeper to find it: `stats:::coef.default`. 
+--
+.animated.flash.monash-blue[LIVE DEMO]
+
+---
+
+# Case study .circle[1] `broom::tidy` .font_small[Part 1/2]
+
+
+```r
+class(fit_stan)
+```
+
+```
+## [1] "stanreg" "glm"     "lm"
+```
+--
+
+```r
+broom::tidy
+```
+
+```
+## function (x, ...) 
+## {
+##     UseMethod("tidy")
+## }
+## &lt;bytecode: 0x7ffe15c14d80&gt;
+## &lt;environment: namespace:generics&gt;
+```
+--
+There is no `tidy.stanreg` method so uses the `broom:::tidy.glm` instead.
+
+---
+
+# Case study .circle[1] `broom::tidy` .font_small[Part 2/2]
+
+
+```r
+library(broom)
+
+tidy.stanreg &lt;- function(x, ...) {
+  est &lt;- x$coefficients
+  tibble(term = names(est), 
+         estimate = unname(est),
+         std.error = x$ses)
+}
+
+tidy(fit_stan)
+```
+
+```
+## # A tibble: 2 x 3
+##   term        estimate std.error
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;
+## 1 (Intercept)    30.5      1.42 
+## 2 wt             -3.23     0.359
+```
+
+
+
+
+---
+
+# &lt;i class="fas fa-clipboard-list"&gt;&lt;/i&gt; Working with model objects
+
+* Is this only for R though? How do you work with model objects in general?
+
+--
+
+
+## &lt;i class="fab fa-python"&gt;&lt;/i&gt; Python
+
+
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LinearRegression
+x = np.array(r.mtcars['wt']).reshape(-1, 1)
+y = np.array(r.mtcars['mpg'])
+model = LinearRegression().fit(x, y)
+```
+--
+
+```python
+[model.intercept_, model.coef_]
+```
+
+```
+## [37.28512616734204, array([-5.34447157])]
+```
+
+--
+
+.border-box[
+
+```
+## (Intercept)          wt 
+##   37.285126   -5.344472
+```
+]
+
+&lt;i class="fab fa-r-project" style="position:absolute;right:55%;bottom:30px;"&gt;&lt;/i&gt;
+
+
+---
+
+class: nostripheader middle
+
+# Model objects are usually a `list` returning multiple output from the model fit.
+
+&lt;br&gt;&lt;br&gt;
+
+--
+
+# When working with model objects, check the object structure and find the methods associated with it
+
+--
+
+(and of course check the documentation).
+
+
+---
+
+# &lt;i class="fas fa-table"&gt;&lt;/i&gt; Some common tables 
+
+.grid[
+.item.border-right[
+## Descriptive summary statistics tables [&lt;i class="fas fa-link"&gt;&lt;/i&gt;](http://thatdatatho.com/2018/08/20/easily-create-descriptive-summary-statistic-tables-r-studio/)
+
+&lt;center style="padding:10px"&gt;
+<div class="Rtable1"><table class="Rtable1">
+<thead>
+<tr>
+<th class='rowlabel firstrow lastrow'></th>
+<th class='firstrow lastrow'><span class='stratlabel'>4<br><span class='stratn'>(N=11)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>6<br><span class='stratn'>(N=7)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>8<br><span class='stratn'>(N=14)</span></span></th>
+<th class='firstrow lastrow'><span class='stratlabel'>Overall<br><span class='stratn'>(N=32)</span></span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>mpg</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>26.7 (4.51)</td>
+<td>19.7 (1.45)</td>
+<td>15.1 (2.56)</td>
+<td>20.1 (6.03)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>26.0 [21.4, 33.9]</td>
+<td class='lastrow'>19.7 [17.8, 21.4]</td>
+<td class='lastrow'>15.2 [10.4, 19.2]</td>
+<td class='lastrow'>19.2 [10.4, 33.9]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>wt</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>Mean (SD)</td>
+<td>2.29 (0.570)</td>
+<td>3.12 (0.356)</td>
+<td>4.00 (0.759)</td>
+<td>3.22 (0.978)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>Median [Min, Max]</td>
+<td class='lastrow'>2.20 [1.51, 3.19]</td>
+<td class='lastrow'>3.22 [2.62, 3.46]</td>
+<td class='lastrow'>3.76 [3.17, 5.42]</td>
+<td class='lastrow'>3.33 [1.51, 5.42]</td>
+</tr>
+<tr>
+<td class='rowlabel firstrow'><span class='varlabel'>vs</span></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+<td class='firstrow'></td>
+</tr>
+<tr>
+<td class='rowlabel'>0</td>
+<td>1 (9.1%)</td>
+<td>3 (42.9%)</td>
+<td>14 (100%)</td>
+<td>18 (56.2%)</td>
+</tr>
+<tr>
+<td class='rowlabel lastrow'>1</td>
+<td class='lastrow'>10 (90.9%)</td>
+<td class='lastrow'>4 (57.1%)</td>
+<td class='lastrow'>0 (0%)</td>
+<td class='lastrow'>14 (43.8%)</td>
+</tr>
+</tbody>
+</table>
+</div>
+&lt;/center&gt;
+
+]
+.item[
+## Regression results tables
+
+&lt;center style="padding:10px"&gt;
+
+&lt;table style="text-align:center"&gt;&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;em&gt;Dependent variable:&lt;/em&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td colspan="1" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;mpg&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;wt&lt;/td&gt;&lt;td&gt;-5.344&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(0.559)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Constant&lt;/td&gt;&lt;td&gt;37.285&lt;sup&gt;***&lt;/sup&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;(1.878)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Observations&lt;/td&gt;&lt;td&gt;32&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.753&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Adjusted R&lt;sup&gt;2&lt;/sup&gt;&lt;/td&gt;&lt;td&gt;0.745&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Residual Std. Error&lt;/td&gt;&lt;td&gt;3.046 (df = 30)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;F Statistic&lt;/td&gt;&lt;td&gt;91.375&lt;sup&gt;***&lt;/sup&gt; (df = 1; 30)&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="2" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;&lt;em&gt;Note:&lt;/em&gt;&lt;/td&gt;&lt;td style="text-align:right"&gt;&lt;sup&gt;*&lt;/sup&gt;p&lt;0.1; &lt;sup&gt;**&lt;/sup&gt;p&lt;0.05; &lt;sup&gt;***&lt;/sup&gt;p&lt;0.01&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/center&gt;
+]
+]
+
+---
+
+class: nostripheader middle
+
+#  What statistics to present? 
+
+--
+
+&lt;br&gt;
+.info-box[
+.monash-blue[**This depends on what you want to convey and your audience.**]
+
+There are two key purposes of the table:
+
+1. _display_ information; and
+2. _communicate_ information.
+
+
+]
+
+---
+
+# &lt;span class="fa-layers fa-fw red"&gt;&lt;i class="fas fa-table"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9 left-4 up-3" style="font-weight:900;color:white;"&gt;&amp;mu;&lt;/span&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9 right-4 down-3" style="font-weight:900;color:white;"&gt;&amp;beta;&lt;/span&gt;&lt;/span&gt; Descriptive summary statistics .font_small[Part 1/2]
+
+* The main goal is to give a numerical summary to give a "feel" of what the data contains. These generally should convey:
+  * variables in the data,
+  * the number of observations for each variable, 
+  * missing values (if any),
+  * the distribution, e.g. in the form of five number of summaries or counts/percentages for categorical variables. 
+--
+
+* For numerical variables, you may have a **correlation table** which displays the correlation coefficients of every pair of variables. Because it is symmetrical, you can omit out the upper triangle.
+
+
+|Variables           |   Mean|    SD|1.    |2.   |
+|:-------------------|------:|-----:|:-----|:----|
+|1. Miles per gallon |  20.09|  6.03|      |     |
+|2. Weight           |   3.22|  0.98|-0.87 |     |
+|3. Horsepower       | 146.69| 68.56|-0.78 |0.66 |
+
+
+
+---
+
+# &lt;span class="fa-layers fa-fw red"&gt;&lt;i class="fas fa-table"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9 left-4 up-3" style="font-weight:900;color:white;"&gt;&amp;mu;&lt;/span&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9 right-4 down-3" style="font-weight:900;color:white;"&gt;&amp;beta;&lt;/span&gt;&lt;/span&gt; Descriptive summary statistics .font_small[Part 2/2]
+
+* You may have **cross-tabulations** (also called **contingency tables**)
+&lt;table class="xtab table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; cyl/gear &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 3 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 4 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; 5 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Total &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.1%  (1) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 25.0%  (8) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6.2% (2) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 34.4% (11) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6.2%  (2) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 12.5%  (4) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 3.1% (1) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 21.9%  (7) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 37.5% (12) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0.0%  (0) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 6.2% (2) &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 43.8% (14) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;border-top: 1px solid black;"&gt; Total &lt;/td&gt;
+   &lt;td style="text-align:left;border-top: 1px solid black;"&gt; 46.9% (15) &lt;/td&gt;
+   &lt;td style="text-align:left;border-top: 1px solid black;"&gt; 37.5% (12) &lt;/td&gt;
+   &lt;td style="text-align:left;border-top: 1px solid black;"&gt; 15.6% (5) &lt;/td&gt;
+   &lt;td style="text-align:left;border-top: 1px solid black;"&gt; 100.0% (32) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;details&gt;&lt;summary&gt;R code&lt;/summary&gt;
+
+&lt;pre style="font-size:13pt"&gt;
+library(janitor)
+library(kableExtra)
+mtcars %&gt;% 
+  tabyl(cyl, gear) %&gt;% 
+  adorn_totals(where = c("row", "col")) %&gt;% 
+  adorn_percentages("all") %&gt;%
+  adorn_pct_formatting(digits = 1) %&gt;%
+  adorn_ns() %&gt;% 
+  adorn_title("combined") %&gt;% 
+  knitr::kable(table.attr = "class='xtab'") %&gt;% 
+  kable_styling() %&gt;% 
+  row_spec(4, extra_css = "border-top: 1px solid black;")
+&lt;/pre&gt;
+
++ some CSS needed.
+
+&lt;/details&gt;
+---
+
+# &lt;span class="fa-layers fa-fw red"&gt;&lt;i class="fas fa-table"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9 left-4 up-3" style="font-weight:900;color:white;"&gt;y&lt;/span&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-9 right-4 down-3" style="font-weight:900;color:white;"&gt;x&lt;/span&gt;&lt;/span&gt; Regression results 
+
+* Or more generally, the important numerical characteristics of your model. This may include:
+  * parameter estimates of your model,
+  * the standard error or confidence/credible interval of your estimates,
+  * model fit quality, e.g. `\(R^2\)`, AIC, BIC and so on.
+--
+
+* You see often the inclusion of `\(p\)`-value, usually from the significance test of the corresponding variable and some indicate the significance level by the amount of `*`.
+--
+
+* It is important to **_convey the uncertainty_** for the estimates or predictions from your model. 
+--
+
+* There is also what is called the **ANOVA table** that shows the variation according to different sources.
+
+
+
+---
+
+# &lt;i class="fas fa-child" style="color:#FFC0CB"&gt;&lt;/i&gt; Anatomy of the table
+
+.grid[
+.item[
+&lt;img src="images/gt_parts_of_a_table.svg"&gt;
+
+.font_small[Source: https://gt.rstudio.com/]
+]
+.item[
+&lt;img src="images/anatomy-table.png" width="500px"&gt;
+
+.font_small[Source: [Schwabish (2020) Ten Guidelines for Better Tables. *Journal of Benefit-Cost Analysis* **11** (2) 151-178](https://www.cambridge.org/core/journals/journal-of-benefit-cost-analysis/article/ten-guidelines-for-better-tables/74C6FD9FEB12038A52A95B9FBCA05A12)]
+]
+]
+
+
+---
+
+# &lt;i class="fas fa-syringe" style="color:#FFC0CB"&gt;&lt;/i&gt; Numerical precision .font_small[Part 1/2]
+
+* Select an appropriate precision for your goal and audience:
+
+&lt;table class="xtab table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="border-bottom:hidden" colspan="1"&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Weight&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Car brand &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 5 d.p. &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 2 d.p. &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; 0 d.p. &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mazda RX4 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 2.61937 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 2.62 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mazda RX4 Wag &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 2.87518 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 2.88 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Datsun 710 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 2.31916 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 2.32 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hornet 4 Drive &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 3.21660 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 3.21 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+* Display trailing zeroes to match selected precision of the column:
+
+&lt;table class="xtab table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+&lt;tr&gt;&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; border-bottom: 1px solid black;" colspan="2"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Trailing zeroes&lt;/div&gt;&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Yes &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; No &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.233 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.233 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.320 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.32 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.400 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.343 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 100px; "&gt; 0.343 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# &lt;i class="fas fa-syringe" style="color:#FFC0CB"&gt;&lt;/i&gt; Numerical precision .font_small[Part 2/2]
+
+* Change and display units as appropriate:
+
+&lt;table class="xtab table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Car brand &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Weight (lbs) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Weight (1000 lbs) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Weight (kg) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Weight (g) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Weight (mg) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mazda RX4 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 2620 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 2.620 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1188 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1190000 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1,188,000,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Mazda RX4 Wag &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 2875 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 2.875 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1304 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1300000 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1,304,000,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Datsun 710 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 2320 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 2.320 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1052 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1050000 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1,052,000,000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Hornet 4 Drive &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 3215 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 3.215 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1458 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1460000 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 130px; "&gt; 1,458,000,000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+--
+
+&lt;Br&gt;
+* Show comma every 3 digits (or other marks as needed). E.g. `1000000` is easier to read with `1,000,000`.
+
+
+```r
+scales::comma(c(439024, 4900343), accuracy = 1000)
+```
+
+```
+## [1] "439,000"   "4,900,000"
+```
+
+
+
+
+---
+
+# &lt;i class="fas fa-align-left"&gt;&lt;/i&gt; Column &lt;i class="fas fa-align-center"&gt;&lt;/i&gt; alignment   &lt;i class="fas fa-align-right"&gt;&lt;/i&gt;
+
+* Spanner labels are usually aligned in center.
+* Right-align numbers 
+* Left-align texts
+
+&lt;Br&gt;
+
+&lt;table class="xtab table" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Car brand&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Horsepower&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Left &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Center &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Right &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Left &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Center &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Right &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 200px; "&gt; Mazda RX4 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 200px; "&gt; Mazda RX4 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 200px; "&gt; Mazda RX4 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 80px; "&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 80px; "&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 80px; "&gt; 110 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 200px; "&gt; Mazda RX4 Wag &lt;/td&gt;
+   &lt;td style="text-align:center;width: 200px; "&gt; Mazda RX4 Wag &lt;/td&gt;
+   &lt;td style="text-align:right;width: 200px; "&gt; Mazda RX4 Wag &lt;/td&gt;
+   &lt;td style="text-align:left;width: 80px; "&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 80px; "&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 80px; "&gt; 110 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 200px; "&gt; Datsun 710 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 200px; "&gt; Datsun 710 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 200px; "&gt; Datsun 710 &lt;/td&gt;
+   &lt;td style="text-align:left;width: 80px; "&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 80px; "&gt; 93 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 80px; "&gt; 93 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;width: 200px; "&gt; Hornet 4 Drive &lt;/td&gt;
+   &lt;td style="text-align:center;width: 200px; "&gt; Hornet 4 Drive &lt;/td&gt;
+   &lt;td style="text-align:right;width: 200px; "&gt; Hornet 4 Drive &lt;/td&gt;
+   &lt;td style="text-align:left;width: 80px; "&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;width: 80px; "&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:right;width: 80px; "&gt; 110 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# 🏗️ How to make tables in R?
+
+* There are many packages that make table in R, including ones that wrangle the data for you to make specialised table output. E.g. `knitr::kable`, `kableExtra`, `formattable`, `gt`, `DT`, `pander`, `xtable`, `stargazer`.
+--
+
+* You can read the documentation for each packages to make the table you want (I mainly use `knitr::kable`, `kableExtra` and `DT`).
+--
+
+* Whatever package you use, it's important that you understand the output and how it works with the medium you are trying to display the table.
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt;&lt;i class="fas fa-file"&gt;&lt;/i&gt;&lt;span class="fa-layers-text red" data-fa-transform="shrink-9 down-3" style="font-weight:900"&gt;md&lt;/span&gt;&lt;/span&gt;Table in Markdown
+
+In markdown file:
+
+&lt;br&gt;
+
+```
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+```
+
+&lt;br&gt;
+*Possible* display:
+
+&lt;br&gt;
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+---
+
+# &lt;span class="fa-layers fa-fw"&gt;&lt;i class="fas fa-file"&gt;&lt;/i&gt;&lt;span class="fa-layers-text red" data-fa-transform="shrink-10 down-3" style="font-weight:900"&gt;?&lt;/span&gt;&lt;/span&gt;Table in HTML &amp; PDF
+.grid[.item.border-right[
+HTML &amp;rarr; Web browser
+```html
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;First Header&lt;/th&gt; &lt;th&gt;Second Header&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Content Cell&lt;/td&gt; &lt;td&gt;Content Cell&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Content Cell&lt;/td&gt; &lt;td&gt;Content Cell&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+```
+
+]
+.item[
+LaTeX &amp;rarr; PDF
+```latex
+\begin{tabular}{cc}
+\hline
+First Header &amp; Second Header\\
+\hline
+Content Cell &amp; Content Cell\\
+Content Cell &amp; Content Cell\\
+\hline
+\end{tabular}
+```
+
+{{content}}
+
+]
+]
+
+--
+
+* HTML is for HTML output 
+* LaTeX is for PDF output
+* Most HTML elements do _not_ work in LaTeX and vice versa.
+
+{{content}}
+
+--
+
+* What is the R-package output?
+
+&lt;center&gt;
+&lt;a href="lecture-03suppA.Rmd" download&gt;&lt;i class="fas fa-file"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;span class="flash animated blue"&gt;LIVE DEMO&lt;/span&gt;
+&lt;/center&gt;
+---
+
+
+# Case study .circle[2] interactive tables with `DT`
+
+
+```r
+DT::datatable(mtcars, options = list(pageLength = 4))
+```
+
+<div id="htmlwidget-9f0d812c9115cde5c072" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9f0d812c9115cde5c072">{"x":{"filter":"none","data":[["Mazda RX4","Mazda RX4 Wag","Datsun 710","Hornet 4 Drive","Hornet Sportabout","Valiant","Duster 360","Merc 240D","Merc 230","Merc 280","Merc 280C","Merc 450SE","Merc 450SL","Merc 450SLC","Cadillac Fleetwood","Lincoln Continental","Chrysler Imperial","Fiat 128","Honda Civic","Toyota Corolla","Toyota Corona","Dodge Challenger","AMC Javelin","Camaro Z28","Pontiac Firebird","Fiat X1-9","Porsche 914-2","Lotus Europa","Ford Pantera L","Ferrari Dino","Maserati Bora","Volvo 142E"],[21,21,22.8,21.4,18.7,18.1,14.3,24.4,22.8,19.2,17.8,16.4,17.3,15.2,10.4,10.4,14.7,32.4,30.4,33.9,21.5,15.5,15.2,13.3,19.2,27.3,26,30.4,15.8,19.7,15,21.4],[6,6,4,6,8,6,8,4,4,6,6,8,8,8,8,8,8,4,4,4,4,8,8,8,8,4,4,4,8,6,8,4],[160,160,108,258,360,225,360,146.7,140.8,167.6,167.6,275.8,275.8,275.8,472,460,440,78.7,75.7,71.1,120.1,318,304,350,400,79,120.3,95.1,351,145,301,121],[110,110,93,110,175,105,245,62,95,123,123,180,180,180,205,215,230,66,52,65,97,150,150,245,175,66,91,113,264,175,335,109],[3.9,3.9,3.85,3.08,3.15,2.76,3.21,3.69,3.92,3.92,3.92,3.07,3.07,3.07,2.93,3,3.23,4.08,4.93,4.22,3.7,2.76,3.15,3.73,3.08,4.08,4.43,3.77,4.22,3.62,3.54,4.11],[2.62,2.875,2.32,3.215,3.44,3.46,3.57,3.19,3.15,3.44,3.44,4.07,3.73,3.78,5.25,5.424,5.345,2.2,1.615,1.835,2.465,3.52,3.435,3.84,3.845,1.935,2.14,1.513,3.17,2.77,3.57,2.78],[16.46,17.02,18.61,19.44,17.02,20.22,15.84,20,22.9,18.3,18.9,17.4,17.6,18,17.98,17.82,17.42,19.47,18.52,19.9,20.01,16.87,17.3,15.41,17.05,18.9,16.7,16.9,14.5,15.5,14.6,18.6],[0,0,1,1,0,1,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1,0,1,0,0,0,1],[1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,1,1,1,1,1,1,1],[4,4,4,3,3,3,3,4,4,4,4,3,3,3,3,3,3,4,4,4,3,3,3,3,3,4,5,5,5,5,5,4],[4,4,1,1,2,1,4,2,2,4,4,3,3,3,4,4,4,1,2,1,1,2,2,4,2,1,2,2,4,6,8,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>mpg<\/th>\n      <th>cyl<\/th>\n      <th>disp<\/th>\n      <th>hp<\/th>\n      <th>drat<\/th>\n      <th>wt<\/th>\n      <th>qsec<\/th>\n      <th>vs<\/th>\n      <th>am<\/th>\n      <th>gear<\/th>\n      <th>carb<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":4,"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[4,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+
+--
+
+&lt;div class="bg-white border-box" style="position:absolute;right:50px;bottom:50px;width:700px;padding:10px;"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;DT::datatable&lt;/code&gt; works best for HTML documents.&lt;/li&gt; 
+&lt;li&gt;For PDF documents, it takes a &lt;code&gt;webshot&lt;/code&gt; of the HTML table and inserts it as an image.&lt;/li&gt;
+&lt;li&gt;It's useful for data exploration where the main goal of the table is display of information rather than communication.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+---
+
+class: nostripheader middle
+
+# When do you make tables over plots?
+
+When you want to **_show exact values_** or the **_accuracy of the values are important_** to convey.
+
+--
+
+&lt;br&gt;
+
+# You _can_ combine plots with tables.
+
+---
+
+# &lt;span class="fa-layers fa-fw red"&gt;&lt;i class="fas fa-table"&gt;&lt;/i&gt;&lt;i data-fa-transform="shrink-11 left-4 up-3" class="fas fa-chart-bar white"&gt;&lt;/i&gt;&lt;i class="fas fa-chart-pie white" data-fa-transform="shrink-11 right-4 down-3"&gt;&lt;/i&gt;&lt;/span&gt; Case study .circle[3]  heatmap table with `formattable` 
+
+
+```r
+library(formattable)
+mtcars %&gt;% 
+  select(mpg, disp, wt, hp) %&gt;% 
+  cor() %&gt;% 
+  as.data.frame() %&gt;% 
+  rownames_to_column("Variables") %&gt;% 
+  formattable(list(area(col = 2:5) ~ color_tile("#F5B7B1", "#7DCEA0")))
+```
+
+
+&lt;table class="table table-condensed"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; Variables &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; mpg &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; disp &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; wt &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; hp &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; mpg &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #7dcea0"&gt;1.0000000&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f3b7b0"&gt;-0.8475514&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f5b7b1"&gt;-0.8676594&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #efb8b0"&gt;-0.7761684&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; disp &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f3b7b0"&gt;-0.8475514&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #7dcea0"&gt;1.0000000&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #84cca1"&gt;0.8879799&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #8acba1"&gt;0.7909486&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; wt &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #f5b7b1"&gt;-0.8676594&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #84cca1"&gt;0.8879799&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #7dcea0"&gt;1.0000000&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #92c9a3"&gt;0.6587479&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; hp &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #efb8b0"&gt;-0.7761684&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #8acba1"&gt;0.7909486&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #92c9a3"&gt;0.6587479&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; &lt;span style="display: block; padding: 0 4px; border-radius: 4px; background-color: #7dcea0"&gt;1.0000000&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+
+# &lt;span class="fa-layers fa-fw red"&gt;&lt;i class="fas fa-table"&gt;&lt;/i&gt;&lt;i data-fa-transform="shrink-11 left-4 up-3" class="fas fa-chart-bar white"&gt;&lt;/i&gt;&lt;i class="fas fa-chart-pie white" data-fa-transform="shrink-11 right-4 down-3"&gt;&lt;/i&gt;&lt;/span&gt; Case study .circle[4]  inline plots with `sparkline` 
+
+
+* **Sparkline** refers to a small chart drawn without axes or coordinates. 
+* There is a jQuery sparkline that is provided as a `htmlwidgets` in the [`sparkline` R-package](https://github.com/htmlwidgets/sparkline).
+--
+
+* This is a `htmlwidgets` object so it only works for HTML output and requires the JS dependencies to work.
+
+--
+
+
+&lt;center&gt;
+&lt;a href="lecture-03suppB.Rmd" download&gt;&lt;i class="fas fa-file"&gt;&lt;/i&gt;&lt;/a&gt;
+.flash.animated.blue[LIVE DEMO]
+&lt;/center&gt;
+---
+
+# &lt;i class="fas fa-chalkboard-teacher bg-white animated bounceIn" style="padding:3px;border:1px dashed #0092EB; color: #0092EB;"&gt;&lt;/i&gt; Today's main lessons 
+
+# Working with model objects 
+
+* Understanding about the OOP system
+* How to tease apart the model objects and methods associated with it
+
+# Presenting information as a table
+
+* Various common tables that present information
+* Some guidelines for best way to communicate with tables
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70
+
+.column.shade_black[.content[
+
+&lt;br&gt;&lt;br&gt;
+
+# That's it!
+
+&lt;br&gt; 
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+.bottom_abs.width100[
+
+Lecturer: Emi Tanaka
+
+Department of Econometrics and Business Statistics&lt;br&gt;
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
