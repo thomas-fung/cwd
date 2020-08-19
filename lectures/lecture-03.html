@@ -454,7 +454,7 @@ broom::augment(fit)
 
 # 🐱 Modelling &lt;span style="color:#FFFFBF"&gt;cat&lt;/span&gt;egorical variables .font_small[Part 1/3]
 
-**Experiment data**: tooth growth in guinea pigs with **two supplement types** (orange juice of ascorbic acid) with **three different doses** (0.5, 1 and 2 mg/day).
+**Experiment data**: tooth growth in guinea pigs with **two supplement types** (orange juice or ascorbic acid) with **three different doses** (0.5, 1 and 2 mg/day).
 
 
 ```r
@@ -628,7 +628,7 @@ coef(fit_stan)
 
 ```
 ## (Intercept)          wt 
-##   30.477078   -3.227948
+##   30.471359   -3.215931
 ```
 --
 Okay this works, but why not for `broom::tidy`?
@@ -710,7 +710,7 @@ coef
 ```
 ## function (object, ...) 
 ## UseMethod("coef")
-## &lt;bytecode: 0x7ffe573673f8&gt;
+## &lt;bytecode: 0x7fae8feb85c8&gt;
 ## &lt;environment: namespace:stats&gt;
 ```
 ]
@@ -803,7 +803,7 @@ broom::tidy
 ## {
 ##     UseMethod("tidy")
 ## }
-## &lt;bytecode: 0x7ffe15c14d80&gt;
+## &lt;bytecode: 0x7fae388ccf28&gt;
 ## &lt;environment: namespace:generics&gt;
 ```
 --
@@ -831,8 +831,8 @@ tidy(fit_stan)
 ## # A tibble: 2 x 3
 ##   term        estimate std.error
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;
-## 1 (Intercept)    30.5      1.42 
-## 2 wt             -3.23     0.359
+## 1 (Intercept)    30.5      1.43 
+## 2 wt             -3.22     0.365
 ```
 
 
