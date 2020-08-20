@@ -1,0 +1,223 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 3 Supp B Solution"
+author: "Emi Tanaka"
+date: "Week 3"
+output: 
+  bookdown::pdf_document2:
+    toc: false
+    keep_tex: true
+---
+
+```{r setup, include = FALSE}
+library(palmerpenguins)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(broom)
+library(tidycat)
+library(stargazer)
+library(MASS)
+select <- dplyr::select
+options(knitr.kable.NA = '')
+knitr::opts_chunk$set(
+  echo = FALSE, 
+  warning = FALSE, 
+  message = FALSE
+)
+```
+
+Table \@ref(tab:better-table-1A) is a better table than the one presented in Table \@ref(tab:original-table-1) since it follows the guidelines for presentation of tables: (i) numbers are aligned to the right and texts are aligned to the left and (ii) the precision is adjusted. You can further adjust this so that the precision are adjusted per row or cell instead. This makes sense in this case as each cell represents a statistic for a different covariate (which measure quite different things) so there is less need to compare across cells. The only one that can serve as a valid comparison is the sample size (N).
+
+```{r better-table-1A}
+penguins %>% 
+  select_if(is.numeric) %>% 
+  pivot_longer(everything(), values_to = "value", names_to = "covariate") %>% 
+  group_by(covariate) %>% 
+  filter(!is.na(value)) %>% 
+  summarise(n = n(), mean = mean(value), sd = sd(value), min = min(value),
+            Q1 = quantile(value, 0.25), 
+            Q3 = quantile(value, 0.75), max = max(value)) %>% 
+  slice(c(2, 1, 4, 3, 5)) %>% 
+  mutate(covariate = recode(covariate,
+                          bill_length_mm = "Bill length (mm)",
+                          bill_depth_mm = "Bill depth (mm)",
+                          flipper_length_mm = "Flipper length (mm)",
+                          body_mass_g = "Body mass (g)",
+                          year = "Year"),
+         mean = scales::comma(mean, 0.01),
+         sd = scales::comma(sd, 0.01),
+         min = round(min, 1), max = round(max, 1), 
+         Q1 = round(Q1, 1), Q3 = round(Q3, 1)) %>% 
+  kable(col.names = c("Statistic", "N", "Mean", "St. Dev.", "Min", "Pctl(25)", "Pctl(75)", "Max"), caption = "Summary statistics", align = "lrrrrrrr",
+        booktabs = TRUE)
+```
+
+
+
+```{r original-table-1, results='asis'}
+penguins %>% 
+  select_if(is.numeric) %>% 
+  as.data.frame() %>% # stargazer doesn't work with tibbles!!
+  stargazer(header = FALSE, 
+            covariate.labels = c("Bill length (mm)", "Bill depth (mm)", "Flipper length (mm)", "Body mass (g)", "Year"),
+            title = "Original summary statistics table",
+            label = "tab:original-table-1")
+```
+
+Table \@ref(tab:original-table-2)  is quite difficult to make and `stargazer` does a lot under the hood. You should nonetheless learn how to do it by "hand" so that you are not constrained to the result of `stargazer` alone. Study the code below and make sure you understand it. 
+
+```{r, include = FALSE}
+lm1 <- step(lm(bill_length_mm ~ ., data = penguins)) # this is how I selected the model. Definitely not what you should do in practice!
+rlm1 <- rlm(bill_length_mm ~ ., data = penguins)
+```
+
+```{r better-table-2}
+star <- function(pval) {
+  case_when(
+    pval < 0.01 ~ "***",
+    pval < 0.05 ~ "**",
+    pval < 0.1 ~ "*",
+    TRUE ~ ""
+  )
+}
+
+# TOP table
+
+# lm estimates
+lm_out <- lm1 %>% 
+  tidy() %>% 
+  tidy_categorical(lm1, include_reference = FALSE) %>% 
+  mutate(estimate = paste0(round(estimate, 3), star(p.value)),
+         std.error = sprintf("(%.3f)", std.error)) %>% 
+  select(variable, level, estimate, std.error) %>% 
+  pivot_longer(estimate:std.error, values_to = "OLS")
+
+# rlm estimates
+rlm_out <- rlm1 %>% 
+  tidy() %>% 
+  tidy_categorical(rlm1, include_reference = FALSE) %>% 
+  mutate(p.value = 2 * (1 - pnorm(abs(statistic)))) %>% 
+  mutate(estimate = paste0(round(estimate, 3), star(p.value)),
+         std.error = sprintf("(%.3f)", std.error)) %>% 
+  select(variable, level, estimate, std.error) %>% 
+  pivot_longer(estimate:std.error, values_to = "robust linear")
+
+# combine for top part of the table
+out <- right_join(lm_out, rlm_out, by = c("variable", "level", "name")) %>% 
+  slice(3:6, 15:18, 7:14, 19:20) %>% 
+  select(-name)
+
+# BOTTOM table 
+lm_stats <- glance(lm1) %>% 
+  .[1, c("nobs", "r.squared", "adj.r.squared", "sigma", "statistic")] %>% 
+  t() %>% 
+  .[,1] %>%  
+  round(3)
+lm_stats["sigma"] <- glue::glue("{lm_stats['sigma']} (df = {lm1$df.residual})")
+lm_stats["statistic"] <- glue::glue("{lm_stats['statistic']}{star(1 - pf(as.numeric(lm_stats['statistic']), lm1$rank - 1, lm1$df.residual))} (df = {lm1$rank - 1}; {lm1$df.residual})")
+
+rlm_stats <- glance(rlm1) %>% 
+  .[1, c("nobs", "sigma")] %>% 
+  t() %>% 
+  .[,1] %>% 
+  round(3)
+rlm_stats["sigma"] <- glue::glue("{rlm_stats['sigma']} (df = {rlm_stats['nobs'] - rlm1$rank})")
+
+sum_df <- tibble(variable = c("Observations", "$R^2$", "Adjusted $R^2$", "Residual Std. Error", "   F Statistic"), 
+                 level = "",
+                 OLS = lm_stats, 
+                 `robust linear` = c(rlm_stats["nobs"], "", "", rlm_stats["sigma"], ""))
+
+
+out %>% 
+  mutate(variable = c("Species", "(Ref: Adelie)", "", "",
+                      "Island", "(Ref: Biscoe)", "", "",
+                      "Bill depth (mm)", "",
+                      "Flipper length (mm)", "",
+                      "Body mass (g)", "",
+                      "Sex", "(Ref: Female)",
+                      "Year", ""),
+         level = c("Chinstrap", "",
+                   "Gentoo", "",
+                   "Dream", "",
+                   "Torgersen", "",
+                   "", "", "", "", "", "", "Male", "", "", "")) %>% 
+  rbind(sum_df) %>% 
+  kable(booktabs = TRUE, escape = FALSE, align = "llcc",
+        col.names = c("", "", "(1)", "(2)"), 
+        caption = "Regression results table") %>% 
+  row_spec(18, hline_after = TRUE) %>% 
+  add_header_above(c(" " = 2, "OLS" = 1, "robust linear" = 1), italic = TRUE, line = FALSE) %>% 
+  add_header_above(c(" " = 2, "Bill length (mm)" = 2), line = FALSE) %>% 
+  add_header_above(c(" " = 2, "Dependent variable:" = 2), italic = TRUE)
+```
+
+
+
+```{r original-table-2, eval = FALSE}
+# this is used to output the LaTeX code and manually editted
+# because in this case it was just easier to manually add the factor column
+# (note: not good practice to do things manually so I'm not encouraging you to do it this way)
+stargazer(lm1, rlm1, header = FALSE, 
+          title = "Regression results",
+          dep.var.labels = "Bill length (mm)",
+          covariate.labels = c("Chinstrap", "Genotoo", "Dream", "Torgersen", "Bill depth (mm)", "Flipper length (mm)", "Body mass (g)", "Male", "Year", "Constant")
+          label = "tab:original-table-2") 
+```
+
+\begin{table}[!htbp] \centering 
+  \caption{The original regression results table} 
+  \label{} 
+\begin{tabular}{@{\extracolsep{5pt}}llcc} 
+\\[-1.8ex]\hline 
+\hline \\[-1.8ex] 
+&  & \multicolumn{2}{c}{\textit{Dependent variable:}} \\ 
+\cline{3-4} 
+\\[-1.8ex] & & \multicolumn{2}{c}{Bill length (mm)} \\ 
+\\[-1.8ex] & & \textit{OLS} & \textit{robust} \\ 
+ & & \textit{} & \textit{linear} \\ 
+\\[-1.8ex] & & (1) & (2)\\ 
+\hline \\[-1.8ex] 
+Species & Chinstrap & 9.566$^{***}$ & 9.911$^{***}$ \\ 
+ (Ref: Adelie) & & (0.350) & (0.390) \\ 
+  & & \\ 
+ & Genotoo & 6.404$^{***}$ & 6.687$^{***}$ \\ 
+&  & (1.030) & (1.028) \\ 
+ & & & \\ 
+Island & Dream &  & $-$0.538 \\ 
+(Ref: Biscoe) &  &  & (0.412) \\ 
+&  & & \\ 
+& Torgersen &  & 0.034 \\ 
+ & &  & (0.430) \\ 
+&  & & \\ 
+\multicolumn{2}{l}{Bill depth (mm)} & 0.313$^{**}$ & 0.320$^{**}$ \\ 
+ & & (0.154) & (0.142) \\ 
+&  & & \\ 
+\multicolumn{2}{l}{Flipper length (mm)} & 0.069$^{***}$ & 0.062$^{***}$ \\ 
+ & & (0.023) & (0.023) \\ 
+&  & & \\ 
+\multicolumn{2}{l}{Body mass (g)} & 0.001$^{**}$ & 0.001$^{**}$ \\ 
+ & & (0.0004) & (0.0004) \\ 
+&  & & \\ 
+Sex & Male & 2.030$^{***}$ & 2.331$^{***}$ \\ 
+(Ref: Female) &  & (0.389) & (0.356) \\ 
+&  & & \\ 
+\multicolumn{2}{l}{ Year} &  & 0.289$^{*}$ \\ 
+&  &  & (0.149) \\ 
+&  & & \\ 
+\multicolumn{2}{l}{ Constant} & 15.017$^{***}$ & $-$563.241$^{*}$ \\ 
+&  & (4.374) & (297.257) \\ 
+&  & & \\ 
+\hline \\[-1.8ex] 
+\multicolumn{2}{l}{Observations} & 333 & 333 \\ 
+\multicolumn{2}{l}{R$^{2}$} & 0.839 &  \\ 
+\multicolumn{2}{l}{Adjusted R$^{2}$} & 0.836 &  \\ 
+\multicolumn{2}{l}{Residual Std. Error} & 2.217 (df = 326) & 1.889 (df = 323) \\ 
+\multicolumn{2}{l}{F Statistic} & 282.270$^{***}$ (df = 6; 326) &  \\ 
+\hline 
+\hline \\[-1.8ex] 
+\multicolumn{2}{l}{\textit{Note:}}  & \multicolumn{2}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
+\end{tabular} 
+\label{tab:original-table-2}
+\end{table} 
