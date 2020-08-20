@@ -1,0 +1,85 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 3 Solution"
+author: "Emi Tanaka"
+date: "Week 3"
+output: 
+  html_document:
+    toc: true
+    css: "tutorial-style.css"
+---
+
+```{css, echo = FALSE}
+.md {
+  height: 200px!important;
+  overflow: scroll!important;
+}
+```
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  fig.path = "images/tutorial03-"
+)
+library(tidyverse)
+library(MASS)
+library(broom)
+```
+
+
+## 🎛️ Exercise 3A
+
+**Working with robust linear models**
+
+```{r 3A, message = FALSE, warning = FALSE}
+df <- tibble(x = 1:20, y = c(1:18, 49:50))
+
+ggplot(df, aes(x, y)) + 
+  geom_point(size = 2) + theme_bw(base_size = 12)
+
+fit_lm <- lm(y ~ x, data = df) 
+fit_rlm <- rlm(y ~ x, data = df) 
+
+
+augment.rlm <- function(fit, ...) {
+   broom:::augment.rlm(fit) %>% 
+    mutate(w = fit$w)
+}
+dfa <- augment(fit_rlm) 
+```
+```{r rlm, message = FALSE, warning = FALSE}
+ggplot(dfa, aes(x, y, color = w)) + 
+  geom_point(size = 2) + 
+  geom_smooth(method = "lm", se = FALSE, color = "#C8008F") +
+  geom_smooth(method = "rlm", se = FALSE, color = "#027EB6") + 
+  annotate("text", x = 20.5, y = c(21, 31), 
+           label = c("rlm", "lm")) + 
+  theme_bw(base_size = 12) + 
+  labs(title = "Robust vs. non-robust linear models") + 
+  scale_color_continuous(type = "viridis")
+```
+
+
+## 📛 Exercise 3B
+
+**Reporting regression tables and summary statistics**
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-03-suppBsol.Rmd"), results="asis"}
+# this is used to display content of `fn`
+# ignore this if you don't understand
+cat("**Below is the content of `", fn, "`** (scroll to see all) or download the file", glue::glue("<a href='{fn}' download>here</a>."))
+cat("\n````md\n")
+cat(readLines(fn), sep = "\n")
+cat("\n````")
+```
+
+## ✉️ Exercise 3C
+
+**Interactive data tables**
+
+```{r, echo = FALSE, eval = file.exists(fn <- "tutorial-03-suppC.Rmd"), results="asis"}
+# this is used to display content of `fn`
+# ignore this if you don't understand
+cat("**Below is the content of `", fn, "`** (scroll to see all) or download the file", glue::glue("<a href='{fn}' download>here</a>."))
+cat("\n````md\n")
+cat(readLines(fn), sep = "\n")
+cat("\n````")
+```
