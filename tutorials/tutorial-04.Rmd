@@ -1,0 +1,55 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 4"
+author: "Emi Tanaka"
+date: "Week 4"
+output: 
+  html_document:
+    toc: true
+    css: "tutorial-style.css"
+---
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+* learn to make websites, ranging from simple to complex, using R Markdown 
+* host the website on a public domain using Netlify or GitHub pages
+
+
+
+## `r emo::ji("wrench")` Preparation  
+
+  
+1. Install R-packages
+```{r, eval = FALSE}
+install.packages(c("distill", "blogdown"))
+```
+2. Install Hugo
+```{r, eval = FALSE}
+blogdown::install_hugo()
+```
+3. Download this [zip file](assess-sol.zip) that contains the solution to your take-home assessment. You may use the content of the `post.Rmd` as your first sample blog post to get started. You are free to write your own but you should make sure that you get your website set up by end of this week.
+
+    
+## 🌐️ Exercise 4A
+
+**Make a simple R Markdown Website**
+
+
+
+## 🐧 Exercise 4B
+
+**Make a distill article**
+
+
+
+## 🔧 Exercise 4C
+
+**Make an Academic Hugo personal website**
+
+This should be linked to the repo you created after accepting this [GitHub classroom assessment](https://classroom.github.com/a/rjHO_ZWi).
+
+
+Note: there will be no tutorial solution this week as the task is about getting you set up for making a website using R Markdown. 
