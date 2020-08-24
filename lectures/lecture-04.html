@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5523: Communicating with Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emi Tanaka" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/countdown-0.3.5/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.3.5/countdown.js"></script>
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom3.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-04.pdf&gt;PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5523: Communicating with Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 4&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Data Storytelling on the Web&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Emi Tanaka*
+
+Department of Econometrics and Business Statistics
+
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+25th August 2020
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+---
+
+class: middle nostripheader
+
+# Housekeeping
+
+* Blog post 1 instructions are available now and due **Fri 4 Sep 11.55PM** on Moodle.   
+
+
+---
+
+# &lt;span class="fa-layers fa-fw orange"&gt;&lt;i class="fas fa-file"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-3" style="font-weight:900;color:#e3e3e3;"&gt;Rmd&lt;/span&gt;&lt;/span&gt; R Markdown
+
+
+.grid[
+.item[
+
+`lecture-04suppA.Rmd`
+
+.scroll-fit50[
+````yaml
+---
+title: "R Markdown for Literate Programming"
+output: html_document 
+---
+````
+````r
+
+```{r setup, include = FALSE}
+library(tidytuesdayR)
+library(tidyverse)
+```
+
+```{r data, include = FALSE}
+# Define colour palette for dots
+pal &lt;- c("#9FBCA5", "#52796F", "#354F52", "#2F3E46")
+
+# Read in data with {tidytuesdayR}
+threats &lt;- read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-08-18/threats.csv")
+
+# Data wrangling (I love forcats!)
+threats_per_cont &lt;- 
+  threats %&gt;% 
+  filter(threatened != 0) %&gt;% 
+  group_by(continent) %&gt;% 
+  count(threat_type, name = "n_threats") %&gt;% 
+  mutate(
+    threat_type = str_replace_all(threat_type, " ", "\n"),
+    continent = str_replace(continent, " ", "\n"),
+    total_extinctions_per_cont = sum(n_threats)
+  ) %&gt;% 
+  ungroup() %&gt;% 
+  group_by(threat_type) %&gt;% 
+  mutate(
+    total_extinctions_per_threat = sum(n_threats)
+    ) %&gt;% 
+  ungroup() %&gt;% 
+  mutate(
+    continent = fct_reorder(continent, total_extinctions_per_cont),
+    threat_type = fct_reorder(threat_type, -total_extinctions_per_threat),
+    threat_type = fct_relevel(threat_type, "Unknown", after = Inf)
+  )
+```
+
+```{r plot, echo = FALSE, warning = FALSE, message = FALSE}
+# Construct plot
+threats_per_cont %&gt;% 
+  ggplot(aes(threat_type, continent)) +
+  geom_point(size = 8, shape = 21, color = "grey55", fill = "white") +
+  geom_point(aes(size = n_threats, color = n_threats)) +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Threats to Global Plant Existences",
+    subtitle = "As of 2020, five hundred plant species globally are considered extinct. 19.6% of those were endemic to Madagascar (Africa).\nAfrica is faced with significant and mounting threats resulting from activities including logging, fuelwood collection, and deforestation for agriculture and mining.\nThe ongoing negative effects on biodiversity are projected to be compounded further by climate change by the end of this century.",
+    caption = "Slightly modified | @MaiaPelletier | #TidyTuesday | Data: IUCN Red list of Threatened Species (Version 2020-1)"
+  ) +
+  scale_x_discrete(position = "top") +
+  scale_y_discrete(position = "left") +
+  scale_size(
+    range = c(1, 7), 
+    breaks = c(10, 50, 100),
+    name = "Extinct plant species"
+  ) +
+  scale_color_gradientn(
+    colours = pal,
+    breaks = c(10, 50, 100),
+    name = "Extinct plant species"
+    ) +
+  theme(
+    plot.background = element_blank(),
+    panel.background = element_blank(),
+    rect = element_rect(fill = "#F5F6F4"),
+    plot.title = element_text(face = "plain",
+                              hjust = 0.5,
+                              margin = margin(10, 0, 0, 0),
+                              size = 24),
+    plot.subtitle = element_text(hjust = 0.5,
+                                 size = 7,
+                                 color = "grey55",
+                                 margin = margin(5, 0, 15, 0)),
+    plot.caption = element_text(size = 5,
+                                color = "grey75"),
+    panel.grid.major.x = element_line(color = "grey55", size = 0.5),
+    legend.title = element_text(size = 8, color = "grey40"),
+    legend.text = element_text(size = 6),
+    axis.text.x = element_text(size = 5),
+    axis.text.y = element_text(size = 10, 
+                               hjust = 0.5)
+  )
+```
+````
+]]
+.item[
+`lecture-04suppA.html`
+
+&lt;iframe src="lecture-04suppA.html" height="100%" width="100%"&gt;&lt;/iframe&gt;
+
+
+]]
+
+---
+
+# &lt;span class="fa-layers fa-fw green"&gt;&lt;i class="fas fa-file"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-3" style="font-weight:900;color:#e3e3e3;"&gt;html&lt;/span&gt;&lt;/span&gt; Sharing your HTML webpage
+
+* You can share your HTML webpage using [RPubs](https://rpubs.com/).
+
+&lt;center&gt;
+&lt;a href="https://rpubs.com/emitanaka/hello-world-etc5523"&gt;&lt;img src="images/rpubs-example.png" height = "250px" style="box-shadow: 12px 12px 29px #555;"&gt;&lt;/a&gt;
+&lt;/center&gt;
+--
+
+* There are a few caveats sharing via RPubs though:
+  * The HTML webpage needs to be self-contained (so no external local file dependencies like css and js).
+  * There is a banner on the top and the bottom.
+  * The url has to be under the domain `https://rpubs.com`.
+  
+
+---
+
+# &lt;span class="fa-layers fa-fw green"&gt;&lt;i class="fas fa-globe"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-3" style="font-weight:900;color:#e3e3e3;"&gt;html&lt;/span&gt;&lt;/span&gt; R Markdown Website Example
+
+* The [ETC5523 course website](https://cwd.numbat.space/) is built using a "simple" R Markdown website. 
+
+&lt;center&gt;
+&lt;a href="https://cwd.numbat.space/"&gt;&lt;img src="images/course-webpage.png" height = "250px" style="box-shadow: 12px 12px 29px #555;"&gt;&lt;/a&gt;
+&lt;/center&gt;
+
+--
+
+&lt;Br&gt;
+
+* How is this different to a normal HTML output via `rmarkdown::html_document`?
+--
+
+* What is the difference between a **_website_** and a **_webpage_**? 
+
+
+---
+
+# &lt;i class="fas fa-file-alt green"&gt;&lt;/i&gt; Webpage vs Website  &lt;i class="fas fa-book green"&gt;&lt;/i&gt; 
+
+
+
+# &lt;i class="fas fa-file-alt"&gt;&lt;/i&gt; Webpage 
+
+* A _single_ document written in HTML.
+--
+
+&lt;Br&gt;&lt;Br&gt;
+
+# &lt;i class="fas fa-book"&gt;&lt;/i&gt; Website
+
+* A collection of webpages.
+--
+
+* The webpages usually share a common **_navigation_** bar (or tab), and possibly a common **_footer_**.
+--
+
+* There are hyperlinks to other webpages that are nested under the same
+  - domain, e.g. https://numbat.space/, or 
+  - subdomain, e.g. https://cwd.numbat.space/.
+
+---
+
+class: transition middle
+
+
+# R Markdown Website
+
+
+---
+
+class: transition middle
+
+
+# Download 
+# &lt;a href="lecture-04-rmarkdown-website.zip" download style="color:orange"&gt;&lt;i class="fas fa-file-archive"&gt;&lt;/i&gt;&lt;/a&gt;
+
+If you know this lecture content already, download this file and study the plots in Rmd documents instead.
+
+
+
+
+---
+
+# &lt;span class="fa-layers fa-fw green"&gt;&lt;i class="fas fa-globe"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-3" style="font-weight:900;color:#e3e3e3;"&gt;html&lt;/span&gt;&lt;/span&gt; Making an R Markdown Website .font_small[Part 1/3]
+
+.grid[
+.item.border-right[
+The minimum setup you need is a directory that contains:
+
+```
+├── index.Rmd
+└── _site.yml
+```
+
+where `_site.yml` contains
+
+```yaml
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      href: index.html
+```
+]
+.item[
+
+{{content}}
+
+]
+
+]
+
+--
+
+You can build the website then by:
+
+* `rmarkdown::render_site()`
+* Or go to RStudio IDE and look under the Build tab:
+
+&lt;center&gt;
+&lt;img src="https://bookdown.org/yihui/rmarkdown/images/site-build.png" width = "500px"&gt;
+&lt;/center&gt;
+
+
+---
+
+# &lt;span class="fa-layers fa-fw green"&gt;&lt;i class="fas fa-globe"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-3" style="font-weight:900;color:#e3e3e3;"&gt;html&lt;/span&gt;&lt;/span&gt; Making an R Markdown Website .font_small[Part 2/3]
+
+.grid[
+.item.border-right[
+By default the output is in `_site` folder:
+
+```
+├── index.Rmd
+├── _site.yml
+└── _site
+    ├── index.html
+    └── site_libs
+```
+
+You modify the output directory in the `_site.yml`
+
+
+```yaml
+*output_dir: "docs"
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      href: index.html
+```
+]
+.item[
+{{content}}
+]
+]
+
+--
+
+You can add more webpages:
+
+```
+├── index.Rmd
+*├── post2.Rmd
+├── _site.yml
+└── _site
+    ├── index.html
+*   ├── post2.html
+    └── site_libs
+```
+
+```yaml
+output_dir: "docs"
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      href: index.html
+*   - text: "Post"
+*     href: post2.html
+```
+
+---
+
+# &lt;span class="fa-layers fa-fw green"&gt;&lt;i class="fas fa-globe"&gt;&lt;/i&gt;&lt;span class="fa-layers-text fa-inverse" data-fa-transform="shrink-11 down-3" style="font-weight:900;color:#e3e3e3;"&gt;html&lt;/span&gt;&lt;/span&gt; Making an R Markdown Website .font_small[Part 3/3]
+
+.grid[
+.item.border-right[
+
+You can include common elements 
+
+
+`_site.yml`
+
+```yaml
+output_dir: "docs"
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Post"
+      href: post2.html
+*output:
+*  html_document:
+*    theme: cosmo
+*    include:
+*      after_body: footer.html
+*    css: styles.css
+```
+
+]
+.item[
+{{content}}
+]
+
+]
+
+--
+
+Or have own `output` options which get merged with common options:
+
+`post2.Rmd`
+```yaml
+---
+output:
+  html_document:
+    theme: darkly
+---
+
+..content..
+```
+
+{{content}}
+
+--
+
+&lt;br&gt;&lt;br&gt;
+&lt;center&gt;
+&lt;span class="animated flash"&gt;LIVE DEMO&lt;/span&gt;
+&lt;/center&gt;
+
+
+---
+
+class: transition middle
+
+# For more information see &lt;a href="https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html" style="color:orange;"&gt;R Markdown: The Definitive Guide&lt;/a&gt;
+
+---
+
+# &lt;i class="fab fa-github black"&gt;&lt;/i&gt; Sharing on the web with GitHub Pages
+
+
+
+.grid[
+.item.border-right[
+
+1. If your GitHub username is called `username` then make a GitHub repo called `username.github.io`.
+2. Or if you already have a `username.github.io`, then make a GitHub repo called say `myweb`.
+* Push your directory to your Github repo.
+* Go to your GitHub repo settings and enable "GitHub Pages". 
+* Your website will be available with url:
+  1. http://username.github.io/ or
+  2. http://username.github.io/myweb
+  
+.font_small[Note: it may take 10 minutes or so to render the first time.]
+
+]
+.item[
+* Directory structure to push to your GitHub repo:
+
+Version 1
+```
+*├── index.html
+├── ...
+└── ...
+```
+
+Version 2
+```
+├── ...
+└── docs
+*   ├── index.html
+    └── ...
+```
+
+{{content}}
+
+]
+]
+
+--
+
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;span class="animated flash"&gt;LIVE DEMO&lt;/span&gt;
+&lt;/center&gt;
+
+---
+
+# &lt;i class="fas fa-square-full" style="color:#00AD9F; transform: rotate(45deg);font-size:28pt;"&gt;&lt;/i&gt; Sharing on the web with Netlify
+
+* Go to https://app.netlify.com and log in
+* Drag and drop your folder which contains the `index.html` to:
+
+&lt;center&gt;
+&lt;img src="images/netlify-dropoff.png" width = "800px"&gt;
+&lt;/center&gt;
+
+* Do go to `Site settings &gt; Change site name` for a more sensible domain name. 
+
+
+
+&lt;br&gt;
+&lt;center&gt;
+&lt;span class="animated flash"&gt;LIVE DEMO&lt;/span&gt;
+&lt;/center&gt;
+
+---
+
+
+class: nostripheader middle
+
+# 🔨 Exercise
+
+* Unzip &lt;a href="lecture-04-rmarkdown-website.zip" download style="color:orange"&gt;&lt;i class="fas fa-file-archive"&gt;&lt;/i&gt;&lt;/a&gt; and rename `_post2.Rmd` to `post2.Rmd`
+* Include `post2.Rmd` on the website. 
+* Try including `_post1.Rmd`. Anything you notice?
+* Get your website on a public domain.
+
+&lt;br&gt;
+
+*Please help each other.*
+
+<div class="countdown clock" id="timer_5f44506c" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">15</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: transition middle
+
+
+## `distill::distill_article`
+
+---
+
+# 💧 Distill journal
+
+.grid[
+.item[
+* [Distill](https://distill.pub/) is a scientific journal on machine learning established in March 2017.
+* Traditional scientific articles are focused on a _PDF_ article.
+* But Distill is _HTML based_ so you can incorporate interactive visualisations.
+
+]
+.item[
+&lt;center&gt;
+&lt;img src="images/distill-demo.gif" width = "430px"&gt;
+&lt;/center&gt;
+
+.font_small[Source: https://distill.pub/2019/visual-exploration-gaussian-processes/]
+]
+]
+
+
+---
+
+# &lt;i class="fas fa-newspaper gray"&gt;&lt;/i&gt; `distill` with R Markdown
+
+* `distill` R-package (originally called `radix`) creates a HTML output that looks like Distill 
+* You can get started at `RStudio &gt; New Directory &gt; Distill Website` (or `Distill Blog`)
+
+&lt;center&gt;
+&lt;img src="images/create-website-projects.png" width="50%"&gt;
+&lt;/center&gt;
+
+
+---
+
+# 📰 `distill::distill_article` .font_small.animated.flash[LIVE DEMO] &lt;a href="lecture-04-suppB.Rmd" download style="color:orange"&gt;&lt;i class="fas fa-file-alt font_small"&gt;&lt;/i&gt;&lt;/a&gt;
+
+&lt;br&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;Reader-friendly typography that adapts well to mobile devices.&lt;/li&gt;
+&lt;li&gt;Features essential to technical writing like LaTeX math, citations, and footnotes.&lt;/li&gt;
+&lt;li&gt;Flexible figure layout options (e.g. displaying figures at a larger width than the article text).&lt;/li&gt;
+&lt;li&gt;Attractively rendered tables with optional support for pagination.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;br&gt;&lt;br&gt;
+
+&lt;footer&gt;—Allaire, et al. (2018, Sept. 10). Distill for R Markdown. Retrieved from https://rstudio.github.io/distill&lt;/footer&gt;
+&lt;/blockquote&gt;
+
+---
+
+
+class: nostripheader middle
+
+# 📚 Resources
+
+* [Distill for R Markdown: Creating a Website](https://rstudio.github.io/distill/website.html)
+* [Building a blog with distill by Thomas Mock](https://themockup.blog/posts/2020-08-01-building-a-blog-with-distill/)
+* [Teaching in Production by Alison Hill](https://rstudio-education.github.io/teaching-in-production/slides/#57)
+
+---
+
+class: transition middle
+
+
+# `blogdown` 
+# + 
+#Hugo
+
+---
+
+# &lt;img src="images/hugo.png" height="60px" style="vertical-align: middle;"&gt; Making a website with Hugo
+
+* [Hugo](https://gohugo.io/) is a free, open-source _static_ site generator written under the hood with the [Go programming language](https://golang.org/)
+* It is _lightning fast_ to build the website.
+* It supports Markdown with Hugo's default rendering engine Blackfriday (instead of Pandoc).
+* There are many [community contributed themes](https://themes.gohugo.io/):
+&lt;center&gt;
+&lt;img src="images/hugo-themes.png" width = "900px"&gt;
+&lt;/center&gt;
+
+---
+
+# &lt;img src="https://sourcethemes.com/academic/images/logo_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_0x70_resize_lanczos_2.png" style="vertical-align:middle" height = "40px"&gt; Academic Hugo Theme
+
+* [Academic](https://sourcethemes.com/academic/) is one of the most well-developed and hugely popular Hugo themes.
+* To get started with command line use 
+
+```r
+blogdown::new_site(theme = "gcushen/hugo-academic")
+```
+* Or go to `RStudio &gt; New Project &gt; Website using blogdown` and change the theme to `gcushen/hugo-academic`.
+* Or clone your week 4 GitHub classroom repo which contains the skeleton website for Academic Hugo. 
+
+&lt;br&gt;
+&lt;center&gt;
+.flash.animated[LIVE DEMO]
+&lt;/center&gt;
+
+---
+
+# 🔨 The basics of making your blog
+
+# Main Steps 
+
+* Personalise the contents of `config.toml`.
+* **Serve site**: 
+  * Go to `Addins &gt; Serve Site`
+  * Or from the console type and push enter: `blogdown::serve_site()`
+* **Making a new post**: go to `Addins &gt; New Post` and fill out the details as needed.
+
+--
+
+&lt;br&gt;
+
+There are many other features available but above are enough for you to get started.
+
+---
+
+# 🌎 Deploying your blog
+
+.grid[
+.item[
+```
+├── academic-hugo-template.Rproj
+├── assets
+├── config
+├── config.toml
+├── content
+│   ├── authors
+│   ├── home
+│   └── post
+├── index.Rmd
+├── public
+│   ├── ...
+│   ├── index.html
+│   └── ...
+├── resources
+├── static
+└── themes
+    └── hugo-academic
+```
+
+]
+.item[
+
+* Push your blogdown project to a GitHub repo.
+* Go to https://app.netlify.com/ and select "New site from Git".
+* Select your repo and deploy your site.
+* By default, this deploys the **public** folder in your project folder. 
+* &lt;i class="fas fa-exclamation-triangle"&gt;&lt;/i&gt; You should never change anything in the public folder. 
+
+&lt;br&gt;
+
+&lt;center&gt;
+.animated.flash[LIVE DEMO]
+&lt;/center&gt;
+
+]
+
+]
+
+
+
+---
+
+class: nostripheader middle
+
+# 📚 Resources
+
+* [blogdown: Creating Websites with R Markdown by Xie, Thomas &amp; Hill](https://bookdown.org/yihui/blogdown/)
+* [Making Websites in R Markdown by Alison Hill](https://arm.rbind.io/slides/blogdown.html#1)
+
+---
+
+class: nostripheader middle
+
+# 💡 Get started with making
+
+* Your own profile website
+  - add your bio
+  - add your skillsets
+  - add links to all your other profiles
+  - add contact details
+* Your own blog:
+  - summarising what you have learnt
+  - learning about a new R package
+  - or anything else!
+
+
+<div class="countdown clock" id="timer_5f445192" style="right:0;bottom:0;" data-warnwhen="0">
+<code class="countdown-time"><span class="countdown-digits minutes">30</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+---
+
+# &lt;i class="fas fa-chalkboard-teacher bg-white animated bounceIn" style="padding:3px;border:1px dashed #0092EB; color: #0092EB;"&gt;&lt;/i&gt; Today's main lessons 
+
+
+&lt;Br&gt;&lt;br&gt;
+
+&lt;i class="fas fa-check-circle green"&gt;&lt;/i&gt; Make an R Markdown Website
+
+&lt;br&gt;
+
+&lt;i class="fas fa-check-circle green"&gt;&lt;/i&gt; Make a `distill` website, blog or article
+
+&lt;br&gt;
+
+&lt;i class="fas fa-check-circle green"&gt;&lt;/i&gt; Make a `blogdown`
+
+&lt;br&gt;
+
+&lt;i class="fas fa-check-circle green"&gt;&lt;/i&gt; How to deploy your website
+
+--
+
+&lt;br&gt;
+
+Note: `blogdown` is considerably harder so stick with an R Markdown website if it's too much!
+
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70
+
+.column.shade_black[.content[
+
+&lt;br&gt;&lt;br&gt;
+
+# That's it!
+
+&lt;br&gt; 
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+.bottom_abs.width100[
+
+Lecturer: Emi Tanaka
+
+Department of Econometrics and Business Statistics&lt;br&gt;
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
