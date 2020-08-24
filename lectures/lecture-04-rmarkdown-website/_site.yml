@@ -1,0 +1,8 @@
+navbar:
+   title: "My Tidy Tuesday Collection Website"
+   left:
+     - text: "Home"
+       href: index.html
+     - text: "Post"
+       href: post2.html
+
