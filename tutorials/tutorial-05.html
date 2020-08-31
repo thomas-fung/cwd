@@ -503,7 +503,7 @@ calculate_confint &lt;- function(n, mean, sd, level, N = 100) {
     x &lt;- rnorm(n, mean, sd)
     alpha &lt;- 1 - level / 100
     mean_est &lt;- mean(x)
-    error_bound &lt;- qnorm(1 - alpha / 2) * sd(x) / sqrt(n)
+    error_bound &lt;- qt(1 - alpha / 2, n - 1) * sd(x) / sqrt(n)
     data.frame(sample = .x,
                mean = mean_est,
                lower = mean_est - error_bound,
