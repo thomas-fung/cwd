@@ -77,6 +77,7 @@ You want to explore every pair of variables in the `mtcars` dataset by looking a
 
 (a) The scatter plot doesn't show up. [Why? Can you fix it so it renders?]{.question}
 (b) The residual plot and Q-Q plot show the error "Error: object '.residuals' not found". [How do you debug your code with shiny? Can you fix this error?]{.question}
+(c) [Upload your shiny app to shinyapps.io and submit your url to Moodle.]{.question}
 
 ```{r app2, eval = FALSE}
 library(shiny)
