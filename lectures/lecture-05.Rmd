@@ -1,0 +1,177 @@
+---
+title: "ETC5523: Communicating with Data"
+week: "Week 5"
+subtitle: "Communicating Data with Interactive Web Apps"
+author: "Emi Tanaka"
+email: "ETC5523.Clayton-x@monash.edu"
+date: "1st September 2020"
+bgimg: "images/xps-g2E2NQ5SWSU-unsplash.jpg"
+output:
+  xaringan::moon_reader:
+    css:
+      - ninjutsu 
+      - "assets/animate.css"
+      - "assets/monash-logo.css"
+      - "assets/monash-brand.css"
+      - "assets/monash-fonts.css"
+      - "assets/boxes.css"
+      - "assets/styles.css" # small improvements
+      - "assets/custom.css" # add your own CSS here!
+      - "assets/custom3.css"
+    self_contained: false 
+    seal: false 
+    chakra: 'libs/remark-latest.min.js'
+    lib_dir: libs
+    mathjax: "assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    nature:
+      highlightStyle: github 
+      highlightLanguage: r 
+      highlightLines: true
+      highlightSpans: false 
+      countIncrementalSlides: false
+      slideNumberFormat: ''
+      navigation:
+        scroll: false 
+        touch: true
+        click: false
+      ratio: '16:9'
+---
+
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(ggthemes)
+current_file <- knitr::current_input()
+filter <- dplyr::filter
+knitr::opts_chunk$set(
+  fig.path = paste0("images/", fs::path_ext_remove(current_file), "/"),
+  cache = FALSE, 
+  message = FALSE,
+  warning = FALSE, 
+  fig.align = "center"
+)
+theme_set(theme_gdocs(base_size = 18) + 
+            theme(axis.line.y = element_line(size = 1, 
+                                             color = "black",
+                                             linetype = "solid"),
+                  plot.background = element_blank(),
+                  plot.title.position = "plot"))
+
+engage <- function() {
+  "<span class='animated pulse' style='background-color:#027EB6;padding:10px;font-size:14pt;border:1pt solid black;color:white;font-weight:bold;display:inline-block;'>🥠 Engagement opportunity</span>"
+}
+```
+```{r, include = FALSE, eval = F}
+# times out
+input <- fs::path_ext_set(current_file, "html")
+pagedown::chrome_print(input = input, format = "pdf", wait = 20)
+```
+```{r titleslide, child="assets/titleslide.Rmd"}
+```
+
+---
+
+class: nostripheader middle
+
+
+# <i class="fas fa-video"></i> Watch *before* the lecture<Br> [How to Start Shiny tutorial video](https://shiny.rstudio.com/tutorial/) 
+
+The lecture time will be a series of live demos and Q&A session. 
+
+
+---
+
+class: transition middle 
+
+<img src="images/clapperboard.png" width = "150px"/>
+
+# What is Shiny?
+
+---
+
+class: transition middle 
+
+# How to get started with Shiny?
+
+<img src="images/clapperboard.png" width = "150px"/>
+
+
+---
+
+class: transition middle 
+
+# Inputs and Outputs
+
+<img src="images/clapperboard.png" width = "150px" style="position:absolute;bottom:20px;left:20px;"/>
+
+---
+
+class: transition middle 
+
+# User Interface
+
+<img src="images/clapperboard.png" width = "150px" style="position:absolute;bottom:20px;right:20px;"/>
+
+
+---
+
+class: transition middle 
+
+# Reactivity
+
+<img src="images/clapperboard.png" width = "150px" style="position:absolute;bottom:200px;right:200px;"/>
+
+---
+
+class: transition middle 
+
+# Layouts
+
+<img src="images/clapperboard.png" width = "150px" style="position:absolute;top:250px;left:200px;"/>
+
+
+---
+
+class: transition middle 
+
+# Debugging
+
+<img src="images/clapperboard.png" width = "150px" style="position:absolute;top:20px;right:20px;"/>
+
+
+
+---
+
+
+class: transition middle 
+
+# How to deploy your <br>Shiny app?
+
+<img src="images/clapperboard.png" width = "150px" style="position:absolute;top:20px;left:20px;"/>
+
+---
+
+# Resources
+
+# Introductory
+
+* https://shiny.rstudio.com/tutorial/
+* https://mastering-shiny.org/
+
+# Debugging shiny
+
+* https://rstudio.com/resources/shiny-dev-con/debugging-techniques/
+* https://shiny.rstudio.com/articles/debugging.html
+
+# Cheatsheet
+
+* https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf
+
+
+
+
+
+---
+
+```{r endslide, child="assets/endslide.Rmd"}
+```
