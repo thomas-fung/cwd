@@ -81,6 +81,13 @@ The lecture time will be a series of live demos and Q&A session.
 
 ---
 
+class: nostripheader middle
+
+# <i class="fas fa-download"></i> Download materials from the lecture <a href="lecture-05-temperature-app-demo.zip" download>here</a>
+
+
+---
+
 class: transition middle 
 
 <img src="images/clapperboard.png" width = "150px"/>
