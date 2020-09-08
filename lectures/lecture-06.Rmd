@@ -1470,7 +1470,7 @@ grid.points(x = rep((1:4)/4.5, each = 4), y = rep((1:4)/4.5, times = 4),
 
 # Retrieving information from graphs
 
-Of the 10 elementary perception tasks, Cleveland & McGill (1984) found the accuracy ranked as followed:
+Of the 10 elementary perception tasks, Cleveland & McGill (1984) found the accuracy ranked as follows:
 
 .scroll-500[
 
