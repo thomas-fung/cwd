@@ -1454,7 +1454,7 @@ grid.points(x = rep((1:4)/4.5, each = 4), y = rep((1:4)/4.5, times = 4),
 .item.center[
 <img src="images/lecture-06/task-position-common-scale-1.svg"><img src="images/lecture-06/task-position-non-aligned-scale-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-length-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-direction-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-angle-1.svg" `r vis_spacing1`>
 
-<img src="images/lecture-06/task-area-1.svg"><img src="images/lecture-06/task-volume-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-curvature-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-texture-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-shape-1.svg" `r vis_spacing1`>
+<img src="images/lecture-06/task-area-1.svg"><img src="images/lecture-06/task-volume-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-curvature-1.svg" `r vis_spacing1`><img src="images/lecture-06/task-texture.svg" `r vis_spacing1` width="220pt" height="172pt"><img src="images/lecture-06/task-shape-1.svg" `r vis_spacing1`>
 
 {{content}}
 
