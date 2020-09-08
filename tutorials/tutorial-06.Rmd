@@ -1,0 +1,119 @@
+---
+title: 'ETC5523: Communicating with Data'
+subtitle: "Tutorial 6"
+author: "Emi Tanaka"
+date: "Week 6"
+output: 
+  bookdown::html_document2:
+    toc: true
+    css: "tutorial-style.css"
+    number_sections: FALSE
+---
+
+
+**<span style="color:red">Please do [Preparation](#preparation) *before* the tutorial!</span>**
+
+## `r emo::ji("target")` Objectives
+
+
+## `r emo::ji("wrench")` Preparation  
+
+Install the `janitor` R package.
+
+```{r pkgs, eval = FALSE}
+install.packages(c("janitor", "ggridges", "ggforce"))
+```
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(
+  fig.align = "center", 
+  message = FALSE,
+  warning = FALSE
+)
+```
+
+
+Note that most questions do not have a definitive "correct" answer so be creative!
+
+    
+## 💎️ Exercise 6A
+
+**Diamonds**
+
+
+The dataset `diamonds` in the `ggplot2` package includes attributes and price on `r scales::comma(nrow(diamonds))` diamonds. Some of the attributes, such as carat, cut, color and clarity, are known to influence the price. Figures \@ref(fig:diamonds-color) and \@ref(fig:diamonds-clarity) explain the order of classifications for color and clarity of diamonds. Use this data to answer the following questions.
+
+```{r q6Adata}
+data("diamonds", package = "ggplot2")
+dplyr::glimpse(diamonds)
+```
+
+```{r diamonds-color, echo = FALSE, fig.cap = "Diamond color image sourced from https://beyond4cs.com"}
+knitr::include_graphics("https://beyond4cs.com/wp-content/uploads/2019/02/diamond-color-chart-with-example-diamonds-of-each-alphabet.jpg")
+```
+
+```{r diamonds-clarity, echo = FALSE, fig.cap = "Diamond clarity image sourced from https://www.onlinediamondbuyingadvice.com"}
+knitr::include_graphics("https://www.onlinediamondbuyingadvice.com/wp-content/uploads/2018/08/diamond-clarity-scale-whiteflash-768x219.png")
+```
+
+```{r q6Ac, fig.height=10, fig.cap="Density plots for carats by cut, clarity and color."}
+ggplot(diamonds, aes(carat, clarity)) + 
+  ggridges::geom_density_ridges(scale = 4) +
+  facet_grid(color ~ cut)
+```
+
+
+(a) [Is there anything unusual about the distribution of diamond weights (i.e. carats)? Which plot do you think shows it best? How might you explain the pattern you find?]{.question}
+(b) [What about the distribution of the prices? Can you find any unexpected feature? Which graphics best shows this unexpected feature?]{.question}
+(c) Suppose that this data are a representative sample of diamonds around the world. 
+    i. The exploratory plot in Figure \@ref(fig:q6Ac) shows that there are hardly any diamonds with high carats that have high level of clarity.  [Produce a plot to support/contradict this claim.]{.question}
+    ii. A diamonds whole seller wants to convince the jewellery store owner that $5,000 for a 2 carat diamond is a bargain price. [Show a graphic that supports this story.]{.question}
+
+
+
+## 🚢 Exercise 6B
+
+**Titanic**
+
+*Titanic* was a British ship that can carry over 2,000 people. It is most well known for meeting its end at the 15th April 1912 when it hit an iceberg and sank. 
+
+
+```{r q6Bdata}
+dfB <- as.data.frame(Titanic)
+glimpse(dfB)
+```
+
+(a) "Women and children first" was a code of conduct where the lives of women and children are to be saved first in life-threatening situations. [Produce a graphic that best supports whether this code of conduct was applied when Titanic was sinking.]{.question}
+(b) There are far more men than women on board Titanic. This is because majority of crew members are male. [Produce a graphic to show this.]{.question}
+
+## 🔧 Exercise 6C
+
+**Global Crop Yields**
+
+The data below comes from [Our World in Data](https://ourworldindata.org/crop-yields) and sourced from [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-09-01/readme.md). This data contains agricultural yields across crop types and by country from 1960 onwards. 
+
+```{r q6Cdata}
+key_crop_yields <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-09-01/key_crop_yields.csv') %>% 
+  janitor::clean_names()
+dplyr::glimpse(key_crop_yields)
+```
+
+The code below is one way to extract the map data and draws the map.
+
+```{r q6Cmap}
+library(ggplot2)
+map_df <- map_data("world")
+dplyr::glimpse(map_df)
+
+ggplot(map_df, aes(long, lat, group = group)) +
+  geom_polygon(color = "white") +   
+  coord_equal() + 
+  theme_void()
+```
+
+
+(a) [Produce a choropleth map of the wheat yield by country in 1998 and then in 2018.]{.question}
+(b) [Produce a single graphic that highlights one major change in wheat yield in 2018 compared to 1998.]{.question}
+(c) You're on the quest to find the 2018 World Crop Capital for each crop type!  [Produce graphic(s) to show which countries have the greatest crop yields per hectare. Publish this to your RPub account and submit your RPub url to Moodle.]{.question} 
+(d) Global crop production has been increasing over time. [Produce a graphic that shows this effectively.]{.question}

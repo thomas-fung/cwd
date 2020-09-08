@@ -2,3 +2,12 @@ pre {
   padding: 0;
   margin: 0;
 }
+
+.bg-transparent {
+  background-color: transparent!important;
+}
+
+.scroll-500 {
+  height: 450px;
+  overflow: scroll;
+}
