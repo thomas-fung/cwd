@@ -519,7 +519,7 @@ oz_sf %>%
   ggplot(aes(fill = value)) + 
   geom_sf() + 
   theme7 + 
-  ggtitle("CHOROPLEPH MAP") + 
+  ggtitle("CHOROPLETH MAP") + 
   guides(fill = FALSE) + 
   theme(plot.margin = margin(t=20, b=20, l=7, r=7),
         plot.title = element_text(margin = margin(t = -10, b = 10))) + 
