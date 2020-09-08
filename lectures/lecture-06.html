@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>ETC5523: Communicating with Data</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Emi Tanaka" />
+    <link href="libs/remark-css-0.0.1/ninjutsu.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link rel="stylesheet" href="assets/animate.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-logo.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-brand.css" type="text/css" />
+    <link rel="stylesheet" href="assets/monash-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="assets/boxes.css" type="text/css" />
+    <link rel="stylesheet" href="assets/styles.css" type="text/css" />
+    <link rel="stylesheet" href="assets/rgb-hcl-color.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom.css" type="text/css" />
+    <link rel="stylesheet" href="assets/custom3.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+
+
+
+
+background-color: #006DAE
+class: middle center hide-slide-number
+
+
+&lt;div class="shade_black"  style="width:60%;right:0;bottom:0;padding:10px;border: dashed 4px white;margin: auto;"&gt;
+&lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; These slides are viewed best by Chrome and occasionally need to be refreshed if elements did not load properly. See &lt;a href=lecture-06.pdf&gt;PDF &lt;i class="fas fa-file-pdf"&gt;&lt;/i&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+.white[Press the **right arrow** to progress to the next slide!]
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70 title-slide
+count: false
+
+.column.shade_black[.content[
+
+&lt;br&gt;
+
+# .monash-blue.outline-text[ETC5523: Communicating with Data]
+
+&lt;h2 class="monash-blue2 outline-text" style="font-size: 30pt!important;"&gt;Week 6&lt;/h2&gt;
+
+&lt;br&gt;
+
+&lt;h2 style="font-weight:900!important;"&gt;Effective Data Visualisation&lt;/h2&gt;
+
+.bottom_abs.width100[
+
+Lecturer: *Emi Tanaka*
+
+Department of Econometrics and Business Statistics
+
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+8th September 2020
+
+&lt;br&gt;
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;style type="text/css"&gt;
+th {
+  background-color: white;
+  color: black;
+  text-align: left;
+  border-bottom: 2px solid black;
+  border-top: 2px solid black;
+}
+
+tbody tr:last-child td {
+  border-bottom: 2px solid black!important;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #D3D3D3;
+}
+&lt;/style&gt;
+
+
+---
+
+# 🖼️ Why make data plots?
+
+&lt;Br&gt;
+&lt;blockquote&gt;
+A picture is worth a thousand words.
+&lt;br&gt;
+&lt;footer style="float:right"&gt;-Henrik Ibsen&lt;/footer&gt;
+&amp;nbsp;
+&lt;/blockquote&gt;
+
+* Data visualisation generally **_communicates information much quicker_** than numerical tables. 
+--
+
+* Data visualisation can also **_reveal unexpected structures in data_**; it is not surprising that data visualisation is one of the key tools in exploratory data analysis.
+--
+
+* Data plot is usually more **_eye-catching_** even if you lose accuracy of the information. .font_small[And yes, right is still a data plot. It's called a waffle plot.]
+
+&lt;center&gt;
+&lt;div class="grid bg-blue white" style="height:95px;width:100%;border: 3px solid #006DAE;"&gt;
+.item.center[
+1 in 8 men are color blind.
+]
+.item.center[
+&lt;i class="fas fa-user" style="color:#ffcc66"&gt;&lt;/i&gt; &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt; &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt; &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt; &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt; &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt; &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt; &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt;
+
+&lt;span style="font-size:14pt" &gt;&lt;i class="fas fa-user" style="color:#ffcc66"&gt;&lt;/i&gt; Color blind
+ &lt;i class="fas fa-user" style="color:#00cc00"&gt;&lt;/i&gt; Normal vision&lt;/span&gt;
+]
+
+&lt;/div&gt;
+&lt;/center&gt;
+
+
+.font_small[Note I interchangeably use the terms data visualisation, plot, data plot, graphic, statistical graphic, and figure.]
+
+---
+
+
+
+
+# 💬️ Communicating with data visualisation
+
+* Effective data visualisation means to design your data plot to effectively use human visual system to improve cognition about a targeted information from the data.
+* The **_design of your data plot_** depends on the **_usage plan_** is. 
+* Below is presenting percentage of the reported ancestories from the Australian Bureau of Statistics 2016 Census.
+
+--
+
+Table | Internal | Informative | Data storytelling
+--- | --- | --- | ---
+&lt;img src="images/lecture-06/usage-table.png"&gt;| &lt;img src="images/lecture-06/usages-1.svg" width = "250px" style="visibility:hidden"&gt;| &lt;img src="images/lecture-06/usages-2.svg" width = "250px" style="visibility:hidden"&gt;| &lt;img src="images/lecture-06/usages-3.svg" width = "250px" style="visibility:hidden"&gt;
+
+---
+
+count: false
+
+# 💬️ Communicating with data visualisation
+
+* Effective data visualisation means to design your data plot to effectively use human visual system to improve cognition about a targeted information from the data.
+* The **_design of your data plot_** depends on the **_usage plan_** is. 
+* Below is presenting percentage of the reported ancestories from the Australian Bureau of Statistics 2016 Census.
+
+Table | Internal | Informative | Data storytelling
+--- | --- | --- | ---
+&lt;img src="images/lecture-06/usage-table.png"&gt;| &lt;img src="images/lecture-06/usages-1.svg" width = "250px"&gt;| &lt;img src="images/lecture-06/usages-2.svg" width = "250px" style="visibility:hidden"&gt;| &lt;img src="images/lecture-06/usages-3.svg" width = "250px" style="visibility:hidden"&gt;
+
+---
+
+count: false
+
+# 💬️ Communicating with data visualisation
+
+* Effective data visualisation means to design your data plot to effectively use human visual system to improve cognition about a targeted information from the data.
+* The **_design of your data plot_** depends on the **_usage plan_** is. 
+* Below is presenting percentage of the reported ancestories from the Australian Bureau of Statistics 2016 Census.
+
+Table | Internal | Informative | Data storytelling
+--- | --- | --- | ---
+&lt;img src="images/lecture-06/usage-table.png"&gt;| &lt;img src="images/lecture-06/usages-1.svg" width = "250px"&gt;| &lt;img src="images/lecture-06/usages-2.svg" width = "250px"&gt;| &lt;img src="images/lecture-06/usages-3.svg" width = "250px" style="visibility:hidden"&gt;
+
+---
+
+count: false
+
+# 💬️ Communicating with data visualisation
+
+* Effective data visualisation means to design your data plot to effectively use human visual system to improve cognition about a targeted information from the data.
+* The **_design of your data plot_** depends on the **_usage plan_** is. 
+* Below is presenting percentage of the reported ancestories from the Australian Bureau of Statistics 2016 Census.
+
+Table | Internal | Informative | Data storytelling
+--- | --- | --- | ---
+&lt;img src="images/lecture-06/usage-table.png"&gt;| &lt;img src="images/lecture-06/usages-1.svg" width = "250px"&gt;| &lt;img src="images/lecture-06/usages-2.svg" width = "250px"&gt;| &lt;img src="images/lecture-06/usages-3.svg" width = "250px"&gt;
+
+
+---
+
+# ℹ️ Is communication with data plot about infographics?
+
+.grid[
+.item[
+* **_Infographic_** is a collection of images, plots and text to present information on a topic in an easily understood manner.
+{{content}}
+
+]
+.item.center[
+&lt;a href="https://www.aquamarinecare.com.au/home-care/family-looking-after-families/"&gt;&lt;img src="images/homecare-infographic.png" height="600px"&gt;&lt;/a&gt;
+]
+]
+
+--
+* These days infographics are used for **_mass communication meant for the general public_**, i.e. with assumption of little technical knowledge from the reader. 
+{{content}}
+--
+* These type of graphics may involve graphic designers, or at least special software for making infographics. 
+* &lt;i class="fas fa-exclamation-circle"&gt;&lt;/i&gt; Making sophisticated infographics like on the right will _not_ be the focus of this lecture.
+
+---
+
+class: nostripheader middle
+
+# What type of plot should you use?
+
+---
+
+# 🛒 Data Visualisation Catalogue .font_small[(non-exhaustive)]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.grid[.item.center[
+&lt;img src="images/lecture-06/vis-barplot-horizontal-1.svg"&gt;&lt;img src="images/lecture-06/vis-barplot-vertical-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-piechart-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-stacked-barplot-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-grouped-barplot-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-stacked-percentage-barplot-1.svg" style="padding-left:20px;"&gt;
+
+&lt;img src="images/lecture-06/vis-histogram-1.svg"&gt;&lt;img src="images/lecture-06/vis-density-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-boxplot-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-violin-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-beeswarm-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-dot-1.svg" style="padding-left:20px;"&gt;
+
+&lt;img src="images/lecture-06/vis-scatter-1.svg"&gt;&lt;img src="images/lecture-06/vis-hex-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-bubble-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-line-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-heatmap-1.svg" style="padding-left:20px;"&gt;&lt;img src="images/lecture-06/vis-map-1.svg" style="padding-left:20px;"&gt;
+
+]]
+
+---
+
+
+## https://www.data-to-viz.com/
+
+&lt;iframe src="https://www.data-to-viz.com/" width = "100%", height = "550px"&gt;&lt;/iframe&gt;
+
+---
+
+## https://www.r-graph-gallery.com/
+
+&lt;iframe src="https://www.r-graph-gallery.com/" width = "100%", height = "550px"&gt;&lt;/iframe&gt;
+
+---
+
+&lt;a href="https://clauswilke.com/dataviz/directory-of-visualizations.html"&gt;&lt;h2 style="font-size:24pt!important;"&gt; https://clauswilke.com/dataviz/directory-of-visualizations.html&lt;/h2&gt;&lt;/a&gt;
+
+&lt;iframe src="https://clauswilke.com/dataviz/directory-of-visualizations.html" width = "100%", height = "550px"&gt;&lt;/iframe&gt;
+
+---
+
+# &lt;i class="fas fa-project-diagram blue"&gt;&lt;/i&gt; Composite plots
+
+* Your data plot may be made from **multiple plot types**:
+
+&lt;img src="images/lecture-06/box-plus-violin-1.svg" style="display: block; margin: auto;" /&gt;
+
+* Your data plot may be composed of **multiple subplots**:
+
+&lt;img src="images/lecture-06/patchwork-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: nostripheader middle
+
+# How to make the data plots?
+
+--
+* There are many packages that make statistical packages in R.
+--
+
+* One of the most popular R-package is `ggplot2`.
+--
+
+* Why is it so popular? 
+
+---
+
+# The `ggplot` object
+
+&lt;br&gt;
+
+.info-box[
+
+* .monash-blue[**Modifiable**]: `ggplot` object can be modified
+* .monash-blue[**Generalisable**]: `ggplot2` uses a cohesive and complex system under the hood to make many kinds of plots
+* .monash-blue[**Extensible**]: the system can be extended to make specialised plots or add more features if the same "grammar" is adopted
+
+]
+
+--
+
+Most importantly, your graphical output is easily **reproducible**!
+
+--
+
+&lt;br&gt;
+
+Imagine all the time spent manually making graphs (via photoshop or otherwise) only to repeat it again when data are updated. Not only are you less prone to error, you save time!
+
+
+---
+
+
+# `ggrepel` 📦 .font_small[one of my favorites!]
+
+.grid[.item[
+&lt;img src="images/lecture-06/unnamed-chunk-3-1.svg" style="display: block; margin: auto;" /&gt;
+{{content}}
+]
+.item[
+&lt;img src="images/lecture-06/unnamed-chunk-4-1.svg" style="display: block; margin: auto;" /&gt;
+]
+]
+
+
+
+.footnote[
+Kamil Slowikowski (2020). ggrepel: Automatically Position
+  Non-Overlapping Text Labels with 'ggplot2'. R package version 0.8.2.
+  https://CRAN.R-project.org/package=ggrepel
+]
+
+--
+
+There are many [extension packages](https://exts.ggplot2.tidyverse.org/)!
+
+---
+
+class: middle nostripheader
+
+# Some tips about `theme` in `ggplot2`
+
+
+
+
+---
+
+class: center
+
+# `theme`: modify the *look* of texts
+
+
+&lt;img src="images/ggplot-theme-text-annotation.png" width = "80%"/&gt;
+
+.font_large[`element_text()`]
+
+---
+
+class: font_small
+
+# `element_text()`
+
+&lt;div class="grid" style="grid: 1fr / 1fr 1fr;"&gt;
+
+.item[ 
+
+
+```r
+ggplot(diamonds, aes(carat, price)) + 
+  geom_hex() +
+ labs(title = "Diamond") +
+ theme(axis.title.x = element_text(size = 30,
+                                 color = "red",
+                                 face = "bold",
+                                 angle = 10,
+                                 family = "Fira Code"),
+       legend.title = element_text(size = 25,
+                                   color = "#ef42eb", 
+                                   margin = margin(b = 5)),
+       plot.title = element_text(size = 35,
+                                 face = "bold",
+                                 family = "Nunito",
+                                 color = "blue"
+                                ))
+```
+
+]
+
+.item[ 
+
+&lt;img src="images/lecture-06/ele-text-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+&lt;/div&gt;
+
+---
+
+class: center
+
+# `theme`: modify the *look* of the lines
+
+
+&lt;img src="images/ggplot-annotated-line-marks.png" width = "70%"/&gt;
+
+.font_large[`element_line()`]
+
+---
+
+class: font_small
+
+# `element_line()`
+
+
+&lt;div class="grid" style="grid: 1fr / 1fr 1fr;"&gt;
+
+.item[ 
+
+
+```r
+ggplot(penguins, aes(bill_length_mm, bill_depth_mm)) + 
+  geom_point() +
+  theme(axis.line.y = element_line(color = "black",
+                                  size = 1.2,
+                                  arrow = grid::arrow()),
+       axis.line.x = element_line(linetype = "dashed", 
+                                  color = "brown",
+                                  size = 1.2),
+       axis.ticks = element_line(color = "red", size = 1.1),
+       axis.ticks.length = unit(3, "mm"),
+       panel.grid.major = element_line(color = "blue", 
+                                       size = 1.2),
+       panel.grid.minor = element_line(color = "#0080ff",
+                                       size = 1.2,
+                                       linetype = "dotted"))
+```
+
+
+] 
+
+.item[ 
+
+&lt;img src="images/lecture-06/ele-line-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+
+]
+
+&lt;/div&gt;
+
+---
+
+class: center
+
+# `theme`: modify the *look* of the &lt;br&gt;rectangular regions
+
+
+&lt;img src="images/ggplot-annotated-rect-marks.png" width = "40%"/&gt;
+
+.font_large[`element_rect()`]
+
+
+---
+
+class: font_small
+
+# `element_rect()`
+
+
+&lt;div class="grid" style="grid: 1fr / 1fr 1fr;"&gt;
+
+.item[ 
+
+
+```r
+ggplot(penguins, aes(bill_length_mm, bill_depth_mm)) + 
+ geom_point(aes(color = species)) +
+ theme(
+  legend.background = element_rect(fill = "#fff6c2", 
+                                  color = "black",
+                               linetype = "dashed"),
+  legend.key = element_rect(fill = "grey", color = "brown"),
+  panel.background = element_rect(fill = "#005F59",
+                          color = "red", size = 3),
+  panel.border = element_rect(color = "black", 
+                              fill = "transparent",
+                    linetype = "dashed", size = 3),
+  plot.background = element_rect(fill = "#a1dce9",
+                                color = "black",
+                                 size = 1.3),
+  legend.position = "bottom")
+```
+
+
+] 
+
+.item[ 
+
+&lt;img src="images/lecture-06/ele-rect-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+
+&lt;/div&gt;
+
+---
+
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) 
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot1-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) 
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot2-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") 
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot3-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18))
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot4-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18),
+       rect = element_rect(fill = "black")) 
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot5-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18, color = "white"),
+       rect = element_rect(fill = "black"))
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot6-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18, color = "white"),
+       rect = element_rect(fill = "black"),
+       panel.background = element_rect(fill = "black"),
+       legend.key = element_rect(fill = "black")) 
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot7-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18, color = "white"),
+       rect = element_rect(fill = "black"),
+       panel.background = element_rect(fill = "black"),
+       legend.key = element_rect(fill = "black")) + 
+  guides(shape = 
+      guide_legend(override.aes = list(color = "white")))
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot8-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# 
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18, color = "white"),
+       rect = element_rect(fill = "black"),
+       panel.background = element_rect(fill = "black"),
+       legend.key = element_rect(fill = "black"),
+       axis.text = element_text(color = "white")) + 
+  guides(shape = 
+      guide_legend(override.aes = list(color = "white")))
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot9-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18, color = "white"),
+       rect = element_rect(fill = "black"),
+       panel.background = element_rect(fill = "black"),
+       legend.key = element_rect(fill = "black"),
+       axis.text = element_text(color = "white"),
+       plot.title.position = "plot") + 
+  guides(shape = 
+      guide_legend(override.aes = list(color = "white")))
+```
+
+]
+.item[
+&lt;img src="images/lecture-06/pro-plot10-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+
+
+---
+
+count: false
+
+
+# Reproducible publication ready plots
+
+.grid[
+.item[
+
+```r
+ggplot(mtcars_df, 
+       aes(wt, mpg, shape = factor(vs), color = hp)) + 
+ geom_point(size = 3) + 
+ scale_color_continuous_sequential(palette = "Dark Mint") + 
+ scale_shape_discrete(labels = c("V-shaped", "Straight")) + 
+ labs(x = "Weight (1000 lbs)", y = "Miles per gallon",
+      title = "Motor Trend Car Road Tests",
+      shape = "Engine", color = "Horsepower") +
+ theme(text = element_text(size = 18, color = "white"),
+       rect = element_rect(fill = "black"),
+       panel.background = element_rect(fill = "black"),
+       legend.key = element_rect(fill = "black"),
+       axis.text = element_text(color = "white"),
+       plot.title.position = "plot",
+       plot.margin = margin(10, 10, 10, 10)) + 
+ guides(shape = 
+      guide_legend(override.aes = list(color = "white")))
+```
+
+]
+.item.animated.tada.delay-2s[
+&lt;img src="images/lecture-06/pro-plot-1.svg" style="display: block; margin: auto;" /&gt;
+
+]
+]
+
+---
+
+
+
+# Combining plots with `patchwork` 📦 
+
+
+```r
+library(patchwork)
+g1 &lt;- ggplot(penguins, aes(bill_length_mm, body_mass_g, color = species)) + 
+  geom_point() + theme_bw(base_size = 14) + 
+  labs(tag = "(A)", x = "Bill length (mm)", y = "Body mass (g)", color = "Species")
+g2 &lt;- ggplot(penguins, aes(bill_length_mm, bill_depth_mm, color = species)) +
+  geom_point() + theme_bw(base_size = 14) + 
+  labs(tag = "(B)", x = "Bill length (mm)", y = "Bill depth (mm)", color = "Species")
+*g1 + g2 + plot_layout(guides = "collect")
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-5-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+
+
+.footnote[
+Thomas Lin Pedersen (2020). patchwork: The Composer of Plots. R package
+  version 1.0.1. https://CRAN.R-project.org/package=patchwork
+]
+
+
+---
+
+class: nostripheader middle
+
+# Why is 3D pie chart considered a "bad plot"?
+
+&lt;img src="images/lecture-06/pie3d-1.svg" style="display: block; margin: auto;" /&gt;
+
+--
+
+&lt;img src="images/piechart.gif" style="position:absolute;left:10px;bottom:10px;border: 3px solid black;"&gt;
+
+---
+
+class: nostripheader middle
+
+# What about 2D pie charts?
+
+--
+
+
+```r
+help("pie")
+```
+--
+
+&lt;blockquote&gt;
+Pie charts are a very bad way of displaying information. The eye is good at judging linear measures and bad at judging relative areas. A bar chart or dot chart is a preferable way of displaying this type of data.
+&lt;/blockquote&gt;
+
+--
+
+* This comes from empirical research of Cleveland &amp; McGill (1984) among others.
+
+&lt;img src="images/lecture-06/pie-vs-bar-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+
+.footnote.font_small[
+Cleveland, William S., and Robert Mc Gill. (1984) “Graphical Perception: Theory, Experimentation, and Application to the Development of Graphical Methods.” https://www.jstor.org/stable/pdf/2288400.pdf.
+]
+
+
+---
+
+#  Elementary Perceptual Tasks .font_small[(non-exhaustive)]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.grid[
+.item.center[
+&lt;img src="images/lecture-06/task-position-common-scale-1.svg"&gt;&lt;img src="images/lecture-06/task-position-non-aligned-scale-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-length-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-direction-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-angle-1.svg" style="padding-left:10px;"&gt;
+
+&lt;img src="images/lecture-06/task-area-1.svg"&gt;&lt;img src="images/lecture-06/task-volume-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-curvature-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-texture-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-shape-1.svg" style="padding-left:10px;"&gt;
+
+{{content}}
+
+
+]]
+
+--
+
+&lt;img src="images/lecture-06/task-color-hue-1.svg"&gt;&lt;img src="images/lecture-06/task-color-chroma-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-color-luminance-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-color-saturation-1.svg" style="padding-left:10px;"&gt;&lt;img src="images/lecture-06/task-color-shade-1.svg" style="padding-left:10px;"&gt;
+
+
+---
+
+# Retrieving information from graphs
+
+Of the 10 elementary perception tasks, Cleveland &amp; McGill (1984) found the accuracy ranked as followed:
+
+.scroll-500[
+
+Accuracy Order &lt;br&gt; (from most to least) | Elementary perception tasks  | Example plots&lt;br&gt;(plots can have multiple elementary perception tasks)
+--- | --- | ---
+1 | &lt;img src="images/lecture-06/task-position-common-scale-1.svg"&gt; | &lt;img src="images/lecture-06/vis-scatter-1.svg"&gt; &lt;img src="images/lecture-06/vis-barplot-horizontal-1.svg"&gt;
+2 | &lt;img src="images/lecture-06/task-position-non-aligned-scale-1.svg"&gt; | &lt;img src="images/lecture-06/vis-stacked-barplot-1.svg"&gt;
+3 | &lt;img src="images/lecture-06/task-length-1.svg"&gt; &lt;img src="images/lecture-06/task-direction-1.svg"&gt; &lt;img src="images/lecture-06/task-angle-1.svg"&gt; | &lt;img src="images/lecture-06/vis-piechart-1.svg"&gt;
+4 | &lt;img src="images/lecture-06/task-area-1.svg"&gt; | &lt;img src="images/lecture-06/vis-bubble-1.svg"&gt;
+5 | &lt;img src="images/lecture-06/task-volume-1.svg"&gt; &lt;img src="images/lecture-06/task-curvature-1.svg"&gt; | &lt;img src="images/lecture-06/vis-volchart-1.svg"&gt;
+6 | &lt;img src="images/lecture-06/task-color-shade-1.svg"&gt; &lt;img src="images/lecture-06/task-color-saturation-1.svg"&gt; | &lt;img src="images/lecture-06/vis-map-1.svg"&gt; &lt;img src="images/lecture-06/vis-heatmap-1.svg"&gt;
+]
+&lt;center&gt;
+scroll&lt;br&gt;
+&lt;i class="fas fa-angle-double-down"&gt;&lt;/i&gt;
+&lt;/center&gt;
+
+&lt;div style="position:absolute;bottom:10px;left:10px;font-size:10pt;"&gt;
+This and next few slides inspired by data visualisation workshop with Di Cook ✨
+&lt;/div&gt;
+
+---
+
+# Preattentive processing
+
+* Viewers can notice certain features are absent or present without focussing their attention on particular regions.
+* Which plot helps you to distinguish the data points?
+
+
+
+&lt;img src="images/lecture-06/preattentive-1.svg"&gt;
+&lt;img src="images/lecture-06/preattentive-2.svg"&gt;{{content}}
+
+
+.footnote[
+Healey, Christopher G., and James T. Enns (2012) “Attention and Visual Memory in Visualization and Computer Graphics.” IEEE Transactions on Visualization and Computer Graphics 18 (7): 1170–88.
+]
+
+--
+
+&lt;img src="images/lecture-06/preattentive-3.svg"&gt;
+
+---
+
+# Proximity
+
+* By placing elements closer together, it makes it easier for you to group elements together as well as make comparisons.
+--
+
+* Which plot is better to compare gender frequency by hair color?
+
+&lt;img src="images/lecture-06/gesalt-proximity-1.svg" style="display: block; margin: auto;" /&gt;
+--
+
+* Which plot is easier to understand the color labels?
+&lt;img src="images/lecture-06/proximity-labels-1.svg" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+class: transition middle animated slideInLeft
+
+# Color space
+
+.footnote.monash-bg-blue[
+Zeileis, Fisher, Hornik, Ihaka, McWhite,
+Murrell, Stauffer, Wilke (2019). colorspace: A
+Toolbox for Manipulating and Assessing Colors and
+Palettes. *arXiv 1903.06490*
+
+Zeileis, Hornik, Murrell (2009). Escaping RGBland:
+Selecting Colors for Statistical Graphics.
+_Computational Statistics &amp; Data Analysis_ 53(9)
+3259-3270
+]
+
+---
+
+class: font_smaller center
+
+# Qualitative palettes
+
+designed for categorical variable with no particular ordering 
+
+
+
+```r
+colorspace::hcl_palettes("Qualitative", plot = "TRUE", n = 7)
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-6-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+
+class: font_smaller center
+
+# Sequential palettes
+
+designed for ordered categorical variable or number going from low to high (or vice-versa) 
+
+
+
+```r
+colorspace::hcl_palettes("Sequential", plot = "TRUE", n = 7)
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-7-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: font_smaller center
+
+# Diverging palettes
+
+designed for ordered categorical variable or number going from low to high (or vice-versa) with a neutral value in between
+
+
+
+```r
+colorspace::hcl_palettes("Diverging", plot = "TRUE", n = 7)
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-8-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: nostripheader rgb-slider-wrap center white
+
+# RGB color space
+
+made for screen projection
+
+ &lt;br&gt;&lt;br&gt;
+  &lt;div class="col-sliders"&gt;
+      &lt;div&gt;
+          &lt;label for="red"&gt;Red&lt;/label&gt;
+          &lt;input type="number" id="redNum"&gt;
+          &lt;input value="0" type="range" min="0" max="255" id="red"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;label for="green"&gt;Green&lt;/label&gt;
+          &lt;input type="number" id="greenNum"&gt;
+          &lt;input value="109" type="range" min="0" max="255" id="green"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;label for="blue"&gt;Blue&lt;/label&gt;
+          &lt;input type="number" id="blueNum"&gt;
+          &lt;input  value="174" type="range" min="0" max="255" id="blue"&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+
+.footnote.bg-transparent[
+Code adapted from https://github.com/Golobro/rgbcolorslider
+]
+
+---
+
+class: nostripheader hcl-slider-wrap center white
+
+# HCL color space
+
+made for human visual system
+
+ &lt;br&gt;&lt;br&gt;
+  &lt;div class="col-sliders"&gt;
+      &lt;div&gt;
+          &lt;label for="hue"&gt;Hue&lt;/label&gt;
+          &lt;input type="number" id="hueNum"&gt;
+          &lt;input value="268" type="range" min="0" max="360" id="hue"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;label for="chroma"&gt;Chroma&lt;/label&gt;
+          &lt;input type="number" id="chromaNum"&gt;
+          &lt;input value="42" type="range" min="0" max="180" id="chroma"&gt;
+      &lt;/div&gt;
+      &lt;div&gt;
+          &lt;label for="luminance"&gt;Luminance&lt;/label&gt;
+          &lt;input type="number" id="luminanceNum"&gt;
+          &lt;input  value="44" type="range" min="0" max="100" id="luminance"&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+
+.footnote.bg-transparent[
+Color conversion using https://github.com/gka/chroma.js
+]
+
+---
+
+# `colorspace` 📦 .font_small.animated.flash[LIVE DEMO]
+
+.center[
+Interactively choose/create a palette using the HCL color space. 
+]
+
+
+```r
+library(colorspace)
+hcl_wizard() # OR choose_palette()
+```
+
+&lt;center&gt;
+&lt;img src="images/hclwizard.png" width = "75%"&gt;&lt;br&gt;
+
+Choose your palette &gt; Export &gt; R &gt; Copy the command 
+
+&lt;/center&gt;
+
+---
+
+class: font_smaller
+
+# Registering your own palette
+
+.grid[
+.item[
+
+```r
+library(colorspace)
+# register your palette
+sequential_hcl(n = 7, 
+               h = c(300, 200), 
+               c = c(60, 0), 
+               l = c(25, 95), 
+               power = c(2.1, 0.8), 
+               register = "my-set")
+# now generate from your palette
+sequential_hcl(n = 3, 
+               palette = "my-set")
+```
+
+```
+## [1] "#6B0077" "#7C8393" "#F1F1F1"
+```
+
+]
+.item[
+
+{{content}}
+
+]
+]
+
+--
+
+
+```r
+hcl_palettes(n = 5, palette = "my-set", plot = T)
+```
+
+&lt;img src="images/lecture-06/own-palette-1.svg" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+Combining with `ggplot`:
+
+```r
+ggplot(penguins, 
+       aes(bill_length_mm, fill = species)) + 
+ geom_density(alpha = 0.6) + 
+  # notice here you don't need to specify the n!
+ scale_fill_discrete_sequential(palette = "my-set")
+```
+
+&lt;img src="images/lecture-06/my-palette-1.svg" style="display: block; margin: auto;" /&gt;
+
+---
+
+class: font_smaller
+
+# Match your color with the story
+&lt;center&gt;
+&lt;img src="images/lter_penguins.png" width = "250px"/&gt;
+&lt;/center&gt;
+
+
+```r
+g &lt;- ggplot(penguins, aes(bill_length_mm, fill = species)) + 
+  geom_density(alpha = 0.6) + 
+  scale_fill_manual(
+   breaks = c("Adelie", "Chinstrap", "Gentoo"), # optional but makes it more robust
+   values = c("darkorange", "purple", "cyan4"))
+g
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-10-1.svg" style="display: block; margin: auto;" /&gt;
+
+.footnote[
+Art by Allison Horst. 
+]
+
+---
+
+class: font_smaller
+
+# Check that it's colour blind friendly! 
+
+```r
+cols &lt;- c("darkorange", "purple", "cyan4")
+```
+
+.grid[
+.item50.border-right[
+
+```r
+g # original
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-12-1.svg" style="display: block; margin: auto;" /&gt;
+
+```r
+g + scale_fill_manual(values = deutan(cols))
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-12-2.svg" style="display: block; margin: auto;" /&gt;
+
+]
+.item50[
+
+```r
+g + scale_fill_manual(values = protan(cols))
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-13-1.svg" style="display: block; margin: auto;" /&gt;
+
+```r
+g + scale_fill_manual(values = tritan(cols))
+```
+
+&lt;img src="images/lecture-06/unnamed-chunk-13-2.svg" style="display: block; margin: auto;" /&gt;
+]
+
+]
+
+---
+
+
+background-image: url(images/xps-g2E2NQ5SWSU-unsplash.jpg)
+background-size: cover
+class: hide-slide-number split-70
+
+.column.shade_black[.content[
+
+&lt;br&gt;&lt;br&gt;
+
+# That's it!
+
+&lt;br&gt; 
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons Attribution-ShareAlike 4.0 International License&lt;/a&gt;.
+
+.bottom_abs.width100[
+
+Lecturer: Emi Tanaka
+
+Department of Econometrics and Business Statistics&lt;br&gt;
+<span>&lt;i class="fas  fa-envelope faa-float animated "&gt;&lt;/i&gt;</span>  ETC5523.Clayton-x@monash.edu
+
+]
+
+
+]]
+
+
+
+&lt;div class="column transition monash-m-new delay-1s" style="clip-path:url(#swipe__clip-path);"&gt;
+&lt;div class="background-image" style="background-position: center;background-size:cover;margin-left:3px;"&gt;
+&lt;svg class="clip-svg absolute"&gt;
+&lt;defs&gt;
+&lt;clipPath id="swipe__clip-path" clipPathUnits="objectBoundingBox"&gt;
+&lt;polygon points="0.5745 0, 0.5 0.33, 0.42 0, 0 0, 0 1, 0.27 1, 0.27 0.59, 0.37 1, 0.634 1, 0.736 0.59, 0.736 1, 1 1, 1 0, 0.5745 0" /&gt;
+&lt;/clipPath&gt;
+&lt;/defs&gt;	
+&lt;/svg&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLanguage": "r",
+"highlightLines": true,
+"highlightSpans": false,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%",
+"navigation": {
+"scroll": false,
+"touch": true,
+"click": false
+},
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<script src="assets/chroma.min.js"></script>
+<script src="assets/rgb-color.js"></script>
+<script src="assets/hcl-color.js"></script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'assets/mathjax-local/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

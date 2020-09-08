@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="864px" height="288px" viewBox="0 0 864 288" version="1.1">
+  <metadata xmlns:gridsvg="http://www.stat.auckland.ac.nz/~paul/R/gridSVG/">
+    <gridsvg:generator name="gridSVG" version="1.7-2" time="2020-09-07 12:21:38"/>
+    <gridsvg:argument name="name" value="images/lecture-06/perceptutal-tasks.svg"/>
+    <gridsvg:argument name="exportCoords" value="none"/>
+    <gridsvg:argument name="exportMappings" value="none"/>
+    <gridsvg:argument name="exportJS" value="none"/>
+    <gridsvg:argument name="res" value="72"/>
+    <gridsvg:argument name="prefix" value=""/>
+    <gridsvg:argument name="addClasses" value="FALSE"/>
+    <gridsvg:argument name="indent" value="TRUE"/>
+    <gridsvg:argument name="htmlWrapper" value="FALSE"/>
+    <gridsvg:argument name="usePaths" value="vpPaths"/>
+    <gridsvg:argument name="uniqueNames" value="TRUE"/>
+    <gridsvg:separator name="id.sep" value="."/>
+    <gridsvg:separator name="gPath.sep" value="::"/>
+    <gridsvg:separator name="vpPath.sep" value="::"/>
+  </metadata>
+  <g transform="translate(0, 288) scale(1, -1)">
+    <g id="gridSVG" fill="rgb(255,255,255)" stroke="rgb(0,0,0)" stroke-dasharray="none" stroke-width="0.75" font-size="12" font-family="Helvetica, Arial, FreeSans, Liberation Sans, Nimbus Sans L, sans-serif" opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="1" fill-opacity="1" font-weight="normal" font-style="normal">
+      <defs>
+        <symbol id="gridSVG.pch1" viewBox="-5 -5 10 10" overflow="visible">
+          <circle cx="0" cy="0" r="3.75"/>
+        </symbol>
+        <symbol id="gridSVG.pch2" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="0,5.83 5.05,-2.92 -5.05,-2.92 0,5.83"/>
+        </symbol>
+        <symbol id="gridSVG.pch3" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="-5.3,0 5.3,0"/>
+          <polyline points="0,-5.3 0,5.3"/>
+        </symbol>
+        <symbol id="gridSVG.pch4" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="-3.75,-3.75 3.75,3.75"/>
+          <polyline points="-3.75,3.75 3.75,-3.75"/>
+        </symbol>
+        <symbol id="gridSVG.pch5" viewBox="-5 -5 10 10" overflow="visible">
+          <polygon points="-5.3,0 0,5.3 5.3,0 0,-5.3 -5.3,0"/>
+        </symbol>
+        <symbol id="gridSVG.pch6" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="0,-5.83 5.05,2.92 -5.05,2.92 0,-5.83"/>
+        </symbol>
+        <symbol id="gridSVG.pch7" viewBox="-5 -5 10 10" overflow="visible">
+          <rect x="-3.75" y="-3.75" width="7.5" height="7.5"/>
+          <polyline points="-3.75,-3.75 3.75,3.75"/>
+          <polyline points="-3.75,3.75 3.75,-3.75"/>
+        </symbol>
+        <symbol id="gridSVG.pch8" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="-5.3,0 5.3,0"/>
+          <polyline points="0,-5.3 0,5.3"/>
+          <polyline points="-3.75,-3.75 3.75,3.75"/>
+          <polyline points="-3.75,3.75 3.75,-3.75"/>
+        </symbol>
+        <symbol id="gridSVG.pch9" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="-5.3,0 5.3,0"/>
+          <polyline points="0,-5.3 0,5.3"/>
+          <polygon points="-5.3,0 0,5.3 5.3,0 0,-5.3 -5.3,0"/>
+        </symbol>
+        <symbol id="gridSVG.pch10" viewBox="-5 -5 10 10" overflow="visible">
+          <circle cx="0" cy="0" r="3.75"/>
+          <polyline points="-3.75,0 3.75,0"/>
+          <polyline points="0,-3.75 0,3.75"/>
+        </symbol>
+        <symbol id="gridSVG.pch11" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="0,-5.83 5.05,4.37 -5.05,4.37 0,-5.83"/>
+          <polyline points="0,5.83 5.05,-4.37 -5.05,-4.37 0,5.83"/>
+        </symbol>
+        <symbol id="gridSVG.pch12" viewBox="-5 -5 10 10" overflow="visible">
+          <rect x="-3.75" y="-3.75" width="7.5" height="7.5"/>
+          <polyline points="-3.75,0 3.75,0"/>
+          <polyline points="0,-3.75 0,3.75"/>
+        </symbol>
+        <symbol id="gridSVG.pch13" viewBox="-5 -5 10 10" overflow="visible">
+          <circle cx="0" cy="0" r="3.75"/>
+          <polyline points="-3.75,-3.75 3.75,3.75"/>
+          <polyline points="-3.75,3.75 3.75,-3.75"/>
+        </symbol>
+        <symbol id="gridSVG.pch14" viewBox="-5 -5 10 10" overflow="visible">
+          <polyline points="0,-3.75 3.75,3.75 -3.75,3.75 0,-3.75"/>
+          <rect x="-3.75" y="-3.75" width="7.5" height="7.5"/>
+        </symbol>
+        <symbol id="gridSVG.pch15" viewBox="-5 -5 10 10" overflow="visible">
+          <rect x="-3.75" y="-3.75" width="7.5" height="7.5"/>
+        </symbol>
+        <symbol id="gridSVG.pch16" viewBox="-5 -5 10 10" overflow="visible">
+          <circle cx="0" cy="0" r="3.75"/>
+        </symbol>
+        <pattern id="gridSVG.patternFill.136.1" x="559.87" y="27.65" width="3.46" height="2.3" viewBox="0 0 36 28.8" patternUnits="userSpaceOnUse">
+          <g id="gridSVG.patternFill.gridSVG.patternFill.136.1.1.1">
+            <g id="gridSVG.patternFill.gridSVG.patternFill.136.1.2.1" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="none" stroke-width="0.75" font-size="12" font-family="Helvetica, Arial, FreeSans, Liberation Sans, Nimbus Sans L, sans-serif" opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="1" fill-opacity="0" font-weight="normal" font-style="normal">
+              <g id="gridSVG.patternFill.gridSVG.patternFill.136.1.2.1::GRID.lines.113830.1">
+                <polyline id="gridSVG.patternFill.gridSVG.patternFill.136.1.2.1::GRID.lines.113830.1.1" points="0,0 36,28.8" stroke-width="3.75" fill="none"/>
+              </g>
+            </g>
+          </g>
+        </pattern>
+        <pattern id="gridSVG.patternFill.137.1" x="557.28" y="25.92" width="8.64" height="5.76" viewBox="0 0 21.6 28.8" patternUnits="userSpaceOnUse">
+          <g id="gridSVG.patternFill.gridSVG.patternFill.137.1.1.1">
+            <g id="gridSVG.patternFill.gridSVG.patternFill.137.1.2.1" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="none" stroke-width="0.75" font-size="12" font-family="Helvetica, Arial, FreeSans, Liberation Sans, Nimbus Sans L, sans-serif" opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="1" fill-opacity="0" font-weight="normal" font-style="normal">
+              <g id="gridSVG.patternFill.gridSVG.patternFill.137.1.2.1::GRID.lines.113831.1">
+                <polyline id="gridSVG.patternFill.gridSVG.patternFill.137.1.2.1::GRID.lines.113831.1.1" points="0,0 64.8,86.4" stroke-width="3.75" fill="none"/>
+              </g>
+            </g>
+          </g>
+        </pattern>
+        <pattern id="gridSVG.patternFill.138.1" x="557.28" y="25.92" width="8.64" height="5.76" viewBox="0 0 3.6 5.76" patternUnits="userSpaceOnUse">
+          <g id="gridSVG.patternFill.gridSVG.patternFill.138.1.1.1">
+            <g id="gridSVG.patternFill.gridSVG.patternFill.138.1.2.1" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="none" stroke-width="0.75" font-size="5" font-family="Helvetica, Arial, FreeSans, Liberation Sans, Nimbus Sans L, sans-serif" opacity="1" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-opacity="1" fill-opacity="0" font-weight="normal" font-style="normal">
+              <g id="gridSVG.patternFill.gridSVG.patternFill.138.1.2.1::GRID.circle.113832.1">
+                <circle id="gridSVG.patternFill.gridSVG.patternFill.138.1.2.1::GRID.circle.113832.1.1" cx="1.8" cy="2.88" r="1.08" fill="rgb(0,0,0)" fill-opacity="1"/>
+              </g>
+            </g>
+          </g>
+        </pattern>
+      </defs>
+      <g id="main.1"/>
+      <g id="main.2">
+        <g id="main::GRID.VP.17094.1">
+          <g id="GRID.text.113811.1">
+            <g id="GRID.text.113811.1.1" transform="translate(708.48, 273.6)" stroke-width="0.1">
+              <g id="GRID.text.113811.1.1.scale" transform="scale(1, -1)">
+                <text x="0" y="0" id="GRID.text.113811.1.1.text" text-anchor="start" font-size="13.5" fill="rgb(0,0,0)" fill-opacity="1">
+                  <tspan id="GRID.text.113811.1.1.tspan.1" dy="9.68" x="0">ANGLE</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="main::GRID.VP.17094::GRID.VP.17095.1">
+            <g id="GRID.lines.113812.1">
+              <polyline id="GRID.lines.113812.1.1" points="803.52,184.32 820.8,218.88" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.lines.113813.1">
+              <polyline id="GRID.lines.113813.1.1" points="803.52,184.32 786.24,218.88" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.lines.113814.1">
+              <polyline id="GRID.lines.113814.1.1" points="760.32,184.32 768.96,218.88" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.lines.113815.1">
+              <polyline id="GRID.lines.113815.1.1" points="760.32,184.32 760.32,218.88" stroke-width="2.25" fill="none"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="main.3">
+        <g id="main::GRID.VP.17096.1">
+          <g id="GRID.text.113816.1">
+            <g id="GRID.text.113816.1.1" transform="translate(17.28, 129.6)" stroke-width="0.1">
+              <g id="GRID.text.113816.1.1.scale" transform="scale(1, -1)">
+                <text x="0" y="0" id="GRID.text.113816.1.1.text" text-anchor="start" font-size="13.5" fill="rgb(0,0,0)" fill-opacity="1">
+                  <tspan id="GRID.text.113816.1.1.tspan.1" dy="9.68" x="0">AREA</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="main::GRID.VP.17096::GRID.VP.17097.1">
+            <g id="GRID.circle.113817.1">
+              <circle id="GRID.circle.113817.1.1" cx="86.4" cy="57.6" r="28.8" fill="rgb(0,0,0)" fill-opacity="1"/>
+            </g>
+            <g id="GRID.circle.113818.1">
+              <circle id="GRID.circle.113818.1.1" cx="43.2" cy="80.64" r="5.76" fill="rgb(0,0,0)" fill-opacity="1"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="main.4">
+        <g id="main::GRID.VP.17098.1">
+          <g id="GRID.text.113819.1">
+            <g id="GRID.text.113819.1.1" transform="translate(190.08, 129.6)" stroke-width="0.1">
+              <g id="GRID.text.113819.1.1.scale" transform="scale(1, -1)">
+                <text x="0" y="0" id="GRID.text.113819.1.1.text" text-anchor="start" font-size="13.5" fill="rgb(0,0,0)" fill-opacity="1">
+                  <tspan id="GRID.text.113819.1.1.tspan.1" dy="9.68" x="0">VOLUME</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="main::GRID.VP.17098::GRID.VP.17099.1">
+            <g id="GRID.polyline.113820.1">
+              <polyline id="GRID.polyline.113820.1.1" points="216,28.8 216,46.08 241.92,46.08 241.92,28.8 216,28.8" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.polyline.113821.1">
+              <polyline id="GRID.polyline.113821.1.1" points="241.92,28.8 250.56,34.56 250.56,51.84 224.64,51.84 216,46.08" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.polyline.113822.1">
+              <polyline id="GRID.polyline.113822.1.1" points="241.92,46.08 250.56,51.84" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.polyline.113823.1">
+              <polyline id="GRID.polyline.113823.1.1" points="259.2,34.56 259.2,74.88 285.12,74.88 285.12,34.56 259.2,34.56" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.polyline.113824.1">
+              <polyline id="GRID.polyline.113824.1.1" points="285.12,34.56 293.76,40.32 293.76,80.64 267.84,80.64 259.2,74.88" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.polyline.113825.1">
+              <polyline id="GRID.polyline.113825.1.1" points="285.12,74.88 293.76,80.64" stroke-width="2.25" fill="none"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="main.5">
+        <g id="main::GRID.VP.17100.1">
+          <g id="GRID.text.113826.1">
+            <g id="GRID.text.113826.1.1" transform="translate(362.88, 129.6)" stroke-width="0.1">
+              <g id="GRID.text.113826.1.1.scale" transform="scale(1, -1)">
+                <text x="0" y="0" id="GRID.text.113826.1.1.text" text-anchor="start" font-size="13.5" fill="rgb(0,0,0)" fill-opacity="1">
+                  <tspan id="GRID.text.113826.1.1.tspan.1" dy="9.68" x="0">CURVATURE</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="main::GRID.VP.17100::GRID.VP.17101.1">
+            <g id="GRID.beziergrob.113827.1">
+              <polyline id="GRID.beziergrob.113827.1.1" points="432,51.84 432.13,54.55 432.53,57.03 433.17,59.28 434.03,61.31 435.1,63.11 436.37,64.67 437.79,65.98 439.36,67.02 441.04,67.8 442.8,68.29 444.6,68.49 446.41,68.4 448.19,68.02 449.91,67.36 451.52,66.42 453.01,65.21 454.34,63.75 455.49,62.05 456.44,60.11 457.17,57.94 457.66,55.55 457.9,52.93 457.92,51.84" stroke-width="2.25" fill="none"/>
+            </g>
+            <g id="GRID.beziergrob.113828.1">
+              <polyline id="GRID.beziergrob.113828.1.1" points="406.08,40.32 406.23,42.03 406.65,43.56 407.33,44.9 408.24,46.06 409.36,47.01 410.65,47.76 412.07,48.29 413.57,48.58 415.12,48.64 416.65,48.46 418.12,48.04 419.47,47.4 420.68,46.55 421.69,45.49 422.49,44.24 423.04,42.8 423.32,41.18 423.36,40.32" stroke-width="2.25" fill="none"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="main.6">
+        <g id="main::GRID.VP.17102.1">
+          <g id="GRID.text.113829.1">
+            <g id="GRID.text.113829.1.1" transform="translate(535.68, 129.6)" stroke-width="0.1">
+              <g id="GRID.text.113829.1.1.scale" transform="scale(1, -1)">
+                <text x="0" y="0" id="GRID.text.113829.1.1.text" text-anchor="start" font-size="13.5" fill="rgb(0,0,0)" fill-opacity="1">
+                  <tspan id="GRID.text.113829.1.1.tspan.1" dy="9.68" x="0">TEXTURE</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="main::GRID.VP.17102::GRID.VP.17103.1">
+            <g id="rect1.1" fill="url(#gridSVG.patternFill.136.1)" fill-opacity="1">
+              <rect id="rect1.1.1" x="548.64" y="34.56" width="43.2" height="23.04" transform="" stroke-width="2.25"/>
+            </g>
+            <g id="rect2.1" fill="url(#gridSVG.patternFill.137.1)" fill-opacity="1">
+              <rect id="rect2.1.1" x="591.84" y="72" width="25.92" height="23.04" transform="" stroke-width="2.25"/>
+            </g>
+            <g id="rect3.1" fill="url(#gridSVG.patternFill.138.1)" fill-opacity="1">
+              <rect id="rect3.1.1" x="630.72" y="31.68" width="25.92" height="28.8" transform="" stroke-width="2.25"/>
+            </g>
+          </g>
+        </g>
+      </g>
+      <g id="main.7">
+        <g id="main::GRID.VP.17107.1">
+          <g id="GRID.text.113833.1">
+            <g id="GRID.text.113833.1.1" transform="translate(708.48, 129.6)" stroke-width="0.1">
+              <g id="GRID.text.113833.1.1.scale" transform="scale(1, -1)">
+                <text x="0" y="0" id="GRID.text.113833.1.1.text" text-anchor="start" font-size="13.5" fill="rgb(0,0,0)" fill-opacity="1">
+                  <tspan id="GRID.text.113833.1.1.tspan.1" dy="9.68" x="0">SHAPE</tspan>
+                </text>
+              </g>
+            </g>
+          </g>
+          <g id="main::GRID.VP.17107::GRID.VP.17108.1">
+            <g id="GRID.points.113834.1">
+              <use id="GRID.points.113834.1.1" href="#gridSVG.pch1" x="753.6" y="41.6" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.2" href="#gridSVG.pch2" x="753.6" y="54.4" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.3" href="#gridSVG.pch3" x="753.6" y="67.2" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.4" href="#gridSVG.pch4" x="753.6" y="80" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.5" href="#gridSVG.pch5" x="772.8" y="41.6" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.6" href="#gridSVG.pch6" x="772.8" y="54.4" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.7" href="#gridSVG.pch7" x="772.8" y="67.2" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.8" href="#gridSVG.pch8" x="772.8" y="80" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.9" href="#gridSVG.pch9" x="792" y="41.6" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.10" href="#gridSVG.pch10" x="792" y="54.4" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.11" href="#gridSVG.pch11" x="792" y="67.2" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.12" href="#gridSVG.pch12" x="792" y="80" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.13" href="#gridSVG.pch13" x="811.2" y="41.6" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.14" href="#gridSVG.pch14" x="811.2" y="54.4" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="rgb(0,0,0)" fill="none" stroke-opacity="1" fill-opacity="0"/>
+              <use id="GRID.points.113834.1.15" href="#gridSVG.pch15" x="811.2" y="67.2" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="none" fill="rgb(0,0,0)" stroke-opacity="0" fill-opacity="1"/>
+              <use id="GRID.points.113834.1.16" href="#gridSVG.pch16" x="811.2" y="80" width="9.6" height="9.6" transform=" translate(-4.8,-4.8)" stroke-width="0.78" stroke="none" fill="rgb(0,0,0)" stroke-opacity="0" fill-opacity="1"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
